@@ -9,4 +9,4 @@
 - Roger :
 
 ## Reference
-* Github Markdown Syntax: (Link)[https://drive.google.com/drive/folders/0BxoXWWKb_tfoYXZ4cUVBVkJJNTQ]
+* Github Markdown Syntax: [Link](https://drive.google.com/drive/folders/0BxoXWWKb_tfoYXZ4cUVBVkJJNTQ)
