@@ -19,7 +19,7 @@
 - run `npm start`
 
 ## Additional Info
-If you created a new folder, make sure you add a path for it in the tsconfig.json file so that it will transpile the .ts to .js files.
+If you created a new folder, make sure you add a path for it in the `tsconfig.json` file so that it will transpile the .ts to .js files.
 
 
 Open `localhost:3000` in your browser
