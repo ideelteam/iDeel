@@ -4,8 +4,8 @@
 - File will be uploaded soon
 
 ## Contributors
-- Riley : riley.du@gmail.com || 206.422.7454
-- Benson :
+- Riley : riley.du@gmail.com 
+- Benson : 
 - Roger :
 
 ## Reference
