@@ -21,7 +21,7 @@
                 <div class="container">
                     <div class="site-name"><a href="clientView.html">iDeel</a></div>
                     <ul class="header_login">
-							<li><a href="login.html"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
+							<li><a href="registration.html"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
 							<li><a href="login.html"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a></li>
 
 						</ul>
@@ -52,14 +52,33 @@
         <div class="page-content">
             <div class="container">
                 <div class="sidemenu">
+                    <div class="page-title">			<h2>username</h2>
 
 
+                    <div class="Profile">
+                        <div class="avatar"></div>
+                        <div class= "user_info">
+                            <ul>
+                            <li>Email: example@ideel.com</li>
+                            <li>Documents Complete: 70%</li>
+                            <li>User Type: Student</li>
+                            </ul>
+                        </div>
+                    </div>
+						<ul class="menu">
+							<li><a href="#">Account Setting</a></li>
+							<li><a href="#">Manage applications</a></li>
+							<li><a href="#">manage jobs</a></li>
+							<li><a href="#">Manage Documents</a></li>
+						</ul>
+					</div>
+                <button onClick="location.href='postjob.html'" class="btn" type="submit">Post new job</button>
                 </div>
                 <div class="clear"></div>
-                <div class="homepage">
+                <div class="content">
 
       <div class="col_third">
-        <div class="hover panel boxes">
+        <div class="hover panel">
           <div class="front">
             <div class="box1">
               <p>Google</p>
@@ -77,7 +96,7 @@
         </div>
 
         <div class="col_third">
-        <div class="hover panel boxes">
+        <div class="hover panel">
           <div class="front">
             <div class="box1">
               <p>Facebook</p>
@@ -95,7 +114,7 @@
         </div>
 
         <div class="col_third">
-        <div class="hover panel boxes">
+        <div class="hover panel">
           <div class="front">
             <div class="box1">
               <p>Random Company</p>
@@ -113,7 +132,7 @@
         </div>
 
         <div class="col_third">
-        <div class="hover panel boxes">
+        <div class="hover panel">
           <div class="front">
             <div class="box1">
               <p>Twitter</p>
@@ -131,7 +150,7 @@
         </div>
 
         <div class="col_third">
-        <div class="hover panel boxes">
+        <div class="hover panel">
           <div class="front">
             <div class="box1">
               <p>Microsoft</p>
@@ -150,7 +169,7 @@
 
 
         <div class="col_third">
-        <div class="hover panel boxes">
+        <div class="hover panel">
           <div class="front">
             <div class="box1">
               <p>IDeel</p>
@@ -166,32 +185,44 @@
           </div>
         </div>
         </div>
-        <div class="clear"></div>
-        <div class=homebtn_div>
-            <button class="btn homebtn" onClick="location.href='login.html'">Register</button>
-            <button class="btn homebtn" onClick="location.href='login.html'">Login</button></div>
 
-               <div class="stats">
+        <div class="col_third">
+        <div class="hover panel">
+          <div class="front">
+            <div class="box1">
+              <p>Amazon</p>
+                <p>123 sample st, Seattle, WA</p>
+                <p>Description of the job</p>
+            </div>
+          </div>
+          <div class="back">
+            <div class="box2">
+              <p>Detail information</p>
+            <p></p>
+            </div>
+          </div>
+        </div>
+        </div>
 
-							<div class="col">
-								<i class="fa fa-graduation-cap" aria-hidden="true"></i>
-								<span>9999</span>
-								<span class="caption">Colleges</span>
-							</div>
-							<div class="col">
-								<i class="fa fa-university" aria-hidden="true"></i>
-								<span>9999</span>
-								<span class="caption">Companies</span>
-							</div>
-							<div class="col">
-								<i class="fa fa-users" aria-hidden="true"></i>
-								<span>9999</span>
-								<span class="caption">users</span>
-							</div>
-							<div class="clear"></div>
-						</div>
-					</div>
+        <div class="col_third">
+        <div class="hover panel">
+          <div class="front">
+            <div class="box1">
+              <p>PACCAR</p>
+                <p>123 sample st, Seattle, WA</p>
+                <p>Description of the job</p>
+            </div>
+          </div>
+          <div class="back">
+            <div class="box2">
+              <p>Detail information</p>
+            <p></p>
+            </div>
+          </div>
+        </div>
+        </div>
 
+                </div>
             </div>
         </div>
         <script type="text/javascript">
@@ -205,6 +236,7 @@
             $(this).removeClass('flip');
         });
     });
+
     $('.hover').click(function(){
       window.location.href='Description.html';
     });
