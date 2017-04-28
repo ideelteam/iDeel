@@ -1,62 +1,61 @@
 "use strict";
-exports.__esModule = true;
-var express = require("express");
-var logger = require("morgan");
-var bodyParser = require("body-parser");
-var ListModel_1 = require("./model/ListModel");
-var TaskModel_1 = require("./model/TaskModel");
+Object.defineProperty(exports, "__esModule", { value: true });
+const express = require("express");
+const logger = require("morgan");
+const bodyParser = require("body-parser");
+const ListModel_1 = require("./model/ListModel");
+const TaskModel_1 = require("./model/TaskModel");
 // Creates and configures an ExpressJS web server.
-var App = (function () {
+class App {
     //Run configuration methods on the Express instance.
-    function App() {
+    constructor() {
         this.express = express();
         this.middleware();
         this.routes();
         this.idGenerator = 100;
-        this.Lists = new ListModel_1["default"]();
-        this.Tasks = new TaskModel_1["default"]();
+        this.Lists = new ListModel_1.default();
+        this.Tasks = new TaskModel_1.default();
     }
     // Configure Express middleware.
-    App.prototype.middleware = function () {
+    middleware() {
         this.express.use(logger('dev'));
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
-    };
+    }
     // Configure API endpoints.
-    App.prototype.routes = function () {
-        var _this = this;
-        var router = express.Router();
-        router.get('/app/list/:listId/count', function (req, res) {
+    routes() {
+        let router = express.Router();
+        router.get('/app/list/:listId/count', (req, res) => {
             var id = req.params.listId;
             console.log('Query single list with id: ' + id);
-            _this.Tasks.retrieveTasksCount(res, { listId: id });
+            this.Tasks.retrieveTasksCount(res, { listId: id });
         });
-        router.post('/app/list/', function (req, res) {
+        router.post('/app/list/', (req, res) => {
             console.log(req.body);
             var jsonObj = req.body;
-            jsonObj.listId = _this.idGenerator;
-            _this.Lists.model.create([jsonObj], function (err) {
+            jsonObj.listId = this.idGenerator;
+            this.Lists.model.create([jsonObj], (err) => {
                 if (err) {
                     console.log('object creation failed');
                 }
             });
-            res.send(_this.idGenerator.toString());
-            _this.idGenerator++;
+            res.send(this.idGenerator.toString());
+            this.idGenerator++;
         });
-        router.get('/app/list/:listId', function (req, res) {
+        router.get('/app/list/:listId', (req, res) => {
             var id = req.params.listId;
             console.log('Query single list with id: ' + id);
-            _this.Tasks.retrieveTasksDetails(res, { listId: id });
+            this.Tasks.retrieveTasksDetails(res, { listId: id });
         });
-        router.get('/app/list/', function (req, res) {
+        router.get('/app/list/', (req, res) => {
             console.log('Query All list');
-            _this.Lists.retrieveAllLists(res);
+            this.Lists.retrieveAllLists(res);
         });
         this.express.use('/', router);
         this.express.use('/app/json/', express.static(__dirname + '/app/json'));
         this.express.use('/images', express.static(__dirname + '/img'));
         this.express.use('/', express.static(__dirname + '/pages'));
-    };
-    return App;
-}());
-exports["default"] = new App().express;
+    }
+}
+exports.default = new App().express;
+//# sourceMappingURL=App.js.map

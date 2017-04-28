@@ -1,14 +1,14 @@
 "use strict";
-exports.__esModule = true;
-var DataAccess_1 = require("../DataAccess");
-var mongoose = DataAccess_1["default"].mongooseInstance;
-var mongooseConnection = DataAccess_1["default"].mongooseConnection;
-var ListModel = (function () {
-    function ListModel() {
+Object.defineProperty(exports, "__esModule", { value: true });
+const DataAccess_1 = require("../DataAccess");
+var mongoose = DataAccess_1.default.mongooseInstance;
+var mongooseConnection = DataAccess_1.default.mongooseConnection;
+class ListModel {
+    constructor() {
         this.createSchema();
         this.createModel();
     }
-    ListModel.prototype.createSchema = function () {
+    createSchema() {
         this.schema = mongoose.Schema({
             name: String,
             description: String,
@@ -17,16 +17,16 @@ var ListModel = (function () {
             state: String,
             owner: String
         }, { collection: 'lists' });
-    };
-    ListModel.prototype.createModel = function () {
+    }
+    createModel() {
         this.model = mongooseConnection.model("Lists", this.schema);
-    };
-    ListModel.prototype.retrieveAllLists = function (response) {
+    }
+    retrieveAllLists(response) {
         var query = this.model.find({});
-        query.exec(function (err, itemArray) {
+        query.exec((err, itemArray) => {
             response.json(itemArray);
         });
-    };
-    return ListModel;
-}());
-exports["default"] = ListModel;
+    }
+}
+exports.default = ListModel;
+//# sourceMappingURL=ListModel.js.map

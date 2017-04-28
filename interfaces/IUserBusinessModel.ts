@@ -13,6 +13,8 @@ interface IUserBusinessModel extends Mongoose.Document {
     companyLicenseNo: string;
     username: string;
     password: string;
+    pictureID: number;
+    picturePhoto: {data:Buffer, contentType:String};
 }
 
 export default IUserBusinessModel;

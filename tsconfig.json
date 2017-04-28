@@ -1,10 +1,14 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "commonjs"
+    "module": "commonjs",
+    "sourceMap":true
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "*.ts",
+    "interfaces/*.ts",
+    "model/*.ts"
   ],
   "exclude": [
     "node_modules"

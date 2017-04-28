@@ -1,14 +1,14 @@
 "use strict";
-exports.__esModule = true;
-var DataAccess_1 = require("../DataAccess");
-var mongoose = DataAccess_1["default"].mongooseInstance;
-var mongooseConnection = DataAccess_1["default"].mongooseConnection;
-var TaskModel = (function () {
-    function TaskModel() {
+Object.defineProperty(exports, "__esModule", { value: true });
+const DataAccess_1 = require("../DataAccess");
+var mongoose = DataAccess_1.default.mongooseInstance;
+var mongooseConnection = DataAccess_1.default.mongooseConnection;
+class TaskModel {
+    constructor() {
         this.createSchema();
         this.createModel();
     }
-    TaskModel.prototype.createSchema = function () {
+    createSchema() {
         this.schema = mongoose.Schema({
             listId: Number,
             tasks: [{
@@ -18,23 +18,23 @@ var TaskModel = (function () {
                     status: String
                 }]
         }, { collection: 'tasks' });
-    };
-    TaskModel.prototype.createModel = function () {
+    }
+    createModel() {
         this.model = mongooseConnection.model("Task", this.schema);
-    };
-    TaskModel.prototype.retrieveTasksDetails = function (response, filter) {
+    }
+    retrieveTasksDetails(response, filter) {
         var query = this.model.findOne(filter);
-        query.exec(function (err, itemArray) {
+        query.exec((err, itemArray) => {
             response.json(itemArray);
         });
-    };
-    TaskModel.prototype.retrieveTasksCount = function (response, filter) {
+    }
+    retrieveTasksCount(response, filter) {
         var query = this.model.find(filter).select('tasks').count();
-        query.exec(function (err, numberOfTasks) {
+        query.exec((err, numberOfTasks) => {
             console.log('number of tasks: ' + numberOfTasks);
             response.json(numberOfTasks);
         });
-    };
-    return TaskModel;
-}());
-exports["default"] = TaskModel;
+    }
+}
+exports.default = TaskModel;
+//# sourceMappingURL=TaskModel.js.map
