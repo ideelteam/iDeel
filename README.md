@@ -16,6 +16,7 @@
 - Download MongoDB
 - Clone repo
 - run `npm install --save`
+- Go to the folder that mongo was installed and run "mongod.exe"
 - run `npm start`
 
 ## Additional Info
@@ -23,3 +24,12 @@ If you created a new folder, make sure you add a path for it in the `tsconfig.js
 
 
 Open `localhost:3000` in your browser
+
+
+Routes:
+GET     /dashboard/user
+GET     /dashboard/:id
+POST    /dashboard/:jobid
+GET     /dashboard/:jobid/description
+GET     /user/info
+Delete  /user/:id
