@@ -26,10 +26,10 @@ If you created a new folder, make sure you add a path for it in the `tsconfig.js
 Open `localhost:3000` in your browser
 
 
-Routes:
-GET     /dashboard/user <br>
-GET     /dashboard/:id  <br>
-POST    /dashboard/:jobid <br>
-GET     /dashboard/:jobid/description <br>
-GET     /user/info <br>
-Delete  /user/:id <br>
+###Routes:
+**GET**     /dashboard/user <br>
+**GET**     /dashboard/:id  <br>
+**POST**    /dashboard/:jobid <br>
+**GET**     /dashboard/:jobid/description <br>
+**GET**     /user/info <br>
+**Delete**  /user/:id <br>
