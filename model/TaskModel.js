@@ -37,4 +37,3 @@ class TaskModel {
     }
 }
 exports.default = TaskModel;
-//# sourceMappingURL=TaskModel.js.map

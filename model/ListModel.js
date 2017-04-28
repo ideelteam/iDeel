@@ -29,4 +29,3 @@ class ListModel {
     }
 }
 exports.default = ListModel;
-//# sourceMappingURL=ListModel.js.map
