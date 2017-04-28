@@ -27,9 +27,9 @@ Open `localhost:3000` in your browser
 
 
 Routes:
-GET     /dashboard/user
-GET     /dashboard/:id
-POST    /dashboard/:jobid
-GET     /dashboard/:jobid/description
-GET     /user/info
-Delete  /user/:id
+GET     /dashboard/user <br>
+GET     /dashboard/:id  <br>
+POST    /dashboard/:jobid <br>
+GET     /dashboard/:jobid/description <br>
+GET     /user/info <br>
+Delete  /user/:id <br>
