@@ -16,5 +16,6 @@
 - Download MongoDB
 - Clone repo
 - run "npm install --save"
+- run "npm start"
 
- Points to localhost:8080
+ Points to localhost:8080 in your browser
