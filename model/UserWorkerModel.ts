@@ -29,7 +29,8 @@ export default class ListModel {
                 username: String,
                 password: String,
                 pictureID: Number,
-               // picturePhoto: {data:Buffer, contentType:String}
+                //picturePhoto: {data:Buffer, contentType:String}
+
             }, {collection: 'lists'}
         );
     }
