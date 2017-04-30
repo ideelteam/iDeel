@@ -60,15 +60,24 @@ class App {
     router.post('/dashboard/:jobid', (req,res) => {
         res.send("Creates a job");
     });
-    
-    router.get('/user/info',(req,res) => {
-        res.send("Goes to the view user page(profile page)");
+
+    router.post('/dashboard/:jobid/apply', (req,res) => {
+        res.send("Post to apply job");
     });
 
+    router.delete('/dashboard/:jobid', (req,res) => {
+        res.send("Creates a job");
+    });
+
+    router.get('/user/:id/info',(req,res) => {
+        res.send("Goes to the view user page(profile page)");
+    });
     router.post('/user/:id', (req,res) => {
         res.send('Adds a user to db');
     });
-
+    router.get('/user/:id',(req,res) => {
+        res.send("Goes to the view user page(profile page)");
+    });
     router.delete('/user/:id',(req,res) => {
         res.send("Delete a user given their id");
     });

@@ -38,25 +38,24 @@ class App {
         router.post('/dashboard/:jobid', (req, res) => {
             res.send("Creates a job");
         });
-        router.post('/dashboard/:jobid/apply', (req,res) => {
-            res.send("Apply job page");
+        router.post('/dashboard/:jobid/apply', (req, res) => {
+            res.send("Post to apply job");
         });
-        router.delete('/dashboard/:jobid', (req,res) => {
-            res.send("Delete a job");
-        });        
-        router.get('/user/info', (req, res) => {
+        router.delete('/dashboard/:jobid', (req, res) => {
+            res.send("Creates a job");
+        });
+        router.get('/user/:id/info', (req, res) => {
             res.send("Goes to the view user page(profile page)");
         });
         router.post('/user/:id', (req, res) => {
-            res.send('Create a user');
+            res.send('Adds a user to db');
         });
         router.get('/user/:id', (req, res) => {
-            res.send('Get specific user');
+            res.send("Goes to the view user page(profile page)");
         });
         router.delete('/user/:id', (req, res) => {
             res.send("Delete a user given their id");
         });
-
         // router.get('/app/list/:listId/count', (req, res) => {
         //     var id = req.params.listId;
         //     console.log('Query single list with id: ' + id);

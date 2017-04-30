@@ -33,7 +33,7 @@ Open `localhost:3000` in your browser
 **POST**    /dashboard/:jobid/apply <br>
 **DELETE**  /dashboard/:jobid <br>
 
-**GET**     /user/info <br>
+**GET**     /user/:id/info <br>
 **POST**    /user/:id <br>
 **GET**     /user/:id <br>
 **DELETE**  /user/:id <br>
