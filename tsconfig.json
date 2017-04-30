@@ -7,7 +7,9 @@
   "include": [
     "src/**/*.ts",
     "interfaces/*.ts",
-    "model/*.ts"
+    "model/*.ts",
+    "*.ts",
+    "Controllers/*.ts"
   ],
   "exclude": [
     "node_modules"

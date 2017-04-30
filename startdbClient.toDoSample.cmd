@@ -1,1 +1,1 @@
-mongo --port 3000 -u dbAdmin -p test --authenticationDatabase admin
+mongo --port 3000 -u ideelAdmin -p test --authenticationDatabase ideelAdmin2017

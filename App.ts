@@ -4,18 +4,25 @@ import * as logger from 'morgan';
 import * as url from 'url';
 import * as bodyParser from 'body-parser';
 
-import ListModel from './model/ListModel';
-import TaskModel from './model/TaskModel';
+//import ListModel from './model/ListModel';
+//import TaskModel from './model/TaskModel';
 import DataAccess from './DataAccess';
+import JobModel from './model/JobModel';
+import UserWorkerModel from './model/UserWorkerModel';
+import UserBusinessModel from './model/UserBusinessModel';
 
 // Creates and configures an ExpressJS web server.
 class App {
 
   // ref to Express instance
   public express: express.Application;
-  public Lists:ListModel;
-  public Tasks:TaskModel;
+  //public Lists:ListModel;
+  //public Tasks:TaskModel;
   public idGenerator:number;
+
+  public Job:JobModel;
+  public UserWorker:UserWorkerModel;
+  public UserBusiness:UserBusinessModel;
 
   //Run configuration methods on the Express instance.
   constructor() {
@@ -23,8 +30,12 @@ class App {
     this.middleware();
     this.routes();
     this.idGenerator = 100;
-    this.Lists = new ListModel();
-    this.Tasks = new TaskModel();
+  //  this.Lists = new ListModel();
+  //  this.Tasks = new TaskModel();
+
+    this.Job = new JobModel();
+    this.UserWorker = new UserWorkerModel();
+    this.UserBusiness = new UserBusinessModel();
   }
 
   // Configure Express middleware.
@@ -38,35 +49,59 @@ class App {
   private routes(): void {
     let router = express.Router();
     
-    router.get('/app/list/:listId/count', (req, res) => {
-        var id = req.params.listId;
-        console.log('Query single list with id: ' + id);
-        this.Tasks.retrieveTasksCount(res, {listId: id});
+    router.get('/dashboard/:jobid',(req,res) => {
+        res.send("Gets the job description page");
     });
 
-    router.post('/app/list/', (req, res) => {
-        console.log(req.body);
-        var jsonObj = req.body;
-        jsonObj.listId = this.idGenerator;
-        this.Lists.model.create([jsonObj], (err) => {
-            if (err) {
-                console.log('object creation failed');
-            }
-        });
-        res.send(this.idGenerator.toString());
-        this.idGenerator++;
+    router.get('/dashboard/jobs', (req,res) => {
+        res.send("Gets list of all jobs");
     });
 
-    router.get('/app/list/:listId', (req, res) => {
-        var id = req.params.listId;
-        console.log('Query single list with id: ' + id);
-        this.Tasks.retrieveTasksDetails(res, {listId: id});
+    router.post('/dashboard/:jobid', (req,res) => {
+        res.send("Creates a job");
+    });
+    
+    router.get('/user/info',(req,res) => {
+        res.send("Goes to the view user page(profile page)");
     });
 
-    router.get('/app/list/', (req, res) => {
-        console.log('Query All list');
-        this.Lists.retrieveAllLists(res);
+    router.post('/user/:id', (req,res) => {
+        res.send('Adds a user to db');
     });
+
+    router.delete('/user/:id',(req,res) => {
+        res.send("Delete a user given their id");
+    });
+
+    // router.get('/app/list/:listId/count', (req, res) => {
+    //     var id = req.params.listId;
+    //     console.log('Query single list with id: ' + id);
+    //     this.Tasks.retrieveTasksCount(res, {listId: id});
+    // });
+
+    // router.post('/app/list/', (req, res) => {
+    //     console.log(req.body);
+    //     var jsonObj = req.body;
+    //     jsonObj.listId = this.idGenerator;
+    //     this.Lists.model.create([jsonObj], (err) => {
+    //         if (err) {
+    //             console.log('object creation failed');
+    //         }
+    //     });
+    //     res.send(this.idGenerator.toString());
+    //     this.idGenerator++;
+    // });
+
+    // router.get('/app/list/:listId', (req, res) => {
+    //     var id = req.params.listId;
+    //     console.log('Query single list with id: ' + id);
+    //     this.Tasks.retrieveTasksDetails(res, {listId: id});
+    // });
+
+    // router.get('/app/list/', (req, res) => {
+    //     console.log('Query All list');
+    //     this.Lists.retrieveAllLists(res);
+    // });
 
 
     this.express.use('/', router);

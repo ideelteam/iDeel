@@ -3,8 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
-const ListModel_1 = require("./model/ListModel");
-const TaskModel_1 = require("./model/TaskModel");
+const JobModel_1 = require("./model/JobModel");
+const UserWorkerModel_1 = require("./model/UserWorkerModel");
+const UserBusinessModel_1 = require("./model/UserBusinessModel");
 // Creates and configures an ExpressJS web server.
 class App {
     //Run configuration methods on the Express instance.
@@ -13,8 +14,11 @@ class App {
         this.middleware();
         this.routes();
         this.idGenerator = 100;
-        this.Lists = new ListModel_1.default();
-        this.Tasks = new TaskModel_1.default();
+        //  this.Lists = new ListModel();
+        //  this.Tasks = new TaskModel();
+        this.Job = new JobModel_1.default();
+        this.UserWorker = new UserWorkerModel_1.default();
+        this.UserBusiness = new UserBusinessModel_1.default();
     }
     // Configure Express middleware.
     middleware() {
@@ -25,32 +29,60 @@ class App {
     // Configure API endpoints.
     routes() {
         let router = express.Router();
-        router.get('/app/list/:listId/count', (req, res) => {
-            var id = req.params.listId;
-            console.log('Query single list with id: ' + id);
-            this.Tasks.retrieveTasksCount(res, { listId: id });
+        router.get('/dashboard/:jobid', (req, res) => {
+            res.send("Gets the job description page");
         });
-        router.post('/app/list/', (req, res) => {
-            console.log(req.body);
-            var jsonObj = req.body;
-            jsonObj.listId = this.idGenerator;
-            this.Lists.model.create([jsonObj], (err) => {
-                if (err) {
-                    console.log('object creation failed');
-                }
-            });
-            res.send(this.idGenerator.toString());
-            this.idGenerator++;
+        router.get('/dashboard/jobs', (req, res) => {
+            res.send("Gets list of all jobs");
         });
-        router.get('/app/list/:listId', (req, res) => {
-            var id = req.params.listId;
-            console.log('Query single list with id: ' + id);
-            this.Tasks.retrieveTasksDetails(res, { listId: id });
+        router.post('/dashboard/:jobid', (req, res) => {
+            res.send("Creates a job");
         });
-        router.get('/app/list/', (req, res) => {
-            console.log('Query All list');
-            this.Lists.retrieveAllLists(res);
+        router.post('/dashboard/:jobid/apply', (req,res) => {
+            res.send("Apply job page");
         });
+        router.delete('/dashboard/:jobid', (req,res) => {
+            res.send("Delete a job");
+        });        
+        router.get('/user/info', (req, res) => {
+            res.send("Goes to the view user page(profile page)");
+        });
+        router.post('/user/:id', (req, res) => {
+            res.send('Create a user');
+        });
+        router.get('/user/:id', (req, res) => {
+            res.send('Get specific user');
+        });
+        router.delete('/user/:id', (req, res) => {
+            res.send("Delete a user given their id");
+        });
+
+        // router.get('/app/list/:listId/count', (req, res) => {
+        //     var id = req.params.listId;
+        //     console.log('Query single list with id: ' + id);
+        //     this.Tasks.retrieveTasksCount(res, {listId: id});
+        // });
+        // router.post('/app/list/', (req, res) => {
+        //     console.log(req.body);
+        //     var jsonObj = req.body;
+        //     jsonObj.listId = this.idGenerator;
+        //     this.Lists.model.create([jsonObj], (err) => {
+        //         if (err) {
+        //             console.log('object creation failed');
+        //         }
+        //     });
+        //     res.send(this.idGenerator.toString());
+        //     this.idGenerator++;
+        // });
+        // router.get('/app/list/:listId', (req, res) => {
+        //     var id = req.params.listId;
+        //     console.log('Query single list with id: ' + id);
+        //     this.Tasks.retrieveTasksDetails(res, {listId: id});
+        // });
+        // router.get('/app/list/', (req, res) => {
+        //     console.log('Query All list');
+        //     this.Lists.retrieveAllLists(res);
+        // });
         this.express.use('/', router);
         this.express.use('/app/json/', express.static(__dirname + '/app/json'));
         this.express.use('/images', express.static(__dirname + '/img'));
@@ -58,4 +90,3 @@ class App {
     }
 }
 exports.default = new App().express;
-//# sourceMappingURL=App.js.map

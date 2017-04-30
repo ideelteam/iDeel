@@ -44,4 +44,3 @@ class Server {
     }
 }
 new Server();
-//# sourceMappingURL=Server.js.map
