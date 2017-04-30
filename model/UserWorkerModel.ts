@@ -30,6 +30,7 @@ export default class ListModel {
                 password: String,
                 pictureID: Number,
                 //picturePhoto: {data:Buffer, contentType:String}
+
             }, {collection: 'lists'}
         );
     }
