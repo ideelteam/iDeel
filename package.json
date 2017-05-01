@@ -24,7 +24,11 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+<<<<<<< HEAD
     "start": "nodemon Server.js"
+=======
+    "start": "node Server.js"
+>>>>>>> 421e3bce9b649ea5cb2eea6a82b071b525ed5ef9
   },
   "author": "",
   "license": "ISC"
