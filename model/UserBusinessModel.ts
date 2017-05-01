@@ -5,7 +5,7 @@ import IUserBusinessModel from '../interfaces/IUserBusinessModel';
 var mongoose = DataAccess.mongooseInstance;
 var mongooseConnection = DataAccess.mongooseConnection;
 
-export default class ListModel {
+export default class UserBusinessModel {
     public schema:Mongoose.Schema;
     public model:any;
 
@@ -30,13 +30,21 @@ export default class ListModel {
                 username: String,
                 password: String,
                 pictureID: Number,
-                //picturePhoto: {data:Buffer, contentType:String}
-            }, {collection: 'lists'}
+               // picturePhoto: {data:Buffer, contentType:String}
+
+            }, {collection: 'userBusiness'}
         );
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<IUserBusinessModel>("businessUserInfo", this.schema);
+        this.model = mongooseConnection.model<IUserBusinessModel>("userBusiness", this.schema);
+    }
+
+        public retreiveAll(response:any): any{
+        var query = this.model.find({});
+        query.exec((err, jobArray) => {
+            response.json(jobArray);
+        });
     }
 
     //Do some function response here with json here
