@@ -39,12 +39,12 @@ export default class UserBusinessModel {
     public createModel(): void {
         this.model = mongooseConnection.model<IUserBusinessModel>("userBusiness", this.schema);
     }
-
-        public retreiveAll(response:any): any{
+    public retreiveAll(response:any): any{
         var query = this.model.find({});
         query.exec((err, jobArray) => {
             response.json(jobArray);
         });
+
     }
 
     //Do some function response here with json here

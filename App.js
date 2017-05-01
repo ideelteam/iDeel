@@ -29,51 +29,6 @@ class App {
     // Configure API endpoints.
     routes() {
         let router = express.Router();
-        router.get('/users', (req, res) => {
-            res.send("Users here");
-        });
-        router.get('/users/bUsers', (req, res) => {
-            this.UserBusiness.retreiveAll(res);
-        });
-        router.get('/users/wUsers', (req, res) => {
-            this.UserWorker.retreiveAll(res);
-        });
-        router.get('/users/:id/info', (req, res) => {
-            res.send("Goes to the view user page(profile page)");
-        });
-        router.post('/users/:id', (req, res) => {
-            res.send('Adds a user to db');
-        });
-        router.get('/users/:id', (req, res) => {
-            res.send("Get specific user");
-        });
-        router.delete('/users/:id', (req, res) => {
-            res.send("Delete a user given their id");
-        });
-        router.put('/users/:id/info', (req, res) => {
-            res.send("Upate user info");
-        });
-        router.get('/dashboard', (req, res) => {
-            res.send("DashBoard here");
-        });
-        router.get('/dashboard/jobs/:jobid', (req, res) => {
-            res.send("Gets the job description page");
-        });
-        router.get('/dashboard/jobs', (req, res) => {
-            res.send("Gets list of all jobs");
-            this.Job.retreiveAll(res);
-        });
-        router.post('/dashboard/jobs/:jobid', (req, res) => {
-            res.send("Creates a job");
-        });
-        router.delete('/dashboard/jobs/:jobid', (req, res) => {
-            res.send("Creates a job");
-        });
-        router.put('/dashboard/jobs/:jobid', (req, res) => {
-            res.send("Updates a job");
-        });
-        router.delete('/dashboard/search', (req, res) => {
-            res.send("Searches a job");
         });
         // router.get('/app/list/:listId/count', (req, res) => {
         //     var id = req.params.listId;
