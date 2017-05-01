@@ -27,7 +27,7 @@ class JobModel {
         this.model = mongooseConnection.model("jobs", this.schema);
     }
     //Do some function response here with json here
-    retreiveJobs(response) {
+    retreiveAll(response) {
         var query = this.model.find({});
         query.exec((err, jobArray) => {
             response.json(jobArray);

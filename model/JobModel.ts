@@ -38,7 +38,7 @@ export default class JobModel {
 
     //Do some function response here with json here
 
-    public retreiveJobs(response:any): any{
+    public retreiveAll(response:any): any{
         var query = this.model.find({});
         query.exec((err, jobArray) => {
             response.json(jobArray);
