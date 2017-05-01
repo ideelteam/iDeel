@@ -5,7 +5,7 @@ import IJobModelModel from '../interfaces/IJobModel';
 var mongoose = DataAccess.mongooseInstance;
 var mongooseConnection = DataAccess.mongooseConnection;
 
-export default class ListModel {
+export default class JobModel {
     public schema:Mongoose.Schema;
     public model:any;
 
@@ -28,13 +28,20 @@ export default class ListModel {
                 startDate: Date,
                 endDate: Date,
                 availability: Boolean,
-            }, {collection: 'lists'}
+            }, {collection: 'jobs'}
         );
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<IJobModelModel>("jobInfo", this.schema);
+        this.model = mongooseConnection.model<IJobModelModel>("jobs", this.schema);
     }
 
     //Do some function response here with json here
+
+    public retreiveJobs(response:any): any{
+        var query = this.model.find({});
+        query.exec((err, jobArray) => {
+            response.json(jobArray);
+        });
+    }
 }

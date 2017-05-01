@@ -3,27 +3,25 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as url from 'url';
 import * as bodyParser from 'body-parser';
-
 //import ListModel from './model/ListModel';
 //import TaskModel from './model/TaskModel';
 import DataAccess from './DataAccess';
 import JobModel from './model/JobModel';
 import UserWorkerModel from './model/UserWorkerModel';
 import UserBusinessModel from './model/UserBusinessModel';
-
 // Creates and configures an ExpressJS web server.
-class App {
 
+
+
+class App {
   // ref to Express instance
   public express: express.Application;
   //public Lists:ListModel;
   //public Tasks:TaskModel;
   public idGenerator:number;
-
   public Job:JobModel;
   public UserWorker:UserWorkerModel;
   public UserBusiness:UserBusinessModel;
-
   //Run configuration methods on the Express instance.
   constructor() {
     this.express = express();
@@ -32,62 +30,34 @@ class App {
     this.idGenerator = 100;
   //  this.Lists = new ListModel();
   //  this.Tasks = new TaskModel();
-
     this.Job = new JobModel();
     this.UserWorker = new UserWorkerModel();
     this.UserBusiness = new UserBusinessModel();
   }
-
   // Configure Express middleware.
   private middleware(): void {
     this.express.use(logger('dev'));
     this.express.use(bodyParser.json());
     this.express.use(bodyParser.urlencoded({ extended: false }));
   }
-
   // Configure API endpoints.
   private routes(): void {
     let router = express.Router();
     
-    router.get('/dashboard/:jobid',(req,res) => {
-        res.send("Gets the job description page");
+    router.get('/dashboard/bUsers', (req, res) => {
+        this.UserBusiness.retreiveAll(res);
     });
 
-    router.get('/dashboard/jobs', (req,res) => {
-        res.send("Gets list of all jobs");
+    router.get('/dashboard', (req, res) => {
+        res.send("DashBoard here");
     });
 
-    router.post('/dashboard/:jobid', (req,res) => {
-        res.send("Creates a job");
-    });
-
-    router.post('/dashboard/:jobid/apply', (req,res) => {
-        res.send("Post to apply job");
-    });
-
-    router.delete('/dashboard/:jobid', (req,res) => {
-        res.send("Creates a job");
-    });
-
-    router.get('/user/:id/info',(req,res) => {
-        res.send("Goes to the view user page(profile page)");
-    });
-    router.post('/user/:id', (req,res) => {
-        res.send('Adds a user to db');
-    });
-    router.get('/user/:id',(req,res) => {
-        res.send("Goes to the view user page(profile page)");
-    });
-    router.delete('/user/:id',(req,res) => {
-        res.send("Delete a user given their id");
-    });
-
+    
     // router.get('/app/list/:listId/count', (req, res) => {
     //     var id = req.params.listId;
     //     console.log('Query single list with id: ' + id);
     //     this.Tasks.retrieveTasksCount(res, {listId: id});
     // });
-
     // router.post('/app/list/', (req, res) => {
     //     console.log(req.body);
     //     var jsonObj = req.body;
@@ -100,27 +70,19 @@ class App {
     //     res.send(this.idGenerator.toString());
     //     this.idGenerator++;
     // });
-
     // router.get('/app/list/:listId', (req, res) => {
     //     var id = req.params.listId;
     //     console.log('Query single list with id: ' + id);
     //     this.Tasks.retrieveTasksDetails(res, {listId: id});
     // });
-
     // router.get('/app/list/', (req, res) => {
     //     console.log('Query All list');
     //     this.Lists.retrieveAllLists(res);
     // });
-
-
     this.express.use('/', router);
-
     this.express.use('/app/json/', express.static(__dirname+'/app/json'));
     this.express.use('/images', express.static(__dirname+'/img'));
     this.express.use('/', express.static(__dirname+'/pages'));
-
   }
-
 }
-
 export default new App().express;
