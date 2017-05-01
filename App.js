@@ -29,11 +29,6 @@ class App {
     // Configure API endpoints.
     routes() {
         let router = express.Router();
-        router.get('/dashboard/bUsers', (req, res) => {
-            this.UserBusiness.retrieveAll(res);
-        });
-        router.get('/dashboard', (req, res) => {
-            res.send("DashBoard here");
         });
         // router.get('/app/list/:listId/count', (req, res) => {
         //     var id = req.params.listId;

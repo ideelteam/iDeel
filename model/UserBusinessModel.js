@@ -28,10 +28,12 @@ class UserBusinessModel {
     createModel() {
         this.model = mongooseConnection.model("userBusiness", this.schema);
     }
-    retrieveAll(res) {
+
+    retreiveAll(response) {
         var query = this.model.find({});
-        query.exec((err, aList) => {
-            res.json(aList);
+        query.exec((err, jobArray) => {
+            response.json(jobArray);
+
         });
     }
 }

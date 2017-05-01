@@ -22,10 +22,18 @@ class UserWorkerModel {
             username: String,
             password: String,
             pictureID: Number,
-        }, { collection: 'workerUser' });
+
+        }, { collection: 'userWorker' });
     }
     createModel() {
-        this.model = mongooseConnection.model("workerUser", this.schema);
+        this.model = mongooseConnection.model("userWorker", this.schema);
+    }
+    //Do some function response here with json here
+    retreiveAll(response) {
+        var query = this.model.find({});
+        query.exec((err, jobArray) => {
+            response.json(jobArray);
+        });
     }
 }
 exports.default = UserWorkerModel;

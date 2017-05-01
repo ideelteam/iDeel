@@ -30,14 +30,20 @@ export default class UserWorkerModel {
                 password: String,
                 pictureID: Number,
                 //picturePhoto: {data:Buffer, contentType:String}
+            }, {collection: 'userWorker'}
 
-            }, {collection: 'workerUser'}
         );
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<IUserWorkerModel>("workerUser", this.schema);
+        this.model = mongooseConnection.model<IUserWorkerModel>("userWorker", this.schema);
     }
 
     //Do some function response here with json here
+    public retreiveAll(response:any): any{
+        var query = this.model.find({});
+        query.exec((err, jobArray) => {
+            response.json(jobArray);
+        });
+    }
 }
