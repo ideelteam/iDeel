@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const DataAccess_1 = require("../DataAccess");
 var mongoose = DataAccess_1.default.mongooseInstance;
 var mongooseConnection = DataAccess_1.default.mongooseConnection;
-class ListModel {
+class UserBusinessModel {
     constructor() {
         this.createSchema();
         this.createModel();
@@ -23,10 +23,16 @@ class ListModel {
             username: String,
             password: String,
             pictureID: Number,
-        }, { collection: 'lists' });
+        }, { collection: 'userBusiness' });
     }
     createModel() {
-        this.model = mongooseConnection.model("businessUserInfo", this.schema);
+        this.model = mongooseConnection.model("userBusiness", this.schema);
+    }
+    retreiveAll(response) {
+        var query = this.model.find({});
+        query.exec((err, jobArray) => {
+            response.json(jobArray);
+        });
     }
 }
-exports.default = ListModel;
+exports.default = UserBusinessModel;
