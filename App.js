@@ -29,32 +29,11 @@ class App {
     // Configure API endpoints.
     routes() {
         let router = express.Router();
-        router.get('/dashboard/:jobid', (req, res) => {
-            res.send("Gets the job description page");
+        router.get('/dashboard/bUsers', (req, res) => {
+            this.UserBusiness.retrieveAll(res);
         });
-        router.get('/dashboard/jobs', (req, res) => {
-            res.send("Gets list of all jobs");
-        });
-        router.post('/dashboard/:jobid', (req, res) => {
-            res.send("Creates a job");
-        });
-        router.post('/dashboard/:jobid/apply', (req, res) => {
-            res.send("Post to apply job");
-        });
-        router.delete('/dashboard/:jobid', (req, res) => {
-            res.send("Creates a job");
-        });
-        router.get('/user/:id/info', (req, res) => {
-            res.send("Goes to the view user page(profile page)");
-        });
-        router.post('/user/:id', (req, res) => {
-            res.send('Adds a user to db');
-        });
-        router.get('/user/:id', (req, res) => {
-            res.send("Goes to the view user page(profile page)");
-        });
-        router.delete('/user/:id', (req, res) => {
-            res.send("Delete a user given their id");
+        router.get('/dashboard', (req, res) => {
+            res.send("DashBoard here");
         });
         // router.get('/app/list/:listId/count', (req, res) => {
         //     var id = req.params.listId;

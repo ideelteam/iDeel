@@ -17,6 +17,6 @@ class DataAccess {
         return this.mongooseInstance;
     }
 }
-DataAccess.DB_CONNECTION_STRING = 'mongodb://ideelAdmin:ideelAdmin2017@localhost:27017/ideeldb';
+DataAccess.DB_CONNECTION_STRING = 'mongodb://localhost:27017/ideeldb';
 DataAccess.connect();
 exports.default = DataAccess;

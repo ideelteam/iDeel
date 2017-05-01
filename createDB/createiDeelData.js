@@ -6,7 +6,7 @@ jobCollection = db.getCollection("jobs");
 jobCollection.remove({});
 userBusinessCollection = db.getCollection("userBusiness");
 userBusinessCollection.remove({});
-userWorkerCollection = db.getCollection("userBusiness");
+userWorkerCollection = db.getCollection("userWorker");
 userWorkerCollection.remove({});
 jobCollection.insert(
     {

@@ -5,11 +5,7 @@
     //"sourceMap":true
   },
   "include": [
-    "src/**/*.ts",
-    "interfaces/*.ts",
-    "model/*.ts",
-    "*.ts",
-    "Controllers/*.ts"
+    "./**/*.ts"
   ],
   "exclude": [
     "node_modules"

@@ -5,7 +5,7 @@ import IUserWorkerModel from '../interfaces/IUserWorkerModel';
 var mongoose = DataAccess.mongooseInstance;
 var mongooseConnection = DataAccess.mongooseConnection;
 
-export default class ListModel {
+export default class UserWorkerModel {
     public schema:Mongoose.Schema;
     public model:any;
 
@@ -31,12 +31,12 @@ export default class ListModel {
                 pictureID: Number,
                 //picturePhoto: {data:Buffer, contentType:String}
 
-            }, {collection: 'lists'}
+            }, {collection: 'workerUser'}
         );
     }
 
     public createModel(): void {
-        this.model = mongooseConnection.model<IUserWorkerModel>("workerUserInfo", this.schema);
+        this.model = mongooseConnection.model<IUserWorkerModel>("workerUser", this.schema);
     }
 
     //Do some function response here with json here
