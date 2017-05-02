@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html>
+
 <head runat="server">
     <title>Post New Job</title>
     <link href="../IDeel/image/26292858.png" rel="icon" />
@@ -12,6 +13,7 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
 </head>
+
 <body>
 
     <div class="site-container">
@@ -21,10 +23,10 @@
                 <div class="container">
                     <div class="site-name"><a href="index.html">IDeel</a></div>
                     <ul class="header_login">
-							<li><a href="registration.html"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
-							<li><a href="login.html"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a></li>
+                        <li><a href="registration.html"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
+                        <li><a href="login.html"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a></li>
 
-						</ul>
+                    </ul>
                     <div class="clear"></div>
                 </div>
             </div>
@@ -33,15 +35,15 @@
 
                     <a class="logo" href="clientView.html">iDeel</a>
                     <ul class="navbar">
-							<li>
-								<form class="search" action="/">
-									<input  class="searchbar" value="" name="search" type="text" />
-									<button class="search-submit" type="submit">
+                        <li>
+                            <form class="search" action="/">
+                                <input class="searchbar" value="" name="search" type="text" />
+                                <button class="search-submit" type="submit">
 										<i class="fa fa-search"></i>
 									</button>
-								</form>
-							</li>
-						</ul>
+                            </form>
+                        </li>
+                    </ul>
 
                     <div class="clear"></div>
                 </div>
@@ -52,126 +54,126 @@
         <div class="page-content">
             <div class="container">
                 <div class="sidemenu">
-                    <div class="page-title">			<h2>username</h2>
+                    <div class="page-title">
+                        <h2>username</h2>
 
 
-                    <div class="Profile">
-                        <div class="avatar"></div>
-                        <div class= "user_info">
-                            <ul>
-                            <li>Email: example@ideel.com</li>
-                            <li>Documents Complete: 70%</li>
-                            <li>User Type: Student</li>
-                            </ul>
+                        <div class="Profile">
+                            <div class="avatar"></div>
+                            <div class="user_info">
+                                <ul>
+                                    <li>Email: example@ideel.com</li>
+                                    <li>Documents Complete: 70%</li>
+                                    <li>User Type: Student</li>
+                                </ul>
+                            </div>
                         </div>
+                        <ul class="menu">
+                            <li><a href="#">Account Setting</a></li>
+                            <li><a href="#">Manage applications</a></li>
+                            <li><a href="#">manage jobs</a></li>
+                            <li><a href="#">Manage Documents</a></li>
+                        </ul>
                     </div>
-						<ul class="menu">
-							<li><a href="#">Account Setting</a></li>
-							<li><a href="#">Manage applications</a></li>
-							<li><a href="#">manage jobs</a></li>
-							<li><a href="#">Manage Documents</a></li>
-						</ul>
-					</div>
 
                 </div>
                 <div class="clear"></div>
                 <div class="content">
                     <h2>Post New job</h2>
-                    <div class="post_div"><button onClick="location.href='clientView.html'" class="btn post-button" id="post-btn">Post</button></div>
+                    <!--<div class="post_div"><button onClick="location.href='clientView.html'" class="btn post-button" id="post-btn">Post</button></div>-->
 
-								<div class="error-msg"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> All fields are required.</div>
+                    <div class="error-msg"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> All fields are required.</div>
 
-							<ul class="forms">
-								<h3>Job Description</h3>
-								 <li>
-									<label class="labels" >Title</label>
+                    <form id="postJob" action="/dashboard/jobs" method="POST">
+                        <ul class="forms">
+                            <h3>Job Description</h3>
+                            <li>
+                                <label class="labels">Title</label>
 
-									<input name="Title" type="text" class="inputs" spellcheck="true" required="required" maxlength="60">
-								</li>
-								<li>
-									<label class="labels" >Company name</label>
+                                <input name="title" type="text" class="inputs" spellcheck="true" required="required" maxlength="60">
+                            </li>
+                            <li>
+                                <label class="labels">Company name</label>
 
-									<input name="Company name" type="text" class="inputs" spellcheck="false" required="required" maxlength="60">
-								</li>
-								 <li>
-									<label class="labels" >Location</label>
+                                <input name="companyName" type="text" class="inputs" spellcheck="false" required="required" maxlength="60">
+                            </li>
+                            <li>
+                                <label class="labels">Location</label>
 
-									<input name="Location" type="text" class="inputs" required="required" maxlength="60">
-								</li>
-                                <li>
-									<label class="labels" >Phone</label>
+                                <input name="city" type="text" class="inputs" required="required" maxlength="60">
+                            </li>
+                            <li>
+                                <label class="labels">Phone</label>
 
-									<input type="tel" class="inputs"
-                                    spellcheck="false" required="required" maxlength="15">
-								</li>
-                                <li>
-									<label class="labels" >Email</label>
+                                <input name="phoneNo" type="text" class="inputs" spellcheck="false" required="required" maxlength="15">
+                            
+                            </li>
+                            <!--<li>
+                                <label class="labels">Email</label>
 
-									<input name="email" type="email" class="inputs" id="email" spellcheck="false" required="required" maxlength="30">
-								</li>
-                                <li>
-									<label class="labels" >Salary</label>
+                                <input name="email" type="email" class="inputs" id="email" spellcheck="false" required="required" maxlength="30">
+                            </li>-->
+                            <li>
+                                <label class="labels">Salary</label>
 
-									<input type="Salary" class="inputs" type="number" spellcheck="false" required="required" maxlength="5">
-								</li>
-                                <li>
-									<label class="labels" >Start Date</label>
+                                <input name="salary" type="text" class="inputs" type="number" spellcheck="false" required="required" maxlength="5">
+                            </li>
+                            <li>
+                                <label class="labels">Start Date</label>
 
-									<input type="Start Date" class="inputs date" type="date" spellcheck="false" required="required" min="2017-04-15">
-								</li>
-                                <li>
-									<label class="labels" >End Date</label>
+                                <input name="startDate" type="text" class="inputs date" type="date" spellcheck="false" required="required" min="2017-04-15">
+                            </li>
+                            <li>
+                                <label class="labels">End Date</label>
 
-									<input type="End Date" class="inputs date" type="date" spellcheck="false" required="required" min="2017-04-15">
-								</li>
-								 <li>
-									<label class="labels" >Description</label>
-									<textarea name="Description" class="inputs" required="required" rows="4" maxlength="1000"></textarea>
-								</li>
+                                <input name="endDate" type="text" class="inputs date" type="date" spellcheck="false" required="required" min="2017-04-15">
+                            </li>
+                            <li>
+                                <label class="labels">Description</label>
+                                <textarea name="description" class="inputs" required="required" rows="4" maxlength="1000"></textarea>
+                            </li>
+                        </ul>
 
-							</ul>
-
-
-
-
-
+                        <input type="submit" value="Submit">
+                    </form>
                 </div>
             </div>
         </div>
         <script type="text/javascript">
-        $(document).ready(function(){
-        // set up hover panels
-        // although this can be done without JavaScript, we've attached these events
-        // because it causes the hover to be triggered when the element is tapped on a touch device
-        $('.hover').hover(function(){
-            $(this).addClass('flip');
-        },function(){
-            $(this).removeClass('flip');
-        });
-    });
+            $(document).ready(function () {
+                // set up hover panels
+                // although this can be done without JavaScript, we've attached these events
+                // because it causes the hover to be triggered when the element is tapped on a touch device
+                $('.hover').hover(function () {
+                    $(this).addClass('flip');
+                }, function () {
+                    $(this).removeClass('flip');
+                });
+            });
         </script>
         <div class="clear"></div>
         <footer>
-                <div class="footer-container">
-                    <div class="container">
+            <div class="footer-container">
+                <div class="container">
 
-                        <div class="address">
-                        </div>
-                        <div class="clear"></div>
-                        <div class="social">
-                            <a href="#" class="social-icons" target="_blank"><i class="fa fa-facebook"></i></a>
-                            <a href="#" class="social-icons" target="_blank"><i class="fa fa-twitter"></i></a>
-                            <a href="#" class="social-icons" target="_blank"><i class="fa fa-linkedin"></i></a>
-                            <a href="#" class="social-icons" target="_blank"><i class="fa fa-shopping-cart"></i></a>
-                        </div>
-                        <div class="row copyrights">
-                            &copy; <span>2017 </span> IDeel Inc. All Rights Reserved.
-                        </div>
+                    <div class="address">
+                    </div>
+                    <div class="clear"></div>
+                    <div class="social">
+                        <a href="#" class="social-icons" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="social-icons" target="_blank"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="social-icons" target="_blank"><i class="fa fa-linkedin"></i></a>
+                        <a href="#" class="social-icons" target="_blank"><i class="fa fa-shopping-cart"></i></a>
+                    </div>
+                    <div class="row copyrights">
+                        &copy; <span>2017 </span> IDeel Inc. All Rights Reserved.
                     </div>
                 </div>
-            </footer>
+            </div>
+        </footer>
     </div>
 
 
 </body>
+
 </html>

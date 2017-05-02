@@ -3,22 +3,28 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as url from 'url';
 import * as bodyParser from 'body-parser';
+
+
 //import ListModel from './model/ListModel';
 //import TaskModel from './model/TaskModel';
+
+
 import DataAccess from './DataAccess';
 import JobModel from './model/JobModel';
 import UserWorkerModel from './model/UserWorkerModel';
 import UserBusinessModel from './model/UserBusinessModel';
 // Creates and configures an ExpressJS web server.
 
-
-
 class App {
     // ref to Express instance
     public express: express.Application;
-    //public Lists:ListModel;
+
+
+   // public Lists:ListModel;
     //public Tasks:TaskModel;
-    public idGenerator: number;
+
+
+    // public idGenerator: number;
     public Job: JobModel;
     public UserWorker: UserWorkerModel;
     public UserBusiness: UserBusinessModel;
@@ -27,9 +33,13 @@ class App {
         this.express = express();
         this.middleware();
         this.routes();
-        this.idGenerator = 100;
-        //  this.Lists = new ListModel();
+      //  this.idGenerator = 100;
+
+
+         //this.Lists = new ListModel();
         //  this.Tasks = new TaskModel();
+
+
         this.Job = new JobModel();
         this.UserWorker = new UserWorkerModel();
         this.UserBusiness = new UserBusinessModel();
@@ -44,6 +54,13 @@ class App {
     private routes(): void {
         let router = express.Router();
 
+        router.get('/', (req,res) =>{
+            //res.send("Index Page");
+           //res.render("clientView.html");
+
+          // res.sendFile(path.join(__dirname+'/pages/clientView.html'));
+        });
+
         router.get('/users', (req, res) => {
             res.send("Users here");
         });
@@ -55,7 +72,6 @@ class App {
         router.get('/users/wUsers', (req, res) => {
             this.UserWorker.retreiveAll(res);
         });
-
 
         router.get('/users/:id/info', (req, res) => {
             res.send("Goes to the view user page(profile page)");
@@ -70,12 +86,15 @@ class App {
             res.send("Delete a user given their id");
         });
         router.put('/users/:id/info', (req, res) => {
-            res.send("Upate user info");
+            res.send("Update user info");
         });
-
 
         router.get('/dashboard', (req, res) => {
             res.send("DashBoard here");
+        });
+
+        router.get('/dashboard/jobs', (req, res) => {
+           this.Job.retreiveAll(res);
         });
 
         router.get('/dashboard/jobs/:jobid', (req, res) => {
@@ -84,13 +103,18 @@ class App {
             // this .Job.retreiveJob(res, {listId: id});
         });
 
-        router.get('/dashboard/jobs', (req, res) => {
-            //res.send("Gets list of all jobs");
-            this.Job.retreiveAll(res);
-        });
 
-        router.post('/dashboard/jobs/:jobid', (req, res) => {
-            res.send("Creates a job");
+        router.post('/dashboard/jobs/', (req, res) => {
+            res.send("Created a job");
+            //console.log(req.body);
+            var newJob = req.body;
+            this.Job.model.create([newJob],(err)=>{
+                if(err){
+                    console.log('object creation failed');
+                }
+            })
+
+            //res.sendFile(path.join(__dirname+'/pages/clientView.html'));
         });
 
         router.delete('/dashboard/jobs/:jobid', (req, res) => {
@@ -125,6 +149,7 @@ class App {
         //     res.send(this.idGenerator.toString());
         //     this.idGenerator++;
         // });
+
 
         // router.get('/app/list/:listId', (req, res) => {
         //     var id = req.params.listId;

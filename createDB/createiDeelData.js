@@ -22,7 +22,6 @@ jobCollection.insert(
         endDate: "3-4-2017",
         availability: true
     }
-
 )
 jobCollection.insert(
     {

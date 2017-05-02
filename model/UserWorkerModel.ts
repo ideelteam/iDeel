@@ -30,8 +30,8 @@ export default class UserWorkerModel {
                 password: String,
                 pictureID: Number,
                 //picturePhoto: {data:Buffer, contentType:String}
-
             }, {collection: 'userWorker'}
+
         );
     }
 

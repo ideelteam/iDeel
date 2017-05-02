@@ -13,8 +13,8 @@ class App {
         this.express = express();
         this.middleware();
         this.routes();
-        this.idGenerator = 100;
-        //  this.Lists = new ListModel();
+        //  this.idGenerator = 100;
+        //this.Lists = new ListModel();
         //  this.Tasks = new TaskModel();
         this.Job = new JobModel_1.default();
         this.UserWorker = new UserWorkerModel_1.default();
@@ -29,6 +29,11 @@ class App {
     // Configure API endpoints.
     routes() {
         let router = express.Router();
+        router.get('/', (req, res) => {
+            //res.send("Index Page");
+            //res.render("clientView.html");
+            // res.sendFile(path.join(__dirname+'/pages/clientView.html'));
+        });
         router.get('/users', (req, res) => {
             res.send("Users here");
         });
@@ -51,22 +56,28 @@ class App {
             res.send("Delete a user given their id");
         });
         router.put('/users/:id/info', (req, res) => {
-            res.send("Upate user info");
+            res.send("Update user info");
         });
         router.get('/dashboard', (req, res) => {
             res.send("DashBoard here");
         });
-        router.get('/dashboard/jobs/:jobid', (req, res) => {
-            res.send("Gets the job description page");
-            // var id = req.params.jobid;
-            // this .Job.retreiveJob(res, {listId: id});
-        });
+
         router.get('/dashboard/jobs', (req, res) => {
-            //res.send("Gets list of all jobs");
             this.Job.retreiveAll(res);
         });
-        router.post('/dashboard/jobs/:jobid', (req, res) => {
-            res.send("Creates a job");
+        router.get('/dashboard/jobs/:jobid', (req, res) => {
+            res.send("Gets the job description page");
+        });
+        router.post('/dashboard/jobs/', (req, res) => {
+            res.send("Created a job");
+            //console.log(req.body);
+            var newJob = req.body;
+            this.Job.model.create([newJob], (err) => {
+                if (err) {
+                    console.log('object creation failed');
+                }
+            });
+            //res.sendFile(path.join(__dirname+'/pages/clientView.html'));
         });
         router.delete('/dashboard/jobs/:jobid', (req, res) => {
             res.send("Creates a job");
