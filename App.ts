@@ -3,8 +3,12 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as url from 'url';
 import * as bodyParser from 'body-parser';
-//import ListModel from './model/ListModel';
+
+
+import ListModel from './model/ListModel';
 //import TaskModel from './model/TaskModel';
+
+
 import DataAccess from './DataAccess';
 import JobModel from './model/JobModel';
 import UserWorkerModel from './model/UserWorkerModel';
@@ -16,8 +20,12 @@ import UserBusinessModel from './model/UserBusinessModel';
 class App {
     // ref to Express instance
     public express: express.Application;
-    //public Lists:ListModel;
+
+
+    public Lists:ListModel;
     //public Tasks:TaskModel;
+
+
     public idGenerator: number;
     public Job: JobModel;
     public UserWorker: UserWorkerModel;
@@ -28,8 +36,12 @@ class App {
         this.middleware();
         this.routes();
         this.idGenerator = 100;
-        //  this.Lists = new ListModel();
+
+
+         this.Lists = new ListModel();
         //  this.Tasks = new TaskModel();
+
+
         this.Job = new JobModel();
         this.UserWorker = new UserWorkerModel();
         this.UserBusiness = new UserBusinessModel();
@@ -44,6 +56,10 @@ class App {
     private routes(): void {
         let router = express.Router();
 
+        router.get('/', (req,res) =>{
+            res.send("Index Page");
+        });
+
         router.get('/users', (req, res) => {
             res.send("Users here");
         });
@@ -55,7 +71,6 @@ class App {
         router.get('/users/wUsers', (req, res) => {
             this.UserWorker.retreiveAll(res);
         });
-
 
         router.get('/users/:id/info', (req, res) => {
             res.send("Goes to the view user page(profile page)");
@@ -70,25 +85,31 @@ class App {
             res.send("Delete a user given their id");
         });
         router.put('/users/:id/info', (req, res) => {
-            res.send("Upate user info");
+            res.send("Update user info");
         });
-
 
         router.get('/dashboard', (req, res) => {
             res.send("DashBoard here");
+        });
+
+        router.get('/dashboard/jobs', (req, res) => {
+           this.Job.retreiveAll(res);
         });
 
         router.get('/dashboard/jobs/:jobid', (req, res) => {
             res.send("Gets the job description page");
         });
 
-        router.get('/dashboard/jobs', (req, res) => {
-            //res.send("Gets list of all jobs");
-           // this.Job.retreiveAll(res);
-        });
+        router.post('/dashboard/jobs/', (req, res) => {
+            res.send("Created a job");
+            console.log(req.body);
 
-        router.post('/dashboard/jobs/:jobid', (req, res) => {
-            res.send("Creates a job");
+            var newJob = req.body;
+            this.Job.model.create([newJob],(err)=>{
+                if(err){
+                    console.log('object creation failed');
+                }
+            })
         });
 
         router.delete('/dashboard/jobs/:jobid', (req, res) => {
@@ -111,18 +132,19 @@ class App {
         //     this.Tasks.retrieveTasksCount(res, {listId: id});
         // });
 
-        // router.post('/app/list/', (req, res) => {
-        //     console.log(req.body);
-        //     var jsonObj = req.body;
-        //     jsonObj.listId = this.idGenerator;
-        //     this.Lists.model.create([jsonObj], (err) => {
-        //         if (err) {
-        //             console.log('object creation failed');
-        //         }
-        //     });
-        //     res.send(this.idGenerator.toString());
-        //     this.idGenerator++;
-        // });
+        router.post('/app/list/', (req, res) => {
+            console.log(req.body);
+            var jsonObj = req.body;
+            jsonObj.listId = this.idGenerator;
+            this.Lists.model.create([jsonObj], (err) => {
+                if (err) {
+                    console.log('object creation failed');
+                }
+            });
+            res.send(this.idGenerator.toString());
+            this.idGenerator++;
+        });
+
 
         // router.get('/app/list/:listId', (req, res) => {
         //     var id = req.params.listId;
