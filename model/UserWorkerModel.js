@@ -22,7 +22,6 @@ class UserWorkerModel {
             username: String,
             password: String,
             pictureID: Number,
-
         }, { collection: 'userWorker' });
     }
     createModel() {
@@ -31,8 +30,8 @@ class UserWorkerModel {
     //Do some function response here with json here
     retreiveAll(response) {
         var query = this.model.find({});
-        query.exec((err, jobArray) => {
-            response.json(jobArray);
+        query.exec((err, listOfUserWorkers) => {
+            response.json(listOfUserWorkers);
         });
     }
 }
