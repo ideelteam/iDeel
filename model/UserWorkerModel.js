@@ -22,6 +22,7 @@ class UserWorkerModel {
             username: String,
             password: String,
             pictureID: Number,
+
         }, { collection: 'userWorker' });
     }
     createModel() {

@@ -28,6 +28,7 @@ class UserBusinessModel {
     createModel() {
         this.model = mongooseConnection.model("userBusiness", this.schema);
     }
+
     retreiveAll(response) {
         var query = this.model.find({});
         query.exec((err, businessArray) => {

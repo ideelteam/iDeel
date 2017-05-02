@@ -15,8 +15,6 @@ import UserWorkerModel from './model/UserWorkerModel';
 import UserBusinessModel from './model/UserBusinessModel';
 // Creates and configures an ExpressJS web server.
 
-
-
 class App {
     // ref to Express instance
     public express: express.Application;
