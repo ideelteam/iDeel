@@ -21,28 +21,98 @@ function getCookie(cname) {
 }
 
 function retrieveDataFromServer(url, operation){
-		$('#profile').append("<p>123</p>");
-	
 		var xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function() {
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 			var returnValues = JSON.parse(xmlhttp.responseText);
-			displayUserProfile('profile', returnValues);
-			populateJobs('jobs', returnValues);
+			if(operation == "profile"){
+				displayUserProfile('profile', returnValues);
+
+			}else if(operation == "jobs"){
+				populateJobs('jobs', returnValues);
+			}else if(operation == "jobdesc"){
+				displayDetailInfo('jobdesc', returnValues);	
+			}
 		}
 	}
 	xmlhttp.open("GET", url, true);
 	xmlhttp.send();
 }
 
+function populateJobs(elementId, data){
+	var newElement = "";
+	for(var i = 0; i < data.length; i++){
+		newElement += "<h2>" + data[0].title + "</h2>";
+        newElement += "<h3>" + data[0].companyName + "</h3>";
+        newElement += "<h3>" + data[0].city + "</h3>";
+        newElement += "<h3>" + data[0].salary + "/hour</h3>";
+        newElement += "<h3>" + data[0].description + "</h3>";
+        newElement += "<ul class=\"job_info\">";
+        newElement += "<li>Payout: $" + data[0].salary + "/hour</li>";
+        newElement += "<li>Date and time: " + data[0].enddate + "</li>";
+   		newElement += "<li>Date and time: " + data[0].phoneNo + "</li>";
+        newElement += "</ul>";
+        newElement += "<div class=\"desc_div\"><button class=\"btn desc\">Apply</button>";
+        newElement += "<button class=\"btn desc\">Save</button></div>";
+              
+	}
+	
+	$("#" + elementId).append(newElement);
+}
+
+function populateJobs(elementId, data){
+	var newElement = "";
+	for(var i = 0; i < data.length; i++){
+		newElement += "<div class=\"col_third\">";
+        newElement += "<div class=\"hover panel\" id=\"" + data[i].jobID +"\">";
+        newElement += "<div class=\"front\">";
+        newElement += "<div class=\"box1\">";
+		newElement += "<p>" + data[i].jobID + ". "  + data[i].title + "</p>";
+        newElement += "<p>Company Name: " + data[i].companyName + "</p>";
+		newElement += "<p>City: " + data[i].city + "</p>";
+        newElement += "<p>Dead Line: " + data[i].endDate + "</p>";
+		newElement += "</div></div>";
+        newElement += "<div class=\"back\">";
+        newElement += "<div class=\"box2\">";
+        newElement += "<p>" + data[i].description + "</p>";
+        newElement += "</div></div></div></div>";
+              
+	}
+	
+	$("#" + elementId).append(newElement);
+	 // set up hover panels
+        // although this can be done without JavaScript, we've attached these events
+        // because it causes the hover to be triggered when the element is tapped on a touch device
+        $('.hover').hover(function () {
+          $(this).addClass('flip');
+        }, function () {
+          $(this).removeClass('flip');
+        });
+	$('.hover').click(function () {
+        window.location.href = 'Description.html';
+      });
+}
+
 function displayUserProfile(elementId, data){
-	var info = data[0].description;
-	$("#" + elementId).append("<p>" + info + "</p>");
+	
+	var newElement = "";
+	newElement += "<h2>" + data[0].companyName + "</h2>";
+    newElement += "<div class=\"avatar\"></div>";
+    newElement += "<div class=\"user_info\">";
+    newElement += "<ul><li>ID: "+ data[0].businessID +"</li>";
+    newElement += "<li>Email: " + data[0].email + "</li>";
+    newElement += "<li>Address: " + data[0].address + "</li>";
+    newElement += "</ul>"
+    newElement += "</div>"
+	$("#" + elementId).append(newElement);
 }
 
 $(document).ready(function() {
+	retrieveDataFromServer('/users/bUsers', 'profile');
 	retrieveDataFromServer('/dashboard/jobs', 'jobs');
+	retrieveDataFromServer('/dashboard/jobs/1', 'jobdesc');
 	$('.page-section').css('height', $(window).height());
+	
 	$( window ).resize(function() {
 		if($('body.home').length){
 			$('.page-section').css('height', $(window).height());
@@ -184,6 +254,7 @@ $(document).ready(function() {
 		}
 	});
 
+	
 
 	$(window).scroll(function(e) {
 		/* header */

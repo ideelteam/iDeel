@@ -80,6 +80,8 @@ class App {
 
         router.get('/dashboard/jobs/:jobid', (req, res) => {
             res.send("Gets the job description page");
+            // var id = req.params.jobid;
+            // this .Job.retreiveJob(res, {listId: id});
         });
 
         router.get('/dashboard/jobs', (req, res) => {

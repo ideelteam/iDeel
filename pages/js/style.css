@@ -163,8 +163,8 @@ header {
 }
 
 .panel {
-    margin: 20px 13px;
-    height: 130px;  
+    margin: 40px 13px;
+    height: 140px;  
     position: relative;
     -webkit-perspective: 600px;
     -moz-perspective: 600px;
