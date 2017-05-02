@@ -30,9 +30,10 @@ class App {
     // Configure API endpoints.
     routes() {
         let router = express.Router();
-
         router.get('/', (req, res) => {
-            res.sendFile(path.join(__dirname + '/pages/clientView.html'));
+            //res.send("Index Page");
+            //res.render("clientView.html");
+            // res.sendFile(path.join(__dirname+'/pages/clientView.html'));
         });
         router.get('/users', (req, res) => {
             res.send("Users here");
@@ -68,7 +69,7 @@ class App {
             res.send("Gets the job description page");
         });
         router.post('/dashboard/jobs/', (req, res) => {
-            res.send("Created a job");
+            // res.send("Created a job");
             //console.log(req.body);
             var newJob = req.body;
             this.Job.model.create([newJob], (err) => {
@@ -76,7 +77,7 @@ class App {
                     console.log('object creation failed');
                 }
             });
-            //res.sendfile('./pages/clientView.html');
+            res.sendFile(path.join(__dirname + '/pages/clientView.html'));
         });
         router.delete('/dashboard/jobs/:jobid', (req, res) => {
             res.send("Creates a job");

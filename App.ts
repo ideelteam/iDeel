@@ -112,7 +112,7 @@ class App {
                 }
             })
 
-            //res.sendfile('./pages/clientView.html');
+            //res.sendFile(path.join(__dirname+'/pages/clientView.html'));
         });
 
         router.delete('/dashboard/jobs/:jobid', (req, res) => {
