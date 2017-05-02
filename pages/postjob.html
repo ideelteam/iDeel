@@ -55,18 +55,9 @@
             <div class="container">
                 <div class="sidemenu">
                     <div class="page-title">
-                        <h2>username</h2>
-
-
-                        <div class="Profile">
-                            <div class="avatar"></div>
-                            <div class="user_info">
-                                <ul>
-                                    <li>Email: example@ideel.com</li>
-                                    <li>Documents Complete: 70%</li>
-                                    <li>User Type: Student</li>
-                                </ul>
-                            </div>
+                    
+                        <div id="profile">
+                            
                         </div>
                         <ul class="menu">
                             <li><a href="#">Account Setting</a></li>
@@ -80,11 +71,12 @@
                 <div class="clear"></div>
                 <div class="content">
                     <h2>Post New job</h2>
-                    <!--<div class="post_div"><button onClick="location.href='clientView.html'" class="btn post-button" id="post-btn">Post</button></div>-->
 
                     <div class="error-msg"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> All fields are required.</div>
 
                     <form id="postJob" action="/dashboard/jobs" method="POST">
+                         <div class="post_div"><button class="btn post-button" id="post-btn" type="submit">Post</button></div>
+                        
                         <ul class="forms">
                             <h3>Job Description</h3>
                             <li>
@@ -133,8 +125,8 @@
                                 <textarea name="description" class="inputs" required="required" rows="4" maxlength="1000"></textarea>
                             </li>
                         </ul>
-
-                        <input type="submit" value="Submit">
+                        
+                        <!--<input type="submit" value="Submit">-->
                     </form>
                 </div>
             </div>

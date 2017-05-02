@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const path = require("path");
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
@@ -69,37 +70,15 @@ class App {
             this.Job.retreiveJob(res, { jobID: id });
         });
         router.post('/dashboard/jobs/', (req, res) => {
-            res.send("Created a job");
-            // res.sendFile(path.join(__dirname+'/pages/clientView.html'));
+            // res.send("Created a job");
+            res.sendFile(path.join(__dirname + '/pages/redirect.html'));
+            //res.send(__dirname+'/pages/redirect.html');
             var newJob = req.body;
             this.Job.model.create([newJob], (err) => {
                 if (err) {
                     console.log('object creation failed');
                 }
             });
-        });
-        router.delete('/dashboard/jobs/:jobid', (req, res) => {
-            res.send("Creates a job");
-        });
-        router.put('/dashboard/jobs/:jobid', (req, res) => {
-            res.send("Updates a job");
-        });
-        router.delete('/dashboard/search', (req, res) => {
-            res.send("Searches a job");
-
-        });
-        router.get('/users/bUsers', (req, res) => {
-            this.UserBusiness.retreiveAll(res);
-        });
-        router.get('/users/wUsers', (req, res) => {
-            this.UserWorker.retreiveAll(res);
-        });
-        router.get('/dashboard', (req, res) => {
-            res.send("DashBoard here");
-        });
-        router.get('/jobs', (req, res) => {
-            //res.send("Gets list of all jobs");
-            this.Job.retreiveAll(res);
         });
         // router.get('/users/:id/info', (req, res) => {
         //     res.send("Goes to the view user page(profile page)");
