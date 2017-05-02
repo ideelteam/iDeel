@@ -7,10 +7,10 @@ interface IJobModel extends Mongoose.Document {
     description: string;
     companyName: string;
     city: string;
-    phoneNo: number;
-    salary: number;
-    startDate: Date;
-    endDate: Date;
+    phoneNo: string;
+    salary: string;
+    startDate: string;
+    endDate: string;
     availability: boolean;
 }
 

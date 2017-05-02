@@ -33,7 +33,7 @@ Open `localhost:3000` in your browser
 ### Routes:
 **GET**     /dashboard/jobs/:jobid         Get single job information <br>
 **GET**     /dashboard/jobs                Get list of jobs <br>
-**POST**    /dashboard/jobs/:jobid         Create job <br>
+**POST**    /dashboard/jobs/               Create job <br>
 **DELETE**  /dashboard/jobs/:jobid         Delete a specific job<br>
 **GET**     /dashboard/                    Get home page <br>
 **PUT**     /dashboard/jobs/:jobid         Update job <br>
@@ -44,7 +44,7 @@ Open `localhost:3000` in your browser
 **GET**     /users/:id                     Get specific user <br>
 **DELETE**  /users/:id                     Delete specific user <br>
 **GET**     /users                         Get list of all users <br>
-**GET**     /users/bUsers                  Get list of business users
+**GET**     /users/bUsers                  Get list of business users <br>
 **GET**     /users/wUsers                  Get list of worker users <br>
 **PUT**     /users/:id/info                Update user information  <br>
 

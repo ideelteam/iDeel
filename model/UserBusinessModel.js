@@ -30,8 +30,9 @@ class UserBusinessModel {
     }
     retreiveAll(response) {
         var query = this.model.find({});
-        query.exec((err, listOfBusinessUsers) => {
-            response.json(listOfBusinessUsers);
+
+        query.exec((err, businessArray) => {
+            response.json(businessArray);
         });
     }
 }
