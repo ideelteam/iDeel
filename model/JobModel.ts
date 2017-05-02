@@ -40,15 +40,15 @@ export default class JobModel {
 
     public retreiveAll(response: any): any {
         var query = this.model.find({});
+        query.exec((err, listOfJobs) => {
+            response.json(listOfJobs);
+        });
+    }
+    
+    public retreiveJob(response: any, filter:Object): any {
+        var query = this.model.findOne(filter);
         query.exec((err, jobArray) => {
             response.json(jobArray);
         });
     }
-    
-    // public retreiveJob(response: any, filter:Object): any {
-    //     var query = this.model.findOne(filter);
-    //     query.exec((err, jobArray) => {
-    //         response.json(jobArray);
-    //     });
-    // }
 }
