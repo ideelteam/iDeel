@@ -5,7 +5,7 @@ import * as url from 'url';
 import * as bodyParser from 'body-parser';
 
 
-import ListModel from './model/ListModel';
+//import ListModel from './model/ListModel';
 //import TaskModel from './model/TaskModel';
 
 
@@ -22,7 +22,7 @@ class App {
     public express: express.Application;
 
 
-    public Lists:ListModel;
+   // public Lists:ListModel;
     //public Tasks:TaskModel;
 
 
@@ -35,10 +35,10 @@ class App {
         this.express = express();
         this.middleware();
         this.routes();
-        this.idGenerator = 100;
+      //  this.idGenerator = 100;
 
 
-         this.Lists = new ListModel();
+         //this.Lists = new ListModel();
         //  this.Tasks = new TaskModel();
 
 
@@ -58,6 +58,7 @@ class App {
 
         router.get('/', (req,res) =>{
             res.send("Index Page");
+           //res.render("clientView.html");
         });
 
         router.get('/users', (req, res) => {
@@ -102,7 +103,7 @@ class App {
 
         router.post('/dashboard/jobs/', (req, res) => {
             res.send("Created a job");
-            console.log(req.body);
+            //console.log(req.body);
 
             var newJob = req.body;
             this.Job.model.create([newJob],(err)=>{
@@ -110,6 +111,8 @@ class App {
                     console.log('object creation failed');
                 }
             })
+
+            //res.sendfile('./pages/clientView.html');
         });
 
         router.delete('/dashboard/jobs/:jobid', (req, res) => {
@@ -132,18 +135,18 @@ class App {
         //     this.Tasks.retrieveTasksCount(res, {listId: id});
         // });
 
-        router.post('/app/list/', (req, res) => {
-            console.log(req.body);
-            var jsonObj = req.body;
-            jsonObj.listId = this.idGenerator;
-            this.Lists.model.create([jsonObj], (err) => {
-                if (err) {
-                    console.log('object creation failed');
-                }
-            });
-            res.send(this.idGenerator.toString());
-            this.idGenerator++;
-        });
+        // router.post('/app/list/', (req, res) => {
+        //     console.log(req.body);
+        //     var jsonObj = req.body;
+        //     jsonObj.listId = this.idGenerator;
+        //     this.Lists.model.create([jsonObj], (err) => {
+        //         if (err) {
+        //             console.log('object creation failed');
+        //         }
+        //     });
+        //     res.send(this.idGenerator.toString());
+        //     this.idGenerator++;
+        // });
 
 
         // router.get('/app/list/:listId', (req, res) => {

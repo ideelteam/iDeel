@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
-const ListModel_1 = require("./model/ListModel");
 const JobModel_1 = require("./model/JobModel");
 const UserWorkerModel_1 = require("./model/UserWorkerModel");
 const UserBusinessModel_1 = require("./model/UserBusinessModel");
@@ -14,8 +13,8 @@ class App {
         this.express = express();
         this.middleware();
         this.routes();
-        this.idGenerator = 100;
-        this.Lists = new ListModel_1.default();
+        //  this.idGenerator = 100;
+        //this.Lists = new ListModel();
         //  this.Tasks = new TaskModel();
         this.Job = new JobModel_1.default();
         this.UserWorker = new UserWorkerModel_1.default();
@@ -31,7 +30,8 @@ class App {
     routes() {
         let router = express.Router();
         router.get('/', (req, res) => {
-            res.send("Index Page");
+            // res.send("Index Page");
+            res.render("clientView.html");
         });
         router.get('/users', (req, res) => {
             res.send("Users here");
@@ -67,14 +67,15 @@ class App {
             res.send("Gets the job description page");
         });
         router.post('/dashboard/jobs/', (req, res) => {
-            res.send("Created a job");
-            console.log(req.body);
+            //res.send("Created a job");
+            //console.log(req.body);
             var newJob = req.body;
             this.Job.model.create([newJob], (err) => {
                 if (err) {
                     console.log('object creation failed');
                 }
             });
+            //res.sendfile('./pages/clientView.html');
         });
         router.delete('/dashboard/jobs/:jobid', (req, res) => {
             res.send("Creates a job");
@@ -90,18 +91,18 @@ class App {
         //     console.log('Query single list with id: ' + id);
         //     this.Tasks.retrieveTasksCount(res, {listId: id});
         // });
-        router.post('/app/list/', (req, res) => {
-            console.log(req.body);
-            var jsonObj = req.body;
-            jsonObj.listId = this.idGenerator;
-            this.Lists.model.create([jsonObj], (err) => {
-                if (err) {
-                    console.log('object creation failed');
-                }
-            });
-            res.send(this.idGenerator.toString());
-            this.idGenerator++;
-        });
+        // router.post('/app/list/', (req, res) => {
+        //     console.log(req.body);
+        //     var jsonObj = req.body;
+        //     jsonObj.listId = this.idGenerator;
+        //     this.Lists.model.create([jsonObj], (err) => {
+        //         if (err) {
+        //             console.log('object creation failed');
+        //         }
+        //     });
+        //     res.send(this.idGenerator.toString());
+        //     this.idGenerator++;
+        // });
         // router.get('/app/list/:listId', (req, res) => {
         //     var id = req.params.listId;
         //     console.log('Query single list with id: ' + id);
