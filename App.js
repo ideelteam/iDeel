@@ -61,12 +61,13 @@ class App {
         router.get('/dashboard', (req, res) => {
             res.send("DashBoard here");
         });
-
         router.get('/dashboard/jobs', (req, res) => {
             this.Job.retreiveAll(res);
         });
         router.get('/dashboard/jobs/:jobid', (req, res) => {
             res.send("Gets the job description page");
+            // var id = req.params.jobid;
+            // this .Job.retreiveJob(res, {listId: id});
         });
         router.post('/dashboard/jobs/', (req, res) => {
             res.send("Created a job");
