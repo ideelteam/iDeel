@@ -26,5 +26,12 @@ class JobModel {
     createModel() {
         this.model = mongooseConnection.model("jobs", this.schema);
     }
+    //Do some function response here with json here
+    retreiveAll(response) {
+        var query = this.model.find({});
+        query.exec((err, listOfJobs) => {
+            response.json(listOfJobs);
+        });
+    }
 }
 exports.default = JobModel;
