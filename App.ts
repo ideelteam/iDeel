@@ -26,7 +26,7 @@ class App {
     //public Tasks:TaskModel;
 
 
-    public idGenerator: number;
+    // public idGenerator: number;
     public Job: JobModel;
     public UserWorker: UserWorkerModel;
     public UserBusiness: UserBusinessModel;
@@ -57,8 +57,10 @@ class App {
         let router = express.Router();
 
         router.get('/', (req,res) =>{
-            res.send("Index Page");
+            //res.send("Index Page");
            //res.render("clientView.html");
+
+          // res.sendFile(path.join(__dirname+'/pages/clientView.html'));
         });
 
         router.get('/users', (req, res) => {

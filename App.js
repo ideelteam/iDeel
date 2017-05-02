@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const path = require("path");
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
@@ -30,8 +31,9 @@ class App {
     routes() {
         let router = express.Router();
         router.get('/', (req, res) => {
-            // res.send("Index Page");
-            res.render("clientView.html");
+            //res.send("Index Page");
+            //res.render("clientView.html");
+            res.sendFile(path.join(__dirname + '/pages/clientView.html'));
         });
         router.get('/users', (req, res) => {
             res.send("Users here");
@@ -67,7 +69,7 @@ class App {
             res.send("Gets the job description page");
         });
         router.post('/dashboard/jobs/', (req, res) => {
-            //res.send("Created a job");
+            res.send("Created a job");
             //console.log(req.body);
             var newJob = req.body;
             this.Job.model.create([newJob], (err) => {
