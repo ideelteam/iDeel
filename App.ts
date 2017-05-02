@@ -105,15 +105,17 @@ class App {
         });
 
         router.post('/dashboard/jobs/', (req, res) => {
-            res.send("Created a job");
-    // res.sendFile(path.join(__dirname+'/pages/clientView.html'));
-
+            // res.send("Created a job");
+            res.sendFile(path.join(__dirname+'/pages/redirect.html'));
+            //res.send(__dirname+'/pages/redirect.html');
+            
             var newJob = req.body;
             this.Job.model.create([newJob],(err)=>{
                 if(err){
                     console.log('object creation failed');
                 }
             })
+            
 
         });
 
