@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const path = require("path");
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
@@ -30,9 +29,10 @@ class App {
     // Configure API endpoints.
     routes() {
         let router = express.Router();
-
         router.get('/', (req, res) => {
-            res.sendFile(path.join(__dirname + '/pages/clientView.html'));
+            //res.send("Index Page");
+            //res.render("clientView.html");
+            // res.sendFile(path.join(__dirname+'/pages/clientView.html'));
         });
         router.get('/users', (req, res) => {
             res.send("Users here");
@@ -66,6 +66,8 @@ class App {
         });
         router.get('/dashboard/jobs/:jobid', (req, res) => {
             res.send("Gets the job description page");
+            // var id = req.params.jobid;
+            // this .Job.retreiveJob(res, {listId: id});
         });
         router.post('/dashboard/jobs/', (req, res) => {
             res.send("Created a job");
@@ -76,7 +78,7 @@ class App {
                     console.log('object creation failed');
                 }
             });
-            //res.sendfile('./pages/clientView.html');
+            //res.sendFile(path.join(__dirname+'/pages/clientView.html'));
         });
         router.delete('/dashboard/jobs/:jobid', (req, res) => {
             res.send("Creates a job");
