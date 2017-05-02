@@ -65,20 +65,18 @@ class App {
             this.Job.retreiveAll(res);
         });
         router.get('/dashboard/jobs/:jobid', (req, res) => {
-            res.send("Gets the job description page");
-            // var id = req.params.jobid;
-            // this .Job.retreiveJob(res, {listId: id});
+            var id = req.params.jobid;
+            this.Job.retreiveJob(res, { jobID: id });
         });
         router.post('/dashboard/jobs/', (req, res) => {
             res.send("Created a job");
-            //console.log(req.body);
+            // res.sendFile(path.join(__dirname+'/pages/clientView.html'));
             var newJob = req.body;
             this.Job.model.create([newJob], (err) => {
                 if (err) {
                     console.log('object creation failed');
                 }
             });
-            //res.sendFile(path.join(__dirname+'/pages/clientView.html'));
         });
         router.delete('/dashboard/jobs/:jobid', (req, res) => {
             res.send("Creates a job");

@@ -45,10 +45,10 @@ export default class JobModel {
         });
     }
     
-    // public retreiveJob(response: any, filter:Object): any {
-    //     var query = this.model.findOne(filter);
-    //     query.exec((err, jobArray) => {
-    //         response.json(jobArray);
-    //     });
-    // }
+    public retreiveJob(response: any, filter:Object): any {
+        var query = this.model.findOne(filter);
+        query.exec((err, jobArray) => {
+            response.json(jobArray);
+        });
+    }
 }
