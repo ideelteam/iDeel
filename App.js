@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const path = require("path");
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
@@ -13,8 +14,8 @@ class App {
         this.express = express();
         this.middleware();
         this.routes();
-        this.idGenerator = 100;
-        //  this.Lists = new ListModel();
+        //  this.idGenerator = 100;
+        //this.Lists = new ListModel();
         //  this.Tasks = new TaskModel();
         this.Job = new JobModel_1.default();
         this.UserWorker = new UserWorkerModel_1.default();
@@ -29,6 +30,62 @@ class App {
     // Configure API endpoints.
     routes() {
         let router = express.Router();
+
+        router.get('/', (req, res) => {
+            res.sendFile(path.join(__dirname + '/pages/clientView.html'));
+        });
+        router.get('/users', (req, res) => {
+            res.send("Users here");
+        });
+        router.get('/users/bUsers', (req, res) => {
+            this.UserBusiness.retreiveAll(res);
+        });
+        router.get('/users/wUsers', (req, res) => {
+            this.UserWorker.retreiveAll(res);
+        });
+        router.get('/users/:id/info', (req, res) => {
+            res.send("Goes to the view user page(profile page)");
+        });
+        router.post('/users/:id', (req, res) => {
+            res.send('Adds a user to db');
+        });
+        router.get('/users/:id', (req, res) => {
+            res.send("Get specific user");
+        });
+        router.delete('/users/:id', (req, res) => {
+            res.send("Delete a user given their id");
+        });
+        router.put('/users/:id/info', (req, res) => {
+            res.send("Update user info");
+        });
+        router.get('/dashboard', (req, res) => {
+            res.send("DashBoard here");
+        });
+        router.get('/dashboard/jobs', (req, res) => {
+            this.Job.retreiveAll(res);
+        });
+        router.get('/dashboard/jobs/:jobid', (req, res) => {
+            res.send("Gets the job description page");
+        });
+        router.post('/dashboard/jobs/', (req, res) => {
+            res.send("Created a job");
+            //console.log(req.body);
+            var newJob = req.body;
+            this.Job.model.create([newJob], (err) => {
+                if (err) {
+                    console.log('object creation failed');
+                }
+            });
+            //res.sendfile('./pages/clientView.html');
+        });
+        router.delete('/dashboard/jobs/:jobid', (req, res) => {
+            res.send("Creates a job");
+        });
+        router.put('/dashboard/jobs/:jobid', (req, res) => {
+            res.send("Updates a job");
+        });
+        router.delete('/dashboard/search', (req, res) => {
+            res.send("Searches a job");
         });
         // router.get('/app/list/:listId/count', (req, res) => {
         //     var id = req.params.listId;

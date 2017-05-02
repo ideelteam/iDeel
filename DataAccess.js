@@ -2,6 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const Mongoose = require("mongoose");
 class DataAccess {
+    //static DB_CONNECTION_STRING:string = 'mongodb://ideelregistration-shard-00-00-vplo9.mongodb.net:27017,ideelregistration-shard-00-01-vplo9.mongodb.net:27017,ideelregistration-shard-00-02-vplo9.mongodb.net:27017/test?replicaSet=iDeelRegistration-shard-0" --authenticationDatabase admin --ssl --username iDeelAdmin --password iDeelAdmin123 ';
+    //static DB_CONNECTION_STRING:string = 'mongodb://localhost:27017/ideeldb';
     constructor() {
         DataAccess.connect();
     }
@@ -16,6 +18,7 @@ class DataAccess {
         return this.mongooseInstance;
     }
 }
-DataAccess.DB_CONNECTION_STRING = 'mongodb://localhost:27017/ideeldb';
+
+DataAccess.DB_CONNECTION_STRING = 'mongodb://ideelAdmin:ideelAdmin2017@localhost:27017/ideeldb';
 DataAccess.connect();
 exports.default = DataAccess;

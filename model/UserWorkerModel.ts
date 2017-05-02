@@ -42,8 +42,8 @@ export default class UserWorkerModel {
     //Do some function response here with json here
     public retreiveAll(response:any): any{
         var query = this.model.find({});
-        query.exec((err, jobArray) => {
-            response.json(jobArray);
+        query.exec((err, workerArray) => {
+            response.json(workerArray);
         });
     }
 }

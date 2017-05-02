@@ -31,8 +31,8 @@ class UserWorkerModel {
     //Do some function response here with json here
     retreiveAll(response) {
         var query = this.model.find({});
-        query.exec((err, jobArray) => {
-            response.json(jobArray);
+        query.exec((err, workerArray) => {
+            response.json(workerArray);
         });
     }
 }

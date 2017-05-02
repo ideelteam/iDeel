@@ -16,10 +16,10 @@ class JobModel {
             description: String,
             companyName: String,
             city: String,
-            phoneNo: Number,
-            salary: Number,
-            startDate: Date,
-            endDate: Date,
+            phoneNo: String,
+            salary: String,
+            startDate: String,
+            endDate: String,
             availability: Boolean,
         }, { collection: 'jobs' });
     }
