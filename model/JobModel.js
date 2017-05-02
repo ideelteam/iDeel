@@ -34,5 +34,11 @@ class JobModel {
 
         });
     }
+    retreiveJob(response, filter) {
+        var query = this.model.findOne(filter);
+        query.exec((err, jobArray) => {
+            response.json(jobArray);
+        });
+    }
 }
 exports.default = JobModel;
