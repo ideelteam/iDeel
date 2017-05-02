@@ -100,12 +100,14 @@ class App {
 
         router.get('/dashboard/jobs/:jobid', (req, res) => {
             res.send("Gets the job description page");
+            // var id = req.params.jobid;
+            // this .Job.retreiveJob(res, {listId: id});
         });
+
 
         router.post('/dashboard/jobs/', (req, res) => {
             res.send("Created a job");
             //console.log(req.body);
-
             var newJob = req.body;
             this.Job.model.create([newJob],(err)=>{
                 if(err){
@@ -113,7 +115,7 @@ class App {
                 }
             })
 
-            //res.sendfile('./pages/clientView.html');
+            //res.sendFile(path.join(__dirname+'/pages/clientView.html'));
         });
 
 
