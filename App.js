@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const path = require("path");
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
@@ -69,7 +68,7 @@ class App {
             res.send("Gets the job description page");
         });
         router.post('/dashboard/jobs/', (req, res) => {
-            // res.send("Created a job");
+            res.send("Created a job");
             //console.log(req.body);
             var newJob = req.body;
             this.Job.model.create([newJob], (err) => {
@@ -77,7 +76,7 @@ class App {
                     console.log('object creation failed');
                 }
             });
-            res.sendFile(path.join(__dirname + '/pages/clientView.html'));
+            //res.sendFile(path.join(__dirname+'/pages/clientView.html'));
         });
         router.delete('/dashboard/jobs/:jobid', (req, res) => {
             res.send("Creates a job");
