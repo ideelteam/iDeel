@@ -6,8 +6,8 @@ var mongoose = DataAccess.mongooseInstance;
 var mongooseConnection = DataAccess.mongooseConnection;
 
 export default class JobModel {
-    public schema:Mongoose.Schema;
-    public model:any;
+    public schema: Mongoose.Schema;
+    public model: any;
 
     public constructor() {
         this.createSchema();
@@ -15,7 +15,7 @@ export default class JobModel {
     }
 
     public createSchema(): void {
-        this.schema =  mongoose.Schema(
+        this.schema = mongoose.Schema(
             {
                 jobID: Number,
                 businessID: Number,
@@ -28,7 +28,7 @@ export default class JobModel {
                 startDate: String,
                 endDate: String,
                 availability: Boolean,
-            }, {collection: 'jobs'}
+            }, { collection: 'jobs' }
         );
     }
 
@@ -38,10 +38,17 @@ export default class JobModel {
 
     //Do some function response here with json here
 
-    public retreiveAll(response:any): any{
+    public retreiveAll(response: any): any {
         var query = this.model.find({});
         query.exec((err, jobArray) => {
             response.json(jobArray);
         });
     }
+    
+    // public retreiveJob(response: any, filter:Object): any {
+    //     var query = this.model.findOne(filter);
+    //     query.exec((err, jobArray) => {
+    //         response.json(jobArray);
+    //     });
+    // }
 }

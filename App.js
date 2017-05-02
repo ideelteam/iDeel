@@ -61,6 +61,7 @@ class App {
         router.get('/dashboard', (req, res) => {
             res.send("DashBoard here");
         });
+
         router.get('/dashboard/jobs', (req, res) => {
             this.Job.retreiveAll(res);
         });
