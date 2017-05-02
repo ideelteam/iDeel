@@ -20,7 +20,28 @@ function getCookie(cname) {
     return "";
 }
 
+function retrieveDataFromServer(url, operation){
+		$('#profile').append("<p>123</p>");
+	
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+			var returnValues = JSON.parse(xmlhttp.responseText);
+			displayUserProfile('profile', returnValues);
+			populateJobs('jobs', returnValues);
+		}
+	}
+	xmlhttp.open("GET", url, true);
+	xmlhttp.send();
+}
+
+function displayUserProfile(elementId, data){
+	var info = data[0].description;
+	$("#" + elementId).append("<p>" + info + "</p>");
+}
+
 $(document).ready(function() {
+	retrieveDataFromServer('/dashboard/jobs', 'jobs');
 	$('.page-section').css('height', $(window).height());
 	$( window ).resize(function() {
 		if($('body.home').length){

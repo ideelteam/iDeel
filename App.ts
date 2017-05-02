@@ -84,7 +84,7 @@ class App {
 
         router.get('/dashboard/jobs', (req, res) => {
             //res.send("Gets list of all jobs");
-           // this.Job.retreiveAll(res);
+            this.Job.retreiveAll(res);
         });
 
         router.post('/dashboard/jobs/:jobid', (req, res) => {

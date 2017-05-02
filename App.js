@@ -60,7 +60,7 @@ class App {
             res.send("Gets the job description page");
         });
         router.get('/dashboard/jobs', (req, res) => {
-            res.send("Gets list of all jobs");
+            //res.send("Gets list of all jobs");
             this.Job.retreiveAll(res);
         });
         router.post('/dashboard/jobs/:jobid', (req, res) => {
