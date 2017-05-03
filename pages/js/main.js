@@ -42,15 +42,15 @@ function retrieveDataFromServer(url, operation) {
 function displayDetailInfo(elementId, data) {
 	var newElement = "";
 
-	newElement += "<h2>" + data[0].title + "</h2>";
-	newElement += "<h3>" + data[0].companyName + "</h3>";
-	newElement += "<h3>" + data[0].city + "</h3>";
-	newElement += "<h3>" + data[0].salary + "/hour</h3>";
-	newElement += "<h3>" + data[0].description + "</h3>";
+	newElement += "<h2>" + data.title + "</h2>";
+	newElement += "<h3>" + data.companyName + "</h3>";
+	newElement += "<h3>" + data.city + "</h3>";
+	newElement += "<h3>" + data.salary + "/hour</h3>";
+	newElement += "<h3>" + data.description + "</h3>";
 	newElement += "<ul class=\"job_info\">";
-	newElement += "<li>Payout: $" + data[0].salary + "/hour</li>";
-	newElement += "<li>Date and time: " + data[0].enddate + "</li>";
-	newElement += "<li>Phone: " + data[0].phoneNo + "</li>";
+	newElement += "<li>Payout: $" + data.salary + "/hour</li>";
+	newElement += "<li>Date and time: " + data.enddate + "</li>";
+	newElement += "<li>Phone: " + data.phoneNo + "</li>";
 	newElement += "</ul>";
 	newElement += "<div class=\"desc_div\"><button class=\"btn desc\">Apply</button>";
 	newElement += "<button class=\"btn desc\">Save</button></div>";
@@ -110,7 +110,7 @@ function displayUserProfile(elementId, data) {
 $(document).ready(function () {
 	retrieveDataFromServer('/users/bUsers', 'profile');
 	retrieveDataFromServer('/dashboard/jobs', 'jobs');
-	retrieveDataFromServer('/dashboard/jobs', 'jobdesc');
+	retrieveDataFromServer('/dashboard/jobs/1', 'jobdesc');
 	$('.page-section').css('height', $(window).height());
 
 	$(window).resize(function () {
