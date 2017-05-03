@@ -53,12 +53,11 @@ class App {
     // Configure API endpoints.
     private routes(): void {
         let router = express.Router();
-
         router.get('/', (req,res) =>{
             //res.send("Index Page");
            //res.render("clientView.html");
-
-          // res.sendFile(path.join(__dirname+'/pages/clientView.html'));
+          res.sendFile(path.join(__dirname+'/pages/clientView.html'));
+          //res.send();
         });
 
         router.get('/users', (req, res) => {
