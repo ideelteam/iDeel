@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const path = require("path");
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
@@ -32,7 +33,8 @@ class App {
         router.get('/', (req, res) => {
             //res.send("Index Page");
             //res.render("clientView.html");
-            // res.sendFile(path.join(__dirname+'/pages/clientView.html'));
+            res.sendFile(path.join(__dirname + '/pages/clientView.html'));
+            //res.send();
         });
         router.get('/users', (req, res) => {
             res.send("Users here");
@@ -69,8 +71,9 @@ class App {
             this.Job.retreiveJob(res, { jobID: id });
         });
         router.post('/dashboard/jobs/', (req, res) => {
-            res.send("Created a job");
-            // res.sendFile(path.join(__dirname+'/pages/clientView.html'));
+            // res.send("Created a job");
+            res.sendFile(path.join(__dirname + '/pages/redirect.html'));
+            //res.send(__dirname+'/pages/redirect.html');
             var newJob = req.body;
             this.Job.model.create([newJob], (err) => {
                 if (err) {
@@ -78,15 +81,37 @@ class App {
                 }
             });
         });
-        router.delete('/dashboard/jobs/:jobid', (req, res) => {
-            res.send("Creates a job");
-        });
-        router.put('/dashboard/jobs/:jobid', (req, res) => {
-            res.send("Updates a job");
-        });
-        router.delete('/dashboard/search', (req, res) => {
-            res.send("Searches a job");
-        });
+        // router.get('/users/:id/info', (req, res) => {
+        //     res.send("Goes to the view user page(profile page)");
+        // });
+        // router.post('/users/:id', (req, res) => {
+        //     res.send('Adds a user to db');
+        // });
+        // router.get('/users/:id', (req, res) => {
+        //     res.send("Get specific user");
+        // });
+        // router.delete('/users/:id', (req, res) => {
+        //     res.send("Delete a user given their id");
+        // });
+        // router.put('/users/:id/info', (req, res) => {
+        //     res.send("Upate user info");
+        // });
+        // router.get('/dashboard/jobs/:jobid', (req, res) => {
+        //     res.send("Gets the job description page");
+        // });        
+        // router.post('/dashboard/jobs/:jobid', (req, res) => {
+        //     res.send("Creates a job");
+        // });
+        // router.delete('/dashboard/jobs/:jobid', (req, res) => {
+        //     res.send("Creates a job");
+        // });
+        // router.put('/dashboard/jobs/:jobid', (req, res) => {
+        //     res.send("Updates a job");
+        // });
+        // router.delete('/dashboard/search', (req, res) => {
+        //     res.send("Searches a job");
+        // });
+        /////////////////////////////////////////////////////////////////////////////////
         // router.get('/app/list/:listId/count', (req, res) => {
         //     var id = req.params.listId;
         //     console.log('Query single list with id: ' + id);
