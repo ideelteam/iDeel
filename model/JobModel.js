@@ -29,9 +29,14 @@ class JobModel {
     //Do some function response here with json here
     retreiveAll(response) {
         var query = this.model.find({});
+        query.exec((err, listOfJobs) => {
+            response.json(listOfJobs);
+        });
+    }
+    retreiveJob(response, filter) {
+        var query = this.model.findOne(filter);
         query.exec((err, jobArray) => {
             response.json(jobArray);
-
         });
     }
 }
