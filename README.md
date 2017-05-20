@@ -1,50 +1,28 @@
-# iDeel
+# IdeelAngular
 
-## Description
-- File will be uploaded soon
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.2.
 
-## Contributors
-- Riley : riley.du@gmail.com 
-- Benson : li_benson12@hotmail.com
-- Roger : lhyroger@gmail.com
+## Development server
 
-## Reference
-* Github Markdown Syntax: [Link](https://drive.google.com/drive/folders/0BxoXWWKb_tfoYXZ4cUVBVkJJNTQ)
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Initial Setup
-- Download Install Node js
-- Download MongoDB
-- Clone repo
-- run `npm install --save`
-- Go to the folder that mongo was installed and run "mongod.exe"
-- run `npm start`
+## Code scaffolding
 
-## Additional Info
-If you created a new folder, make sure you add a path for it in the `tsconfig.json` file so that it will transpile the .ts to .js files.
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
 
-Open `localhost:3000` in your browser
+## Build
 
-## Load Data Into DB Scipt
-- **Assume that we alreay have ideel db creater and local user created**
-- Start up `mongod.exe`
-- Open Mongo Shell
-- run `load("/Users/youruserprofile/iDeel/createDB/createiDeelData.js")
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
-### Routes:
-**GET**     /dashboard/jobs/:jobid         Get single job information <br>
-**GET**     /dashboard/jobs                Get list of jobs <br>
-**POST**    /dashboard/jobs/               Create job <br>
-**DELETE**  /dashboard/jobs/:jobid         Delete a specific job<br>
-**GET**     /dashboard/                    Get home page <br>
-**PUT**     /dashboard/jobs/:jobid         Update job <br>
-**GET**     /dashboard/search              Search query
+## Running unit tests
 
-**GET**     /users/:id/info                Get single user information <br>
-**POST**    /users/:id                     Create user <br>
-**GET**     /users/:id                     Get specific user <br>
-**DELETE**  /users/:id                     Delete specific user <br>
-**GET**     /users                         Get list of all users <br>
-**GET**     /users/bUsers                  Get list of business users <br>
-**GET**     /users/wUsers                  Get list of worker users <br>
-**PUT**     /users/:id/info                Update user information  <br>
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Before running the tests make sure you are serving the app via `ng serve`.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
