@@ -35,10 +35,10 @@ export default class UserModel {
     }
 
     //Do some function response here with json here
-    public retreiveAll(response:any): any{
-        var query = this.model.find({});
-        query.exec((err, workerArray) => {
-            response.json(workerArray);
+    public retreiveOneUser(response: any, userID: Object): any {
+        var query = this.model.findOne(userID);
+        query.exec((err, oneUser) => {
+            response.json(oneUser);
         });
     }
 }

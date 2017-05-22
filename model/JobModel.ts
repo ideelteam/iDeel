@@ -32,18 +32,17 @@ export default class JobModel {
         this.model = mongooseConnection.model<IJobModel>("jobs", this.schema);
     }
 
-    //Do some function response here with json here
     public retreiveAll(response: any): any {
-        var query = this.model.find({});
+        let query = this.model.find({});
         query.exec((err, listOfJobs) => {
             response.json(listOfJobs);
         });
     }
-    
-    public retreiveOneJob(response: any, filter:Object): any {
-        var query = this.model.findOne(filter);
-        query.exec((err, jobArray) => {
-            response.json(jobArray);
+
+    public retreiveOneJob(response: any, jobID: Object): any {
+        var query = this.model.findOne(jobID);
+        query.exec((err, oneJob) => {
+            response.json(oneJob);
         });
     }
 }
