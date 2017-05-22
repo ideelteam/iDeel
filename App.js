@@ -23,6 +23,11 @@ class App {
     // Configure API endpoints.
     routes() {
         let router = express.Router();
+        router.use((req, res, next) => {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
+        });
         router.get('/', (req, res) => {
             res.send("This is the homepage of Node Server");
         });
@@ -33,9 +38,9 @@ class App {
             let id = req.params.id;
             this.Job.retrieveOneJob(res, { jobID: id });
         });
-        router.get('/api/users/:id', (req, res) => {
-            let id = req.params.id;
-            this.User.retrieveOneUser(res, { userID: id });
+        router.get('/api/users/:username', (req, res) => {
+            let u = req.params.username;
+            this.User.retrieveOneUser(res, { userName: u });
         });
         router.post('/api/jobs', (req, res) => {
             let newJob = req.body;

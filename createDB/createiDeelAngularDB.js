@@ -90,7 +90,7 @@ usersCollection.insert(
         email: "One@one.com",
         status: "Job Finder",
         jobTags: "Job Tag 1",
-        username: "user1",
+        userName: "user1",
         password: "one"
     }
 )
@@ -103,7 +103,7 @@ usersCollection.insert(
         email: "Two@one.com",
         status: "Job Finder",
         jobTags: "Job Tag 2",
-        username: "user2",
+        userName: "user2",
         password: "two"
     }
 )
@@ -116,7 +116,7 @@ usersCollection.insert(
         email: "Three@one.com",
         status: "Job Finder",
         jobTags: "Job Tag 3",
-        username: "user3",
+        userName: "user3",
         password: "three"
     }
 )
@@ -129,7 +129,7 @@ usersCollection.insert(
         email: "Four@one.com",
         status: "Business",
         jobTags: "Job Tag 4",
-        username: "user4",
+        userName: "user4",
         password: "four"
     }
 )
@@ -142,7 +142,7 @@ usersCollection.insert(
         email: "Five@one.com",
         status: "Business",
         jobTags: "Job Tag 5",
-        username: "user5",
+        userName: "user5",
         password: "five"
     }
 )
@@ -155,7 +155,7 @@ usersCollection.insert(
         email: "Six@one.com",
         status: "Business",
         jobTags: "Job Tag 6",
-        username: "user6",
+        userName: "user6",
         password: "six"
     }
 )
