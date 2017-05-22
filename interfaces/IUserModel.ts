@@ -1,13 +1,13 @@
 import Mongoose = require("mongoose");
 
 interface IUserModel extends Mongoose.Document {
-    userID: string;
+    userID: number;
     firstName: string;
     lastName: string;
     email: string;
     status: string;
     jobTags: string;
-    username: string;
+    userName: string;
     password: string;
 }
 

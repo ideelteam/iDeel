@@ -17,13 +17,13 @@ export default class UserModel {
     public createSchema(): void {
         this.schema =  mongoose.Schema(
             {
-                userID: String,
+                userID: Number,
                 firstName: String,
                 lastName: String,
                 email: String,
                 status: String,
                 jobTags: String,
-                username: String,
+                userName: String,
                 password: String
             }, {collection: 'users'}
 
@@ -35,7 +35,7 @@ export default class UserModel {
     }
 
     //Do some function response here with json here
-    public retreiveOneUser(response: any, userID: Object): any {
+    public retrieveOneUser(response: any, userID: Object): any {
         var query = this.model.findOne(userID);
         query.exec((err, oneUser) => {
             response.json(oneUser);

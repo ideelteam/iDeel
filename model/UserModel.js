@@ -10,13 +10,13 @@ class UserModel {
     }
     createSchema() {
         this.schema = mongoose.Schema({
-            userID: String,
+            userID: Number,
             firstName: String,
             lastName: String,
             email: String,
             status: String,
             jobTags: String,
-            username: String,
+            userName: String,
             password: String
         }, { collection: 'users' });
     }
@@ -24,7 +24,7 @@ class UserModel {
         this.model = mongooseConnection.model("users", this.schema);
     }
     //Do some function response here with json here
-    retreiveOneUser(response, userID) {
+    retrieveOneUser(response, userID) {
         var query = this.model.findOne(userID);
         query.exec((err, oneUser) => {
             response.json(oneUser);

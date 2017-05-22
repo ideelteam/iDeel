@@ -32,16 +32,23 @@ export default class JobModel {
         this.model = mongooseConnection.model<IJobModel>("jobs", this.schema);
     }
 
-    public retreiveAll(response: any): any {
+    public retrieveAll(response: any): any {
         let query = this.model.find({});
         query.exec((err, listOfJobs) => {
+            if(err){
+                console.log("Error in JobModel retreiveAll");
+            }
             response.json(listOfJobs);
         });
     }
 
-    public retreiveOneJob(response: any, jobID: Object): any {
-        var query = this.model.findOne(jobID);
+    public retrieveOneJob(response: any, jobID: Object): any {
+        let query = this.model.findOne(jobID);
         query.exec((err, oneJob) => {
+            if(err){
+                console.log("Error in JobModel retreiveOneJob");
+            }
+            console.log(oneJob);
             response.json(oneJob);
         });
     }

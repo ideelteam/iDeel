@@ -16,6 +16,6 @@ class DataAccess {
         return this.mongooseInstance;
     }
 }
-DataAccess.DB_CONNECTION_STRING = 'mongodb://localhost:3000/ideelAngular';
+DataAccess.DB_CONNECTION_STRING = 'mongodb://localhost:3000/iDeelAngular';
 DataAccess.connect();
 exports.default = DataAccess;

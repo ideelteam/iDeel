@@ -22,15 +22,22 @@ class JobModel {
     createModel() {
         this.model = mongooseConnection.model("jobs", this.schema);
     }
-    retreiveAll(response) {
+    retrieveAll(response) {
         let query = this.model.find({});
         query.exec((err, listOfJobs) => {
+            if (err) {
+                console.log("Error in JobModel retreiveAll");
+            }
             response.json(listOfJobs);
         });
     }
-    retreiveOneJob(response, jobID) {
-        var query = this.model.findOne(jobID);
+    retrieveOneJob(response, jobID) {
+        let query = this.model.findOne(jobID);
         query.exec((err, oneJob) => {
+            if (err) {
+                console.log("Error in JobModel retreiveOneJob");
+            }
+            console.log(oneJob);
             response.json(oneJob);
         });
     }
