@@ -10,7 +10,7 @@ userWorkerCollection = db.getCollection("userWorker");
 userWorkerCollection.remove({});
 jobCollection.insert(
     {
-        jobID: "1",
+        jobID: 1,
         businessID: "100",
         title: "Secretary Assistant",
         description: "This job takes notes at some meeting where people show up with donuts and giraffes",
@@ -25,7 +25,7 @@ jobCollection.insert(
 )
 jobCollection.insert(
     {
-        jobID: "2",
+        jobID: 2,
         businessID: "101",
         title: "Closet Cleaner",
         description: "This job will clean out our closet fulll of horses and green mustard",

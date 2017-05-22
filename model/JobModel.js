@@ -35,8 +35,8 @@ class JobModel {
     }
     retreiveJob(response, filter) {
         var query = this.model.findOne(filter);
-        query.exec((err, jobArray) => {
-            response.json(jobArray);
+        query.exec((err, data) => {
+            response.json(data);
         });
     }
 }

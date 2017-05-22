@@ -110,7 +110,7 @@ function displayUserProfile(elementId, data) {
 $(document).ready(function () {
 	retrieveDataFromServer('/users/bUsers', 'profile');
 	retrieveDataFromServer('/dashboard/jobs', 'jobs');
-	retrieveDataFromServer('/dashboard/jobs', 'jobdesc');
+	retrieveDataFromServer('/dashboard/jobs/1', 'jobdesc');
 	$('.page-section').css('height', $(window).height());
 
 	$(window).resize(function () {
