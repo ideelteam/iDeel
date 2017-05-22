@@ -3,9 +3,7 @@ import Mongoose = require("mongoose");
 class DataAccess {
     static mongooseInstance: any;
     static mongooseConnection: Mongoose.Connection;
-
-    static DB_CONNECTION_STRING:string = 'mongodb://ideelAdmin:ideelAdmin2017@localhost:27017/ideeldb';
-
+    static DB_CONNECTION_STRING:string = 'mongodb://localhost:3000/ideelAngular';
 
     constructor () {
         DataAccess.connect();
@@ -16,7 +14,7 @@ class DataAccess {
         
         this.mongooseConnection  = Mongoose.connection;
         this.mongooseConnection.on("open", () => {
-            console.log("Connected to mongodb.");
+            console.log("Connected to mongodb");
         });
         
         this.mongooseInstance = Mongoose.connect(this.DB_CONNECTION_STRING);
