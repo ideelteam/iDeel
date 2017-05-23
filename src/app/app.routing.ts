@@ -1,6 +1,6 @@
 // Core import
 import { Routes, RouterModule } from '@angular/router';
-import {ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders } from '@angular/core';
 
 // Component import
 import { HeaderComponent } from './header/header.component';
