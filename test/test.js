@@ -181,7 +181,7 @@ describe('Test post result', function () {
 		 
     before(function (done) {
 		let newJob = {
-                "jobID": 999,
+                "jobID": 1000,
 				"businessID": 1,
 				"title": "string",
 				"description": "string",
