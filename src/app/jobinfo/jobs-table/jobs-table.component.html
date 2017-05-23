@@ -1,17 +1,15 @@
-<!-- Table -->
-<table class="table" style="font-size:10pt;">
-    <thead>
-        <tr>
-            <th>Jobs</th>
-            <th>Company</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let result of jobs; let i = index">
-            <td style="text-align:left">{{result.title}}</td>
-            <td>{{result.companyName}}</td>
-            <td><button>APPLY</button></td>
-        </tr>
-    </tbody>
-</table>
-
+<div class="row text-center">
+  <div class="col-sm-5" *ngFor="let result of jobs" id="eachCard">
+    <div class="card">
+      <div class="card-block" >
+        <h3 class="card-title">{{result.companyName}}</h3>
+        <p class="card-text">
+          Title: {{result.title}}<br>
+          {{result.description}}<br>
+          City: {{result.city}}<br>
+          Salary: {{result.salary}}<br></p>          
+        <a (click)="onClick(result)" class="btn viewButton">View</a>
+      </div>
+    </div>
+  </div>
+</div>
