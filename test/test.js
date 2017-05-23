@@ -117,62 +117,61 @@ describe('Test retrieve job where jobID=0 result', function () {
 	
 });
 
-// describe('Test wUsers lists result', function () {
-// //	this.timeout(15000);
+describe('Test bUsers lists result', function () {
+//	this.timeout(15000);
 
-// 	var requestResult;
-// 	var response;
+	var requestResult;
+	var response;
 		 
-//     before(function (done) {
-//         chai.request("http://localhost:3000")
-// 			.get("/api/users/wUsers")
-// 			.end(function (err, res) {
-// 				requestResult = res.body;
-// 				response = res;
-//                 expect(err).to.be.null;
-// 				expect(res).to.be.json;
-//                 expect(res).to.have.status(200);
-// 				done();
-// 			});
-//         });
+    before(function (done) {
+        chai.request("http://localhost:3000")
+			.get("/api/users/bUsers")
+			.end(function (err, res) {
+				requestResult = res.body;
+				response = res;
+                expect(err).to.be.null;
+				expect(res).to.be.json;
+                expect(res).to.have.status(200);
+				done();
+			});
+        });
     
-//     it('Should return an array object with at least one object', function (){
-// 		expect(response).to.have.status(200);
-//         expect(response.body).to.be.an.object;
-// 		expect(response.body).to.have.length.above(0);
-// 		expect(response).to.have.headers;
-//     });
+    it('Should return an array object with at least one object', function (){
+		expect(response).to.have.status(200);
+        expect(response.body).to.be.an.object;
+		expect(response.body).to.have.length.above(0);
+		expect(response).to.have.headers;
+    });
     
-// 	it('The first entry in the array has known properties', function(){
-// 	    expect(requestResult[0]).to.have.all.keys(['_id','city','description','jobID','salary','title','availability','companyName','__v' ,'businessID', 'phoneNo','startDate','endDate']);
-// 		expect(response.body).to.not.be.a.string;
-// 	});
+	it('The first entry in the array has known properties', function(){
+	    expect(requestResult[0]).to.have.all.keys(['_id','businessID','firstName','lastName','email','address','zipcode','jobTags','__v' ,'companyName', 'description','companyLicenseNo','username','password','pictureID']);
+		expect(response.body).to.not.be.a.string;
+	});
 
-// 	it('The elements in the array have the expected properties', function(){
-// 		expect(response.body).to.satisfy(
-// 			function (body) {
-// 				for (var i = 0; i < body.length; i++) {
-// 					expect(body[0]).to.have.property('businessID').that.is.a('number');
-// 					expect(body[0]).to.have.property('firestName').that.is.a('string');
-// 					expect(body[0]).to.have.property('lastName').that.is.a('string');
-// 					expect(body[0]).to.have.property('email').that.is.a('string');
-// 					expect(body[0]).to.have.property('address').that.is.a('string');
-// 					expect(body[0]).to.have.property('zipcode').that.is.a('string');
-// 					expect(body[0]).to.have.property('jobTags').that.is.a('string');
-// 					expect(body[0]).to.have.property('__v').that.is.a('number');
-//                     expect(body[0]).to.have.property('companyName').that.is.a('string');
-//                     expect(body[0]).to.have.property('description').that.is.a('string');
-//                     expect(body[0]).to.have.property('companyLicenseNo').that.is.a('string');
-//                     expect(body[0]).to.have.property('username').that.is.a('string');
-//                     expect(body[0]).to.have.property('password').that.is.a('string');
-//                     expect(body[0]).to.have.property('pictureID').that.is.a('number');
+	it('The elements in the array have the expected properties', function(){
+		expect(response.body).to.satisfy(
+			function (body) {
+				for (var i = 0; i < body.length; i++) {
+					expect(body[0]).to.have.property('businessID').that.is.a('string');
+					expect(body[0]).to.have.property('firstName').that.is.a('string');
+					expect(body[0]).to.have.property('lastName').that.is.a('string');
+					expect(body[0]).to.have.property('email').that.is.a('string');
+					expect(body[0]).to.have.property('address').that.is.a('string');
+					expect(body[0]).to.have.property('zipcode').that.is.a('number');
+					expect(body[0]).to.have.property('jobTags').that.is.a('string');
+                    expect(body[0]).to.have.property('companyName').that.is.a('string');
+                    expect(body[0]).to.have.property('description').that.is.a('string');
+                    expect(body[0]).to.have.property('companyLicenseNo').that.is.a('string');
+                    expect(body[0]).to.have.property('username').that.is.a('string');
+                    expect(body[0]).to.have.property('password').that.is.a('string');
+                    expect(body[0]).to.have.property('pictureID').that.is.a('number');
 					
-// 				}
-// 				return true;
-// 			});
-// 	});	
+				}
+				return true;
+			});
+	});	
 	
-// });
+});
 
 describe('Test post result', function () {
 //	this.timeout(15000);
