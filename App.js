@@ -50,7 +50,7 @@ class App {
         });
         router.get('/api/jobs/:id', (req, res) => {
             var id = req.params.id;
-            this.Job.retreiveJob(res, { id: id });
+            this.Job.retreiveJob(res, { 'jobID': id });
         });
         router.post('/api/jobs', (req, res) => {
             var newJob = req.body;

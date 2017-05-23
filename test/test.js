@@ -65,14 +65,14 @@ describe('Test job lists result', function () {
 	
 });
 
-describe('Test retrieve job where jobID=6000 result', function () {
+describe('Test retrieve job where jobID=0 result', function () {
 
 	var requestResult;
 	var response;
 		 
     before(function (done) {
         chai.request("http://localhost:3000")
-			.get("/api/jobs/6000")
+			.get("/api/jobs/0")
 			.end(function (err, res) {
 				requestResult = res.body;
 				response = res;
@@ -174,54 +174,53 @@ describe('Test retrieve job where jobID=6000 result', function () {
 	
 // });
 
-describe('Test post result', function () {
-//	this.timeout(15000);
+// describe('Test post result', function () {
+// //	this.timeout(15000);
 
-	var requestResult;
-	var response;
+// 	var requestResult;
+// 	var response;
 		 
-    before(function (done) {
-		let newJob = {
-			jobI: 999,
-            title: "testing",
-            description: "testing",
-            companyName: "test company",
-            city: "testy",
-            salary: "123",
-            availability: true,
-		}
-        chai.request("http://localhost:3000")
-			.post("/api/jobs")
-			.send(newJob)
-			.end(function (err, res) {
-				requestResult = res.body;
-				response = res;
-                expect(err).to.be.null;
-                expect(res).to.have.status(200);
-				done();
-			});
-        });
+//     before(function (done) {
+// 		let newJob = {
+//             title: "testing",
+//             description: "testing",
+//             companyName: "test company",
+//             city: "testy",
+//             salary: "123",
+//             availability: true,
+// 		}
+//         chai.request("http://localhost:3000")
+// 			.post("/api/jobs")
+// 			.send(newJob)
+// 			.end(function (err, res) {
+// 				requestResult = res.body;
+// 				response = res;
+//                 expect(err).to.be.null;
+//                 expect(res).to.have.status(200);
+// 				done();
+// 			});
+//         });
     
        
-	it('retruned res do not have error', function(){
+// 	it('retruned res do not have error', function(){
 	   
-	});
+// 	});
 
-	it('The elements in the array have the expecte properties', function(){
-		expect(response.body).to.satisfy(
-			function (body) {
+// 	it('The elements in the array have the expecte properties', function(){
+// 		expect(response.body).to.satisfy(
+// 			function (body) {
 				
-					expect(body).to.have.property('jobID').that.is.a('number');
-					expect(body).to.have.property('title').that.is.a('string');
-					expect(body).to.have.property('description').that.is.a('string');
-					expect(body).to.have.property('companyName').that.is.a('string');
-					expect(body).to.have.property('city').that.is.a('string');
-					expect(body).to.have.property('salary').that.is.a('string');
-					expect(body).to.have.property('availability').that.is.a('boolean');
+// 					expect(body).to.have.property('jobID').that.is.a('number');
+// 					expect(body).to.have.property('title').that.is.a('string');
+// 					expect(body).to.have.property('description').that.is.a('string');
+// 					expect(body).to.have.property('companyName').that.is.a('string');
+// 					expect(body).to.have.property('city').that.is.a('string');
+// 					expect(body).to.have.property('salary').that.is.a('string');
+// 					expect(body).to.have.property('availability').that.is.a('boolean');
 					
 				
-				return true;
-			});
-	});	
+// 				return true;
+// 			});
+// 	});	
 	
-});
+// });
