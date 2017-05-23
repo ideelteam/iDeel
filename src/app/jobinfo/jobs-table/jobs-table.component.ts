@@ -1,4 +1,4 @@
-import {Input, Component, OnInit } from '@angular/core';
+import {Input, Component, OnInit, Output } from '@angular/core';
 import IJobModel from '../../interface/IJobModel';
 import { Router } from "@angular/router";
 
@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 })
 
 export class JobsTableComponent implements OnInit {
-@Input() jobs: IJobModel[];
+  @Input() jobs: IJobModel[];
 
   constructor(
     private route: Router
@@ -18,8 +18,8 @@ export class JobsTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClick(singleJob:any){
-    console.log(singleJob);
-    this.route.navigate(['/dashboard/jobs/', singleJob.jobID]);
+  onClick(jobID: string){
+   this.route.navigate(["dashboard", jobID]);
   }
+
 }
