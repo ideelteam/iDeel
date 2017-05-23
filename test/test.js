@@ -16,7 +16,7 @@ describe('Test job lists result', function () {
 	var response;
 		 
     before(function (done) {
-        chai.request("http://localhost:2222")
+        chai.request("http://localhost:8080")
 			.get("/api/jobs")
 			.end(function (err, res) {
 				requestResult = res.body;
