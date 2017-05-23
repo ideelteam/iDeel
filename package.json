@@ -6,10 +6,14 @@
   "dependencies": {
     "@types/node": "^7.0.14",
     "assert": "^1.4.1",
+    "async": "^2.4.1",
     "body-parser": "^1.17.1",
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "debug": "^2.6.3",
     "express": "^4.15.2",
     "http": "0.0.0",
+    "mocha": "^3.4.1",
     "mongodb": "^2.2.25",
     "mongoose": "^4.9.6",
     "morgan": "^1.8.1",
@@ -23,9 +27,8 @@
     "typescript": "^2.3.1"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "nodemon Server.js"
-
   },
   "author": "",
   "license": "ISC"
