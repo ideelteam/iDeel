@@ -78,7 +78,8 @@ class App {
                 if(err){
                     console.log('object creation failed');
                 }
-            })          
+            })
+            res.end();       
         });
 
         this.express.use('/', router);

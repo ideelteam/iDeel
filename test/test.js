@@ -174,53 +174,41 @@ describe('Test retrieve job where jobID=0 result', function () {
 	
 // });
 
-// describe('Test post result', function () {
-// //	this.timeout(15000);
+describe('Test post result', function () {
+//	this.timeout(15000);
 
-// 	var requestResult;
-// 	var response;
+	var requestResult;
+	var response;
 		 
-//     before(function (done) {
-// 		let newJob = {
-//             title: "testing",
-//             description: "testing",
-//             companyName: "test company",
-//             city: "testy",
-//             salary: "123",
-//             availability: true,
-// 		}
-//         chai.request("http://localhost:3000")
-// 			.post("/api/jobs")
-// 			.send(newJob)
-// 			.end(function (err, res) {
-// 				requestResult = res.body;
-// 				response = res;
-//                 expect(err).to.be.null;
-//                 expect(res).to.have.status(200);
-// 				done();
-// 			});
-//         });
+    before(function (done) {
+		let newJob = {
+                "jobID": 999,
+				"businessID": 1,
+				"title": "string",
+				"description": "string",
+				"companyName": "string",
+				"city": "string",
+				"phoneNo": "string",
+				"salary": "string",
+				"startDate": "string",
+				"endDate": "string",
+				"availability": true
+			}
+		
+        chai.request("http://localhost:3000")
+			.post("/api/jobs")
+			.send(newJob)
+			.end(function (err, res) {
+				requestResult = res.body;
+				response = res;
+               	expect(err).to.be.null;
+        		expect(res).to.have.status(200);
+				done();
+			});
+        });
     
        
-// 	it('retruned res do not have error', function(){
-	   
-// 	});
-
-// 	it('The elements in the array have the expecte properties', function(){
-// 		expect(response.body).to.satisfy(
-// 			function (body) {
-				
-// 					expect(body).to.have.property('jobID').that.is.a('number');
-// 					expect(body).to.have.property('title').that.is.a('string');
-// 					expect(body).to.have.property('description').that.is.a('string');
-// 					expect(body).to.have.property('companyName').that.is.a('string');
-// 					expect(body).to.have.property('city').that.is.a('string');
-// 					expect(body).to.have.property('salary').that.is.a('string');
-// 					expect(body).to.have.property('availability').that.is.a('boolean');
-					
-				
-// 				return true;
-// 			});
-// 	});	
-	
-// });
+	it('Working with status 200', function(){
+	    expect(response).to.have.status(200);
+	});
+});

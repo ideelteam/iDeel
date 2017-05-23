@@ -59,6 +59,7 @@ class App {
                     console.log('object creation failed');
                 }
             });
+            res.end();
         });
         this.express.use('/', router);
         this.express.use('/app/json/', express.static(__dirname + '/app/json'));
