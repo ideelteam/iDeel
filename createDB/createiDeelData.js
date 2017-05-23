@@ -11,7 +11,7 @@ userWorkerCollection.remove({});
 jobCollection.insert(
     {
         jobID: 1,
-        businessID: "100",
+        businessID: 100,
         title: "Secretary Assistant",
         description: "This job takes notes at some meeting where people show up with donuts and giraffes",
         companyName: "iDeel",
@@ -26,7 +26,7 @@ jobCollection.insert(
 jobCollection.insert(
     {
         jobID: 2,
-        businessID: "101",
+        businessID: 101,
         title: "Closet Cleaner",
         description: "This job will clean out our closet fulll of horses and green mustard",
         companyName: "Green Management",
@@ -40,8 +40,8 @@ jobCollection.insert(
 )
 jobCollection.insert(
     {
-        jobID: "3",
-        businessID: "102",
+        jobID: 3,
+        businessID: 102,
         title: "Restaurant Busser",
         description: "This job will be clearing out tables and dish washing",
         companyName: "McDawgnode",
@@ -55,7 +55,7 @@ jobCollection.insert(
 )
 userBusinessCollection.insert(
     {
-        businessID: "100",
+        businessID: 100,
         firstName: "Justin",
         lastName: "Menia",
         email: "noLast@hotmail.com",
@@ -67,12 +67,12 @@ userBusinessCollection.insert(
         companyLicenseNo: "34524",
         username: "masterMind",
         password: "pickleT",
-        pictureID: "200"
+        pictureID: 200
     }
 )
 userBusinessCollection.insert(
     {
-        businessID: "101",
+        businessID: 101,
         firstName: "Tin",
         lastName: "Jackin",
         email: "jackin@hotmail.com",
@@ -84,12 +84,12 @@ userBusinessCollection.insert(
         companyLicenseNo: "20231",
         username: "fortyFiveLife",
         password: "makeSomeello",
-        pictureID: "201"
+        pictureID: 201
     }
 )
 userBusinessCollection.insert(
     {
-        businessID: "102",
+        businessID: 102,
         firstName: "Packin",
         lastName: "Slatter",
         email: "slatter@hotmail.com",
@@ -101,12 +101,12 @@ userBusinessCollection.insert(
         companyLicenseNo: "11234",
         username: "chialik",
         password: "cucumberSlap",
-        pictureID: "202"
+        pictureID: 202
     }
 )
 userWorkerCollection.insert(
     {
-        workerID: "1",
+        workerID: 1,
         firstName: "Ben",
         lastName: "Nolast",
         dob: "04-24-1990",
@@ -117,12 +117,12 @@ userWorkerCollection.insert(
         description: "I can do a lot of typing and writing and stuff",
         username: "plsdontmakeme",
         password: "somepassword",
-        pictureID: "1"
+        pictureID: 1
     }
 )
 userWorkerCollection.insert(
     {
-        workerID: "2",
+        workerID: 2,
         firstName: "Janice",
         lastName: "kewl",
         dob: "12-24-1990",
@@ -133,13 +133,13 @@ userWorkerCollection.insert(
         description: "I can do heavy lifting and stuff",
         username: "cottenCandy",
         password: "targetiscool",
-        pictureID: "2"
+        pictureID: 2
 
     }
 )
 userWorkerCollection.insert(
     {
-        workerID: "3",
+        workerID: 3,
         firstName: "Markus",
         lastName: "Evergreen",
         dob: "01-12-1993",
@@ -150,6 +150,6 @@ userWorkerCollection.insert(
         description: "I can do some restaurant stuff",
         username: "90skidisrad",
         password: "justinetimberlakeisthebetterone",
-        pictureID: "3"
+        pictureID: 3
     }
 )
