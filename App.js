@@ -38,10 +38,7 @@ class App {
         router.use(cors(options));
         router.options("*", cors(options));
         router.get('/', (req, res) => {
-            //res.send("Index Page");
-            //res.render("clientView.html");
             res.sendFile(path.join(__dirname + '/pages/clientView.html'));
-            //res.send();
         });
         router.get('/users', (req, res) => {
             res.send("Users here");
@@ -77,8 +74,10 @@ class App {
             var id = req.params.jobid;
             this.Job.retreiveJob(res, { jobID: id });
         });
-        router.post('/dashboard/jobs/', (req, res) => {
-            res.sendFile(path.join(__dirname + '/pages/redirect.html'));
+        router.post('/api/jobs', (req, res) => {
+            //res.sendFile(path.join(__dirname+'/pages/redirect.html'));
+            console.log("inside node server");
+            console.log(req.body);
             var newJob = req.body;
             this.Job.model.create([newJob], (err) => {
                 if (err) {
