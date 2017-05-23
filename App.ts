@@ -3,6 +3,7 @@ import * as express from 'express';
 import * as logger from 'morgan';
 import * as url from 'url';
 import * as bodyParser from 'body-parser';
+import * as cors from "cors";
 
 import DataAccess from './DataAccess';
 import JobModel from './model/JobModel';
@@ -17,6 +18,8 @@ class App {
     public Job: JobModel;
     public UserWorker: UserWorkerModel;
     public UserBusiness: UserBusinessModel;
+
+    
     //Run configuration methods on the Express instance.
     constructor() {
         this.express = express();
@@ -36,6 +39,18 @@ class App {
     // Configure API endpoints.
     private routes(): void {
         let router = express.Router();
+
+        const options:cors.CorsOptions = {
+        allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
+        credentials: true,
+        methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
+        origin: "*",
+        preflightContinue: false
+    };       
+    
+    router.use(cors(options));
+    router.options("*", cors(options));
+
         router.get('/', (req,res) =>{
             //res.send("Index Page");
            //res.render("clientView.html");
@@ -76,7 +91,7 @@ class App {
             res.send("DashBoard here");
         });
 
-        router.get('/dashboard/jobs', (req, res) => {
+        router.get('/api/jobs', (req, res) => {
            this.Job.retreiveAll(res);
         });
 
@@ -87,9 +102,7 @@ class App {
         });
 
         router.post('/dashboard/jobs/', (req, res) => {
-            // res.send("Created a job");
             res.sendFile(path.join(__dirname+'/pages/redirect.html'));
-            //res.send(__dirname+'/pages/redirect.html');
             
             var newJob = req.body;
             this.Job.model.create([newJob],(err)=>{

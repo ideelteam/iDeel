@@ -4,6 +4,7 @@ const path = require("path");
 const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 const JobModel_1 = require("./model/JobModel");
 const UserWorkerModel_1 = require("./model/UserWorkerModel");
 const UserBusinessModel_1 = require("./model/UserBusinessModel");
@@ -27,6 +28,15 @@ class App {
     // Configure API endpoints.
     routes() {
         let router = express.Router();
+        const options = {
+            allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
+            credentials: true,
+            methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
+            origin: "*",
+            preflightContinue: false
+        };
+        router.use(cors(options));
+        router.options("*", cors(options));
         router.get('/', (req, res) => {
             //res.send("Index Page");
             //res.render("clientView.html");
@@ -60,7 +70,7 @@ class App {
         router.get('/dashboard', (req, res) => {
             res.send("DashBoard here");
         });
-        router.get('/dashboard/jobs', (req, res) => {
+        router.get('/api/jobs', (req, res) => {
             this.Job.retreiveAll(res);
         });
         router.get('/dashboard/jobs/:jobid', (req, res) => {
@@ -68,9 +78,7 @@ class App {
             this.Job.retreiveJob(res, { jobID: id });
         });
         router.post('/dashboard/jobs/', (req, res) => {
-            // res.send("Created a job");
             res.sendFile(path.join(__dirname + '/pages/redirect.html'));
-            //res.send(__dirname+'/pages/redirect.html');
             var newJob = req.body;
             this.Job.model.create([newJob], (err) => {
                 if (err) {
