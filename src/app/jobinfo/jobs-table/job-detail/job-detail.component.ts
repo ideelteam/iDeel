@@ -20,13 +20,12 @@ export class JobDetailComponent implements OnInit {
         this.jobInfo = result;
       },
       () => {},
-      () => {console.log(JSON.stringify(this.jobInfo));}
+      () => {}
     );
    }
 
 
   ngOnInit() {
-    console.log(this.jobID);
   }
 
   applyJob(){
