@@ -51,10 +51,6 @@ class App {
     router.use(cors(options));
     router.options("*", cors(options));
 
-        // router.get('/', (req,res) =>{
-        //   res.send("This is home page of Node Server");
-        // });
-
         router.get('/api/users/bUsers', (req, res) => {
             this.UserBusiness.retreiveAll(res);
         });
@@ -83,9 +79,6 @@ class App {
         });
 
         this.express.use('/', router);
-        // this.express.use('/app/json/', express.static(__dirname + '/app/json'));
-        // this.express.use('/images', express.static(__dirname + '/img'));
-        // this.express.use('/', express.static(__dirname + '/pages'));
         this.express.use('/', express.static(__dirname+'/dist'));
     }
 }
