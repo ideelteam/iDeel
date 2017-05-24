@@ -183,14 +183,14 @@ describe('Test post result', function () {
 		let newJob = {
                 "jobID": 999,
 				"businessID": 1,
-				"title": "string",
-				"description": "string",
-				"companyName": "string",
-				"city": "string",
-				"phoneNo": "string",
-				"salary": "string",
-				"startDate": "string",
-				"endDate": "string",
+				"title": "TESTING",
+				"description": "TESTING",
+				"companyName": "TESTING",
+				"city": "TESTING",
+				"phoneNo": "TESTING",
+				"salary": "TESTING",
+				"startDate": "TESTING",
+				"endDate": "TESTING",
 				"availability": true
 			}
 		
