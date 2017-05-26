@@ -59,7 +59,7 @@ describe('Test job lists result', function () {
                     expect(body[0]).to.have.property('startDate').that.is.a('string');
                     expect(body[0]).to.have.property('endDate').that.is.a('string');
 				}
-				return true;
+				return true;*ngFor="let 
 			});
 	});	
 	
