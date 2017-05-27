@@ -58,6 +58,20 @@ class App {
             });
             res.end();
         });
+        //Currently updating database generated id '_id'
+        //Will need to modify the route once we have our unique jobID
+        //We will use the jobID to update
+        router.put("/api/jobs/:id", (req, res) => {
+            var id = req.params.id;
+            this.Job.updateJob(req, res);
+        });
+        //Currently deleting using the database generated id '_id'
+        //Will need to modify the route once we have our unique jobID
+        //We will use the jobID to delete
+        router.delete("/api/jobs/:id", (req, res) => {
+            var id = req.params.id;
+            this.Job.deleteJob(res, id);
+        });
         this.express.use('/', router);
         this.express.use('/', express.static(__dirname + '/dist'));
     }
