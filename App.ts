@@ -78,6 +78,25 @@ class App {
             res.end();       
         });
 
+        router.put("/api/jobs/:id", (req,res) => {
+            var id = req.params.id;
+            this.Job.updateJob(res);
+
+            this.Job.model.findById(req.params.id, (err,job) => {
+                if(err) {res.send(err)}
+                else {
+                    //job.title = req.body.title
+                }
+            })
+        });
+
+        router.delete("/api/jobs/:id", (req,res) => {
+            var id = req.params.id;
+           this.Job.deleteJob(res, id);
+        });
+
+        
+
         this.express.use('/', router);
         this.express.use('/', express.static(__dirname+'/dist'));
     }

@@ -51,4 +51,16 @@ export default class JobModel {
             response.json(data);
         });
     }
+
+    public updateJob(response: any): any {
+        //update job info
+        
+    }
+
+    public deleteJob(response: any, id:Object): any {
+        var query = this.model.deleteOne({"_id":id});
+        query.exec((err,data) => {
+            response.json(data);
+        });
+    }
 }
