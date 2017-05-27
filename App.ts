@@ -51,10 +51,6 @@ class App {
     router.use(cors(options));
     router.options("*", cors(options));
 
-        router.get('/', (req,res) =>{
-          res.send("This is home page of Node Server");
-        });
-
         router.get('/api/users/bUsers', (req, res) => {
             this.UserBusiness.retreiveAll(res);
         });
@@ -69,7 +65,7 @@ class App {
 
         router.get('/api/jobs/:id',(req,res) => {
             var id = req.params.id;  
-            this.Job.retreiveJob(res, {id: id});
+            this.Job.retreiveJob(res, {'jobID': id});
         });
 
         router.post('/api/jobs', (req, res) => {
@@ -78,13 +74,11 @@ class App {
                 if(err){
                     console.log('object creation failed');
                 }
-            })          
+            })
+            res.end();       
         });
 
         this.express.use('/', router);
-        this.express.use('/app/json/', express.static(__dirname + '/app/json'));
-        this.express.use('/images', express.static(__dirname + '/img'));
-        this.express.use('/', express.static(__dirname + '/pages'));
         this.express.use('/', express.static(__dirname+'/dist'));
     }
 }
