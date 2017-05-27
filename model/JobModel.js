@@ -39,8 +39,24 @@ class JobModel {
             response.json(data);
         });
     }
-    updateJob(response) {
-        //update job info
+    updateJob(req, res) {
+        this.model.findById(req.params.id, (err, job) => {
+            console.log(req);
+            job.title = req.body.title || job.title;
+            job.description = req.body.description || job.description;
+            job.companyName = req.body.description || job.companyName;
+            job.city = req.body.city || job.city;
+            job.phoneNo = req.body.phoneNo || job.phoneNo;
+            job.salary = req.body.salary || job.salary;
+            job.startDate = req.body.startDate || job.startDate;
+            job.endDate = req.body.endDate || job.endDate;
+            job.save((err, result) => {
+                if (err) {
+                    res.status(500).send(err);
+                }
+                res.send(result);
+            });
+        });
     }
     deleteJob(response, id) {
         var query = this.model.deleteOne({ "_id": id });
