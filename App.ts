@@ -4,11 +4,15 @@ import * as logger from 'morgan';
 import * as url from 'url';
 import * as bodyParser from 'body-parser';
 import * as cors from "cors";
+import * as nodemailer from 'nodemailer';
 
 import DataAccess from './DataAccess';
 import JobModel from './model/JobModel';
 import UserWorkerModel from './model/UserWorkerModel';
 import UserBusinessModel from './model/UserBusinessModel';
+
+import sendMail from './Controllers/sendMail';
+
 // Creates and configures an ExpressJS web server.
 
 class App {
@@ -18,7 +22,7 @@ class App {
     public Job: JobModel;
     public UserWorker: UserWorkerModel;
     public UserBusiness: UserBusinessModel;
-
+    public mail: sendMail;
     
     //Run configuration methods on the Express instance.
     constructor() {
@@ -29,6 +33,7 @@ class App {
         this.Job = new JobModel();
         this.UserWorker = new UserWorkerModel();
         this.UserBusiness = new UserBusinessModel();
+        this.mail = new sendMail();
     }
     // Configure Express middleware.
     private middleware(): void {
@@ -41,15 +46,15 @@ class App {
         let router = express.Router();
 
         const options:cors.CorsOptions = {
-        allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
-        credentials: true,
-        methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
-        origin: "*",
-        preflightContinue: false
-    };       
+            allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "X-Access-Token"],
+            credentials: true,
+            methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
+            origin: "*",
+            preflightContinue: false
+        };       
     
-    router.use(cors(options));
-    router.options("*", cors(options));
+        router.use(cors(options));
+        router.options("*", cors(options));
 
         router.get('/api/users/bUsers', (req, res) => {
             this.UserBusiness.retreiveAll(res);
@@ -93,8 +98,14 @@ class App {
             var id = req.params.id;
            this.Job.deleteJob(res, id);
         });
-
         
+        router.get('/api/sendWorker', (req,res) => {
+            this.mail.sendEmailWorker();
+        });
+
+        router.get('/api/sendBusiness', (req,res) => {     
+            this.mail.sendEmailBusiness();    
+        });
 
         this.express.use('/', router);
         this.express.use('/', express.static(__dirname+'/dist'));
