@@ -7,6 +7,7 @@ const cors = require("cors");
 const JobModel_1 = require("./model/JobModel");
 const UserWorkerModel_1 = require("./model/UserWorkerModel");
 const UserBusinessModel_1 = require("./model/UserBusinessModel");
+const sendMail_1 = require("./Controllers/sendMail");
 // Creates and configures an ExpressJS web server.
 class App {
     //Run configuration methods on the Express instance.
@@ -17,6 +18,7 @@ class App {
         this.Job = new JobModel_1.default();
         this.UserWorker = new UserWorkerModel_1.default();
         this.UserBusiness = new UserBusinessModel_1.default();
+        this.mail = new sendMail_1.default();
     }
     // Configure Express middleware.
     middleware() {
@@ -71,6 +73,12 @@ class App {
         router.delete("/api/jobs/:id", (req, res) => {
             var id = req.params.id;
             this.Job.deleteJob(res, id);
+        });
+        router.get('/api/sendWorker', (req, res) => {
+            this.mail.sendEmailWorker();
+        });
+        router.get('/api/sendBusiness', (req, res) => {
+            this.mail.sendEmailBusiness();
         });
         this.express.use('/', router);
         this.express.use('/', express.static(__dirname + '/dist'));
