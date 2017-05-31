@@ -7,6 +7,7 @@ const cors = require("cors");
 const JobModel_1 = require("./model/JobModel");
 const UserWorkerModel_1 = require("./model/UserWorkerModel");
 const UserBusinessModel_1 = require("./model/UserBusinessModel");
+const sendMail_1 = require("./Controllers/sendMail");
 // Creates and configures an ExpressJS web server.
 class App {
     //Run configuration methods on the Express instance.
@@ -17,6 +18,7 @@ class App {
         this.Job = new JobModel_1.default();
         this.UserWorker = new UserWorkerModel_1.default();
         this.UserBusiness = new UserBusinessModel_1.default();
+        this.mail = new sendMail_1.default();
     }
     // Configure Express middleware.
     middleware() {
@@ -36,9 +38,6 @@ class App {
         };
         router.use(cors(options));
         router.options("*", cors(options));
-        router.get('/', (req, res) => {
-            res.send("This is home page of Node Server");
-        });
         router.get('/api/users/bUsers', (req, res) => {
             this.UserBusiness.retreiveAll(res);
         });
@@ -59,11 +58,29 @@ class App {
                     console.log('object creation failed');
                 }
             });
+            res.end();
+        });
+        //Currently updating database generated id '_id'
+        //Will need to modify the route once we have our unique jobID
+        //We will use the jobID to update
+        router.put("/api/jobs/:id", (req, res) => {
+            var id = req.params.id;
+            this.Job.updateJob(req, res);
+        });
+        //Currently deleting using the database generated id '_id'
+        //Will need to modify the route once we have our unique jobID
+        //We will use the jobID to delete
+        router.delete("/api/jobs/:id", (req, res) => {
+            var id = req.params.id;
+            this.Job.deleteJob(res, id);
+        });
+        router.get('/api/sendWorker', (req, res) => {
+            this.mail.sendEmailWorker();
+        });
+        router.get('/api/sendBusiness', (req, res) => {
+            this.mail.sendEmailBusiness();
         });
         this.express.use('/', router);
-        this.express.use('/app/json/', express.static(__dirname + '/app/json'));
-        this.express.use('/images', express.static(__dirname + '/img'));
-        this.express.use('/', express.static(__dirname + '/pages'));
         this.express.use('/', express.static(__dirname + '/dist'));
     }
 }

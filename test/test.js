@@ -1,3 +1,4 @@
+
 var chai = require('chai');
 var chaiHttp = require('chai-http');
 var async = require('async');
@@ -181,16 +182,16 @@ describe('Test post result', function () {
 		 
     before(function (done) {
 		let newJob = {
-                "jobID": 999,
+                "jobID": 1000,
 				"businessID": 1,
-				"title": "testing",
-				"description": "string",
-				"companyName": "string",
-				"city": "string",
-				"phoneNo": "string",
-				"salary": "string",
-				"startDate": "string",
-				"endDate": "string",
+				"title": "TESTING",
+				"description": "TESTING",
+				"companyName": "TESTING",
+				"city": "TESTING",
+				"phoneNo": "TESTING",
+				"salary": "TESTING",
+				"startDate": "TESTING",
+				"endDate": "TESTING",
 				"availability": true
 			}
 		
