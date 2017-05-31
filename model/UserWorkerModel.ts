@@ -22,6 +22,7 @@ export default class UserWorkerModel {
                 lastName: String,
                 dob: String,
                 email: String,
+                city: String,
                 address: String,
                 zipcode: String,
                 jobTags: String,
