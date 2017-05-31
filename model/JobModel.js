@@ -16,11 +16,17 @@ class JobModel {
             description: String,
             companyName: String,
             city: String,
+            zipcode: String,
             phoneNo: String,
             salary: String,
             startDate: String,
             endDate: String,
             availability: Boolean,
+            address: String,
+            watchingList: Array,
+            appliedList: Array,
+            numOfViews: String,
+            jobTags: Array,
         }, { collection: 'jobs' });
     }
     createModel() {
