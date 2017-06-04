@@ -45,17 +45,23 @@ class JobModel {
             response.json(data);
         });
     }
-    updateJob(req, res) {
-        this.model.findById(req.params.id, (err, job) => {
+    updateJob(req, res, id) {
+        //this.model.findByI(req.params.id, (err,job)=> {)
+        console.log("inside express update");
+        console.log(res);
+        this.model.updateOne({ "jobID": id }, (err, job) => {
             console.log(req);
             job.title = req.body.title || job.title;
             job.description = req.body.description || job.description;
             job.companyName = req.body.description || job.companyName;
             job.city = req.body.city || job.city;
+            job.zipcode = req.body.zipcode || job.zipcode;
             job.phoneNo = req.body.phoneNo || job.phoneNo;
             job.salary = req.body.salary || job.salary;
             job.startDate = req.body.startDate || job.startDate;
             job.endDate = req.body.endDate || job.endDate;
+            job.availability = req.body.availability || job.availability;
+            job.address = req.body.address || job.address;
             job.save((err, result) => {
                 if (err) {
                     res.status(500).send(err);
@@ -65,7 +71,7 @@ class JobModel {
         });
     }
     deleteJob(response, id) {
-        var query = this.model.deleteOne({ "_id": id });
+        var query = this.model.deleteOne({ "jobID": id });
         query.exec((err, data) => {
             response.json(data);
         });

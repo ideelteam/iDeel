@@ -83,19 +83,16 @@ class App {
             res.end();       
         });
 
-        //Currently updating database generated id '_id'
-        //Will need to modify the route once we have our unique jobID
-        //We will use the jobID to update
+        //Update on job given jobID as argument
         router.put("/api/jobs/:id", (req,res) => {
             var id = req.params.id;
-            this.Job.updateJob(req, res);
+            this.Job.updateJob(req, res, id);
         });
 
-        //Currently deleting using the database generated id '_id'
-        //Will need to modify the route once we have our unique jobID
-        //We will use the jobID to delete
+        //Delete one job given jobID as argument
         router.delete("/api/jobs/:id", (req,res) => {
             var id = req.params.id;
+            console.log(id);
            this.Job.deleteJob(res, id);
         });
         
