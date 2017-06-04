@@ -52,10 +52,13 @@ class JobModel {
             job.description = req.body.description || job.description;
             job.companyName = req.body.description || job.companyName;
             job.city = req.body.city || job.city;
+            job.zipcode = req.body.zipcode || job.zipcode;
             job.phoneNo = req.body.phoneNo || job.phoneNo;
             job.salary = req.body.salary || job.salary;
             job.startDate = req.body.startDate || job.startDate;
             job.endDate = req.body.endDate || job.endDate;
+            job.availability = req.body.availability || job.availability;
+            job.address = req.body.address || job.address;
             job.save((err, result) => {
                 if (err) {
                     res.status(500).send(err);
