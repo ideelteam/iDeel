@@ -5,6 +5,7 @@ const logger = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const passport = require("passport");
+const session = require("express-session");
 const JobModel_1 = require("./model/JobModel");
 const UserWorkerModel_1 = require("./model/UserWorkerModel");
 const UserBusinessModel_1 = require("./model/UserBusinessModel");
@@ -28,6 +29,7 @@ class App {
         this.express.use(logger('dev'));
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
+        this.express.use(session({ secret: 'keyboard cat' }));
         this.express.use(passport.initialize());
         this.express.use(passport.session());
     }

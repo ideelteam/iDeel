@@ -7,6 +7,7 @@ import * as cors from "cors";
 import * as nodemailer from 'nodemailer';
 import * as jwt from 'json-web-token';
 import * as passport from 'passport';
+import * as session from 'express-session';
 
 import DataAccess from './DataAccess';
 import JobModel from './model/JobModel';
@@ -46,9 +47,17 @@ class App {
         this.express.use(logger('dev'));
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
+        this.express.use(session({ secret: 'keyboard cat' }));
         this.express.use(passport.initialize());
         this.express.use(passport.session());
     }
+
+    private validateAuth(req, res, next):void {
+        if (req.isAuthenticated()) { return next(); }
+        res.redirect('/');
+    }
+
+    
     // Configure API endpoints.
     private routes(): void {
         let router = express.Router();
@@ -64,8 +73,17 @@ class App {
         router.use(cors(options));
         router.options("*", cors(options));
 
-        //this.Passport.authenticateBUser(passport);
-        //this.Passport.authenticateWUser(passport);
+        router.get('/auth/facebook', 
+            passport.authenticate('facebook', 
+                {scope: ['public_profile', 'email'] })
+        );
+
+        router.get('/auth/facebook/callback', 
+            passport.authenticate('facebook', 
+                { failureRedirect: '/', successRedirect: '/dashboard' })
+        );
+
+        
 
 // For Users Stuff
         router.get('/api/users/bUsers', (req, res) => {
