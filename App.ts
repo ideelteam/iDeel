@@ -5,6 +5,8 @@ import * as url from 'url';
 import * as bodyParser from 'body-parser';
 import * as cors from "cors";
 import * as nodemailer from 'nodemailer';
+import * as session from 'express-session';
+
 
 import DataAccess from './DataAccess';
 import JobModel from './model/JobModel';
@@ -12,24 +14,27 @@ import UserWorkerModel from './model/UserWorkerModel';
 import UserBusinessModel from './model/UserBusinessModel';
 
 import sendMail from './Controllers/sendMail';
+import FacebookPassportObj from './FacebookPassport';
+
+let passport = require('passport');
 
 // Creates and configures an ExpressJS web server.
 
 class App {
     // ref to Express instance
     public express: express.Application;
-
     public Job: JobModel;
     public UserWorker: UserWorkerModel;
     public UserBusiness: UserBusinessModel;
     public mail: sendMail;
-    
+    public facebookPassportObj:FacebookPassportObj;
+
     //Run configuration methods on the Express instance.
     constructor() {
+        this.facebookPassportObj = new FacebookPassportObj();
         this.express = express();
         this.middleware();
         this.routes();
-
         this.Job = new JobModel();
         this.UserWorker = new UserWorkerModel();
         this.UserBusiness = new UserBusinessModel();
@@ -40,6 +45,14 @@ class App {
         this.express.use(logger('dev'));
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
+        this.express.use(session({ secret: 'iDeelTeam' }));
+        this.express.use(passport.initialize());
+        this.express.use(passport.session());
+    }
+
+    private validateAuth(req, res, next):void {
+        if (req.isAuthenticated()) { return next(); }
+            res.redirect('/');
     }
     // Configure API endpoints.
     private routes(): void {
@@ -56,6 +69,21 @@ class App {
         router.use(cors(options));
         router.options("*", cors(options));
 
+        //Facebook Authentication
+        router.get('/auth/facebook', 
+            passport.authenticate('facebook', 
+                {scope: ['public_profile', 'email'] }
+            )
+        );
+
+        router.get('/auth/facebook/callback', 
+            passport.authenticate('facebook', 
+                { failureRedirect: '/', successRedirect: '/list' }
+            )
+        );
+
+        // For Users - Business and Worker
+
         router.get('/api/users/bUsers', (req, res) => {
             this.UserBusiness.retreiveAll(res);
         });
@@ -63,6 +91,8 @@ class App {
         router.get('/api/users/wUsers', (req, res) => {
             this.UserWorker.retreiveAll(res);
         });
+
+        // For jobs
 
         router.get('/api/jobs', (req, res) => {
            this.Job.retreiveAll(res);
@@ -98,6 +128,8 @@ class App {
             var id = req.params.id;
            this.Job.deleteJob(res, id);
         });
+
+        // Sending emails
         
         router.get('/api/sendWorker', (req,res) => {
             this.mail.sendEmailWorker();
@@ -105,6 +137,10 @@ class App {
 
         router.get('/api/sendBusiness', (req,res) => {     
             this.mail.sendEmailBusiness();    
+        });
+
+        router.get('*', (req, res) => {
+            res.sendFile(__dirname + '/dist/index.html');
         });
 
         this.express.use('/', router);
