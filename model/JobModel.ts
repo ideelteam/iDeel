@@ -64,7 +64,7 @@ export default class JobModel {
         //this.model.findById(req.params.id, (err,job)=> {)
             console.log("inside express update");
 
-        this.model.updateOne({"jobID":id}, (err,job) => {
+        this.model.findById({"_id":id}, (err,job) => {
                 console.log(req);
                 job.title = req.body.title || job.title;
                 job.description = req.body.description || job.description;
@@ -80,12 +80,12 @@ export default class JobModel {
                console.log("did this work");
                console.log(res);
                
-                // job.save((err,result) => {
-                //     if(err){
-                //         res.status(500).send(err)
-                //     }
-                //     res.send(result);
-                // });
+                job.save((err,result) => {
+                    if(err){
+                        res.status(500).send(err)
+                    }
+                    res.send(result);
+                });
 
         });  
     }
