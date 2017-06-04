@@ -13,7 +13,6 @@ import { JobinfoComponent } from './jobinfo/jobinfo.component';
 // Anything else
 import { AppService } from './app.service'
 import { AppRoutingModule } from './app.routing'
-import { APP_BASE_HREF } from '@angular/common';
 import { WelcomePageComponent } from './welcome-page/welcome-page.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JobsTableComponent } from './jobinfo/jobs-table/jobs-table.component';
@@ -38,7 +37,7 @@ import { JobDetailComponent } from './jobinfo/jobs-table/job-detail/job-detail.c
     HttpModule,
     AppRoutingModule
   ],
-  providers: [{provide: APP_BASE_HREF, useValue: '/'}, AppService],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
