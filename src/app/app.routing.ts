@@ -11,19 +11,19 @@ import { BUserComponent } from './userinfo/buser/buser.component';
 import { EUserComponent } from './userinfo/euser/euser.component';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { PostJobComponent } from './post-job/post-job.component';
+import { PostJobComponent } from './jobinfo/post-job/post-job.component';
 import { JobDetailComponent } from './jobinfo/jobs-table/job-detail/job-detail.component';
 
 const routes: Routes = [
     { path: '', redirectTo: "welcome", pathMatch: "full" },
     { path: 'welcome', component: WelcomePageComponent},
-    // { path: "eusers", component: EUserComponent },
-    // { path: "busers", component: BUserComponent },
     { path: "dashboard", component: DashboardComponent, children: [
         {path: '', component: JobinfoComponent},
+        {path: 'postjob', component: PostJobComponent},
         {path: ':id', component: JobDetailComponent}
-    ]},
-    { path: "postjob", component: PostJobComponent},
+        
+    ]}
+    
     // { path: "dashboard/jobs/:id", component: JobDetailComponent}
 
 ];
