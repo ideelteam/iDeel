@@ -60,8 +60,11 @@ export default class JobModel {
         });
     }
 
-    public updateJob(req: any, res: any): any {
-        this.model.findById(req.params.id, (err,job) => {
+    public updateJob(req: any, res: any, id:Object): any {
+        //this.model.findByI(req.params.id, (err,job)=> {)
+            console.log("inside express update");
+            console.log(res);
+        this.model.updateOne({"jobID":id}, (err,job) => {
                 console.log(req);
                 job.title = req.body.title || job.title;
                 job.description = req.body.description || job.description;
@@ -75,13 +78,13 @@ export default class JobModel {
                 job.availability = req.body.availability || job.availability;
                 job.address = req.body.address || job.address;
 
-                
+               
                 job.save((err,result) =>{
                     if(err){
                         res.status(500).send(err)
                     }
                     res.send(result);
-                })
+                });
             
         })        
     }
