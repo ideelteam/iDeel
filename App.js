@@ -67,11 +67,10 @@ class App {
             var id = req.params.id;
             this.Job.updateJob(req, res);
         });
-        //Currently deleting using the database generated id '_id'
-        //Will need to modify the route once we have our unique jobID
-        //We will use the jobID to delete
+        //Delets one job given jobID as argument
         router.delete("/api/jobs/:id", (req, res) => {
             var id = req.params.id;
+            console.log(id);
             this.Job.deleteJob(res, id);
         });
         router.get('/api/sendWorker', (req, res) => {

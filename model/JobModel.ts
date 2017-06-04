@@ -74,7 +74,7 @@ export default class JobModel {
                 job.endDate = req.body.endDate || job.endDate;
                 job.availability = req.body.availability || job.availability;
                 job.address = req.body.address || job.address;
-                
+
                 
                 job.save((err,result) =>{
                     if(err){
@@ -87,7 +87,7 @@ export default class JobModel {
     }
 
     public deleteJob(response: any, id:Object): any {
-        var query = this.model.deleteOne({"_id":id});
+        var query = this.model.deleteOne({"jobID":id});
         query.exec((err,data) => {
             response.json(data);
         });

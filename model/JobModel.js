@@ -68,7 +68,7 @@ class JobModel {
         });
     }
     deleteJob(response, id) {
-        var query = this.model.deleteOne({ "_id": id });
+        var query = this.model.deleteOne({ "jobID": id });
         query.exec((err, data) => {
             response.json(data);
         });
