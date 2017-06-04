@@ -33,13 +33,13 @@ class JobModel {
         this.model = mongooseConnection.model("jobs", this.schema);
     }
     //Do some function response here with json here
-    retreiveAll(response) {
+    retrieveAll(response) {
         var query = this.model.find({});
         query.exec((err, listOfJobs) => {
             response.json(listOfJobs);
         });
     }
-    retreiveJob(response, filter) {
+    retrieveJob(response, filter) {
         var query = this.model.findOne(filter);
         query.exec((err, data) => {
             response.json(data);

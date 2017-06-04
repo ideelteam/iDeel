@@ -1,6 +1,9 @@
 import Mongoose = require('mongoose');
 import DataAccess from '../DataAccess';
 import IJobModelModel from '../interfaces/IJobModel';
+import * as bcrypt from 'bcryptjs';
+import * as jwt from 'json-web-token';
+import * as password from 'passport';
 
 var mongoose = DataAccess.mongooseInstance;
 var mongooseConnection = DataAccess.mongooseConnection;
@@ -45,15 +48,14 @@ export default class JobModel {
     }
 
     //Do some function response here with json here
-
-    public retreiveAll(response: any): any {
+    public retrieveAll(response: any): any {
         var query = this.model.find({});
         query.exec((err, listOfJobs) => {
             response.json(listOfJobs);
         });
     }
     
-    public retreiveJob(response: any, filter:Object): any {
+    public retrieveJob(response: any, filter:Object): any {
         var query = this.model.findOne(filter);
         query.exec((err, data) => {
             response.json(data);

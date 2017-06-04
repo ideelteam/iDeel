@@ -32,10 +32,40 @@ class UserBusinessModel {
     createModel() {
         this.model = mongooseConnection.model("userBusiness", this.schema);
     }
-    retreiveAll(response) {
-        var query = this.model.find({});
-        query.exec((err, businessArray) => {
-            response.json(businessArray);
+    //Do some function response here with json here
+    retrieveAll(response) {
+        let query = this.model.find({});
+        query.exec((err, workerArray) => {
+            response.json(workerArray);
+        });
+    }
+    retrieveOneByUserName(res, filter) {
+        let query = this.model.find(filter);
+        query.exec((err, oneBusinessUserInfo) => {
+            return res.json(oneBusinessUserInfo);
+        });
+    }
+    addNewUser(res, info) {
+        // bcrypt.genSalt(10, (err, salt) => {
+        //     bcrypt.hash(info.password, salt, (err, hash) => {
+        //         if(err) throw err;
+        //         info.password = hash;
+        //         this.model.create(info, (err) => {
+        //             if (err){
+        //                 res.json({success: false, msg: "Fail to create new bUsers"})
+        //             } else {
+        //                 res.json({success: true, msg: "Successful create new bUsers"})
+        //             }
+        //         });
+        //     });
+        // });
+        this.model.create(info, (err) => {
+            if (err) {
+                res.json({ success: false, msg: "Fail to create new bUsers" });
+            }
+            else {
+                res.json({ success: true, msg: "Successful create new bUsers" });
+            }
         });
     }
 }
