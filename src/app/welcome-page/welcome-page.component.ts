@@ -8,8 +8,8 @@ import { AuthService } from '../auth/auth.service';
 })
 export class WelcomePageComponent implements OnInit {
 
-  constructor() {
-    
+  constructor(public auth: AuthService) {
+    auth.handleAuthentication();
    }
 
   ngOnInit() {
