@@ -5,7 +5,6 @@ import * as url from 'url';
 import * as bodyParser from 'body-parser';
 import * as cors from "cors";
 import * as nodemailer from 'nodemailer';
-import * as jwt from 'json-web-token';
 import * as session from 'express-session';
 
 import DataAccess from './DataAccess';
@@ -34,11 +33,9 @@ class App {
         this.express = express();
         this.middleware();
         this.routes();
-
         this.Job = new JobModel();
         this.UserWorker = new UserWorkerModel();
         this.UserBusiness = new UserBusinessModel();
-        //this.Passport = new PassportAuthentication(this.UserBusiness, this.UserWorker);
         this.mail = new sendMail();
     }
     // Configure Express middleware.
@@ -46,7 +43,7 @@ class App {
         this.express.use(logger('dev'));
         this.express.use(bodyParser.json());
         this.express.use(bodyParser.urlencoded({ extended: false }));
-        this.express.use(session({ secret: 'keyboard cat' }));
+        this.express.use(session({ secret: 'iDeelTeam' }));
         this.express.use(passport.initialize());
         this.express.use(passport.session());
     }
@@ -93,18 +90,18 @@ class App {
             this.UserWorker.retrieveAll(res);
         });
 
-        router.post('/api/users/register', (req, res, next) => {
+        router.post('/api/users/register', (req, res) => {
             let info = req.body;
             let check = info.isBusinessUser;
             delete info.isBusinessUser;
             if(check){
-                this.UserBusiness.addNewUser(res,info);
+                this.UserBusiness.addNewUser(res, info);
             } else {
                 this.UserWorker.addNewUser(res, info);
             }
         });
 
-        router.post('/api/login', (req, res, next) => {
+        router.post('/api/login', (req, res) => {
             let un = req.body.username;
             let pass = req.body.password;
             let isBusiness = req.body.isBusinessUser;
