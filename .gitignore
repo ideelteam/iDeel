@@ -240,4 +240,11 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+createDB/
+curlCommands/
+dbCommands/
+e2e/
+node_modules/
+docs/
+
 # End of https://www.gitignore.io/api/node,macos,angular,windows,webstorm,jetbrains
