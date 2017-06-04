@@ -77,8 +77,8 @@ export default class JobModel {
                 job.endDate = req.body.endDate || job.endDate;
                 job.address = req.body.address || job.address;
 
-               console.log("did this work");
-               console.log(res);
+             // console.log("did this work");
+              // console.log(res);
                
                 job.save((err,result) => {
                     if(err){
