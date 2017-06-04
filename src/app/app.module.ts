@@ -50,7 +50,12 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     HttpModule,
     AppRoutingModule
   ],
-  providers: [AppService, AuthService],
+  providers: [AppService, AuthService,
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
