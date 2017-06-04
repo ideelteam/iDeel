@@ -1,4 +1,5 @@
 // Core import
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
 
@@ -12,7 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PostJobComponent } from './jobinfo/post-job/post-job.component';
 import { JobDetailComponent } from './jobinfo/jobs-table/job-detail/job-detail.component';
 
-const routes: Routes = [
+const appRoutes: Routes = [
     { path: '', redirectTo: "welcome", pathMatch: "full" },
     { path: 'welcome', component: WelcomePageComponent},
     { path: "dashboard", component: DashboardComponent, children: [
@@ -26,4 +27,11 @@ const routes: Routes = [
 
 ];
 
-export const routing = RouterModule.forRoot(routes);
+@NgModule({
+  imports: [RouterModule.forRoot(appRoutes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {
+
+}
+
