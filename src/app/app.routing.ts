@@ -12,16 +12,18 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PostJobComponent } from './jobinfo/post-job/post-job.component';
 import { JobDetailComponent } from './jobinfo/jobs-table/job-detail/job-detail.component';
+import {CallbackComponent} from './callback/callback.component';
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: "welcome", pathMatch: "full" },
+    { path: '', redirectTo: 'welcome', pathMatch: 'full' },
     { path: 'welcome', component: WelcomePageComponent},
-    { path: "dashboard", component: DashboardComponent, children: [
+    { path: 'callback', component: CallbackComponent},
+    { path: 'dashboard', component: DashboardComponent, children: [
         {path: '', component: JobinfoComponent},
         {path: 'postjob', component: PostJobComponent},
-        {path: ':id', component: JobDetailComponent}
-        
+        {path: ':id', component: JobDetailComponent}        
     ]}
+    
     
     // { path: "dashboard/jobs/:id", component: JobDetailComponent}
 

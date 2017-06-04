@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-userinfo',
@@ -8,10 +9,19 @@ import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 })
 export class UserinfoComponent implements OnInit {
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+   profile: any;
+
+  constructor(private router: Router, private route: ActivatedRoute, public auth: AuthService) {
   }
 
   ngOnInit() {
+    if (this.auth.userProfile) {
+      this.profile = this.auth.userProfile;
+    } else {
+      this.auth.getProfile((err, profile) => {
+        this.profile = profile;
+      });
+    }
   }
 
   onClickToPostJob(){

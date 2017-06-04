@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth/auth.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,9 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   loadedPage: string;
-  constructor() {
-   // this.loadedPage = 'home';
-  }
+  constructor(public auth: AuthService) {
+    auth.handleAuthentication();
+   }
   onNavigation(page: string){
    // this.loadedPage = page;
   }
