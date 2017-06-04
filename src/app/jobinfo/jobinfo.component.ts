@@ -1,7 +1,7 @@
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { AppService} from '../app.service';
 import IJobModel from '../interface/IJobModel';
@@ -17,7 +17,7 @@ export class JobinfoComponent implements OnInit {
 
   constructor(    
     private route: ActivatedRoute,
-    private location: Location,
+    private router: Router,
     private app$: AppService) { 
 
       app$.getAllJobs()
@@ -31,5 +31,6 @@ export class JobinfoComponent implements OnInit {
 
   ngOnInit() {
   }
+  
 
 }

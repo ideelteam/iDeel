@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BUser } from './buser/b-user'
-import { EUser } from './euser/e-user'
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-userinfo',
@@ -10,17 +8,14 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class UserinfoComponent implements OnInit {
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
   }
 
-  redirect()
-  {
-    this.router.navigate(['postjob']);
+  onClickToPostJob(){
+    this.router.navigate(['postjob'], {relativeTo: this.route});
   }
-
-
 
 }

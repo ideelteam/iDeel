@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService} from '../../app.service';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-post-job',
@@ -13,7 +14,9 @@ counter:number;
 postResponse:string;
 businessID = 1;
 
-  constructor(private app$:AppService,private router: Router) {
+  constructor(
+    private app$:AppService,
+    private router: Router) {
     this.app$.getAllJobs()
     .subscribe(
       result => {
