@@ -4,7 +4,6 @@ const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const passport = require("passport");
 const session = require("express-session");
 const JobModel_1 = require("./model/JobModel");
 const UserWorkerModel_1 = require("./model/UserWorkerModel");

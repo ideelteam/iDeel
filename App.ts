@@ -6,7 +6,6 @@ import * as bodyParser from 'body-parser';
 import * as cors from "cors";
 import * as nodemailer from 'nodemailer';
 import * as jwt from 'json-web-token';
-import * as passport from 'passport';
 import * as session from 'express-session';
 
 import DataAccess from './DataAccess';
