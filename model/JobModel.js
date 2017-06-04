@@ -60,8 +60,6 @@ class JobModel {
             job.startDate = req.body.startDate || job.startDate;
             job.endDate = req.body.endDate || job.endDate;
             job.address = req.body.address || job.address;
-            // console.log("did this work");
-            // console.log(res);
             job.save((err, result) => {
                 if (err) {
                     res.status(500).send(err);
