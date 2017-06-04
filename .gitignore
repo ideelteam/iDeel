@@ -246,5 +246,7 @@ dbCommands/
 e2e/
 node_modules/
 docs/
+.vs/
+.vscode/
 
 # End of https://www.gitignore.io/api/node,macos,angular,windows,webstorm,jetbrains
