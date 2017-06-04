@@ -33,6 +33,12 @@ class App {
         this.express.use(passport.initialize());
         this.express.use(passport.session());
     }
+    validateAuth(req, res, next) {
+        if (req.isAuthenticated()) {
+            return next();
+        }
+        res.redirect('/');
+    }
     // Configure API endpoints.
     routes() {
         let router = express.Router();
@@ -45,8 +51,8 @@ class App {
         };
         router.use(cors(options));
         router.options("*", cors(options));
-        //this.Passport.authenticateBUser(passport);
-        //this.Passport.authenticateWUser(passport);
+        router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email'] }));
+        router.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/', successRedirect: '/dashboard' }));
         // For Users Stuff
         router.get('/api/users/bUsers', (req, res) => {
             this.UserBusiness.retrieveAll(res);
