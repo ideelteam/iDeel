@@ -28,8 +28,23 @@ export class JobDetailComponent implements OnInit {
   ngOnInit() {
   }
 
-  applyJob(){
-    //Need to write this
+    public applyJob(wUsersID:string, jobID:string){
+    this.app$.setAppliedJob(wUsersID, jobID)
+    .subscribe(result => {
+      this.postResponse = JSON.stringify(result),
+      err => console.log("Error HTTP Post Service"),
+      () => console.log("Data has been posted"),
+    });
+
+    this.app$.setAppliedUser(wUsersID, jobID)
+    .subscribe(result => {
+      this.postResponse = JSON.stringify(result),
+      err => console.log("Error HTTP Post Service"),
+      () => console.log("Data has been posted"),
+    
+    });
+
+    this.router.navigate(['dashboard']);
   }
 
   saveJob(){

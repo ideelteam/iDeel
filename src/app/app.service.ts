@@ -24,6 +24,20 @@ getOneJob(jobID:string){
       .map(response => response.json());
 }
 
+setAppliedJob(wUserID:string, jobID:string){
+
+  this.options = new Headers({ 'Content-Type': 'application/json' });
+     return this.http.put(this.host + '/api/jobs/' + jobID + "/" + wUserID)
+      .map(res=>res.json());
+}
+
+setAppliedUser(wUserID:string, jobID:string){
+
+  this.options = new Headers({ 'Content-Type': 'application/json' });
+     return this.http.put(this.host + '/api/users/' + wUserID + "/" + jobID)
+      .map(res=>res.json());
+}
+
   postJob(_jobID:number,_businessID:number,_title:string,_description:string,_companyName:string,
           _city:string,_phoneNo:string,_salary:string,_startDate:string,_endDate:string,_availability:boolean)
     {

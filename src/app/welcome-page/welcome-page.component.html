@@ -1,4 +1,16 @@
-<nav class="navbar navbar-default">
+<p id="welcome">Welcome to iDeel</p>
+<div class="forms" id="login-box">
+  <div class="error-msg"><i class="fa fa-exclamation-circle" aria-hidden="true"></i> Please Enter Your Username and Password</div>
+
+  <a class="login-logo" routerLink="/dashboard"></a>
+  
+  <button class="btn signin-btn" (click)="auth.login()">Sign in with your social account</button>
+ 
+</div>
+<a class="google"></a>
+<div id="fbd"><a class="facebook"></a></div>
+
+<!--<nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
       <a class="navbar-brand" href="#">Auth0 - Angular</a>
@@ -25,4 +37,4 @@
 
     </div>
   </div>
-</nav>
+</nav>-->
