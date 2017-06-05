@@ -684,7 +684,7 @@ var AppService = (function () {
     function AppService(http) {
         this.http = http;
         //host:string = 'http://localhost:80';
-        this.host = 'http://ideelteam.azurewebsites.net';
+        this.host = 'http://teamideel.azurewebsites.net';
         this.userId = "";
     }
     AppService.prototype.getAllJobs = function () {
