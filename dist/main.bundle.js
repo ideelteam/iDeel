@@ -683,8 +683,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AppService = (function () {
     function AppService(http) {
         this.http = http;
-        this.host = 'http://localhost:80';
-        //host:string = 'http://ideelteam.azurewebsites.net';
+        //host:string = 'http://localhost:80';
+        this.host = 'http://ideelteam.azurewebsites.net';
         this.userId = "";
     }
     AppService.prototype.getAllJobs = function () {
