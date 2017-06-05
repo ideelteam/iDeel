@@ -39,5 +39,10 @@ class UserWorkerModel {
             response.json(workerArray);
         });
     }
+    addAppliedList(jobID, wUser) {
+        this.model.findById({ "workerID": wUser }, (err, wUser) => {
+            wUser.appliedList.push(jobID);
+        });
+    }
 }
 exports.default = UserWorkerModel;

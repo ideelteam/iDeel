@@ -65,6 +65,18 @@ class App {
             var id = req.params.id;
             this.Job.updateJob(req, res, id);
         });
+        //Set jobID to appliedlist array of wUser 
+        router.put("/api/jobs/:jobID/:wUser", (req, res) => {
+            var wUser = req.params.wUser;
+            var jobID = req.params.jobID;
+            this.Job.addAppliedList(req, res, jobID, wUser);
+        });
+        //Set wUserID to appliedlist array of job
+        router.put("/api/users/:wUser/:jobID", (req, res) => {
+            var wUser = req.params.wUser;
+            var jobID = req.params.jobID;
+            this.UserWorker.addAppliedList(jobID, wUser);
+        });
         //Delete one job given jobID as argument
         router.delete("/api/jobs/:id", (req, res) => {
             var id = req.params.id;

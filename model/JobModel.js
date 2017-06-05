@@ -68,6 +68,11 @@ class JobModel {
             });
         });
     }
+    addAppliedList(req, res, jobID, wUser) {
+        this.model.findById({ "jobID": jobID }, (err, job) => {
+            job.appliedList.push(wUser);
+        });
+    }
     deleteJob(response, id) {
         var query = this.model.deleteOne({ "jobID": id });
         query.exec((err, data) => {

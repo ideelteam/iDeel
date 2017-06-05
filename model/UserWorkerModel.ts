@@ -51,4 +51,10 @@ export default class UserWorkerModel {
             response.json(workerArray);
         });
     }
+    
+    public addAppliedList(jobID: Object, wUser: Object): any {
+        this.model.findById({ "workerID": wUser }, (err, wUser) => {
+            wUser.appliedList.push(jobID);
+        });
+    }
 }
