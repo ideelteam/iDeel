@@ -28,4 +28,8 @@ export class UserinfoComponent implements OnInit {
     this.router.navigate(['postjob'], {relativeTo: this.route});
   }
 
+  onClickToUpdateJob() {
+    this.router.navigate(['updateinfo'], {relativeTo: this.route});
+  }
+
 }
