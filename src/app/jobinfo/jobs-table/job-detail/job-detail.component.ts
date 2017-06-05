@@ -30,25 +30,29 @@ export class JobDetailComponent implements OnInit {
   }
 
   applyJob(wUsersID:string, jobID:string){
-    this.app$.setAppliedJob(wUsersID, jobID)
-    .subscribe(result => {
-      this.putResponse = JSON.stringify(result),
-      err => console.log("Error HTTP Post Service"),
-      () => console.log("Data has been posted"),
-    });
-
-    this.app$.setAppliedUser(wUsersID, jobID)
-    .subscribe(result => {
-      this.putResponse = JSON.stringify(result),
-      err => console.log("Error HTTP Post Service"),
-      () => console.log("Data has been posted"),
-    
-    });
-
-    
+    this.setAppliedListJob(wUsersID, jobID);
+    this.setAppliedListUser(wUsersID, jobID);
+     
   }
 
+  setAppliedListJob(wUsersID:string, jobID:string){
+    this.app$.setAppliedJob(wUsersID, jobID)
+    .subscribe(result => {
+      this.putResponse = JSON.stringify(result)},
+      err => console.log("Error HTTP Put Service"),
+      () => console.log("Data has been modified"),
+    );
+  }
 
+  setAppliedListUser(wUsersID:string, jobID:string){
+    this.app$.setAppliedUser(wUsersID, jobID)
+    .subscribe(result => {
+      this.putResponse = JSON.stringify(result)},
+      err => console.log("Error HTTP Put Service"),
+      () => console.log("Data has been modified"),
+    
+    );
+  }
 
   saveJob(){
     //Need to write this
