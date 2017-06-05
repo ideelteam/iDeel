@@ -6,7 +6,7 @@ const App_1 = require("./App");
 class Server {
     constructor() {
         debug('ts-express:server');
-        this.portValue = this.normalizePort(process.env.PORT || 80);
+        this.portValue = this.normalizePort(process.env.PORT || 3000);
         App_1.default.set('port', this.portValue);
         console.log("THIS IS THE PORT");
         console.log(process.env.PORT);
