@@ -14,15 +14,15 @@ export class AppService {
   }
 
 
-getAllJobs() {
+  getAllJobs() {
     return this.http.get( this.host + '/api/jobs')
-    .map(response => response.json());
+      .map(response => response.json());
   }
 
-getOneJob(jobID:string){
+  getOneJob(jobID:string){
     return this.http.get(this.host + '/api/jobs/' + jobID)
       .map(response => response.json());
-}
+  }
 
   postJob(_jobID:number,_businessID:number,_title:string,_description:string,_companyName:string,
           _city:string,_phoneNo:string,_salary:string,_startDate:string,_endDate:string,_availability:boolean)
@@ -43,12 +43,9 @@ getOneJob(jobID:string){
     };
 
     console.log(this.body);
-     this.options = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+     this.options = new Headers({ 'Content-Type': 'application/json' });
      return this.http.post(this.host + '/api/jobs', this.body, this.options)
       .map(res=>res.json());     
     }
-
-
-
 }
 
