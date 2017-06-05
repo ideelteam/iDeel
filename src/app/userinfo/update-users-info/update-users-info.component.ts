@@ -13,7 +13,6 @@ export class UpdateUsersInfoComponent implements OnInit {
   
   profile: any;
   isBusiness: boolean;
-  @Input() isExisted: boolean;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
