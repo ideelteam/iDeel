@@ -40,7 +40,7 @@ export class JobDetailComponent implements OnInit {
     .subscribe(result => {
       this.putResponse = JSON.stringify(result)},
       err => console.log("Error HTTP Put Service"),
-      () => console.log("Data has been modified"),
+      () => console.log("userID saved in job's appliedList"),
     );
   }
 
@@ -49,12 +49,19 @@ export class JobDetailComponent implements OnInit {
     .subscribe(result => {
       this.putResponse = JSON.stringify(result)},
       err => console.log("Error HTTP Put Service"),
-      () => console.log("Data has been modified"),
+      () => console.log("jobID saved in user's appliedList"),
     
     );
   }
 
-  saveJob(){
-    //Need to write this
+  saveJob(wUsersID:string, jobID:string){
+    this.app$.addSaveJob(wUsersID, jobID)
+    .subscribe(result=>{
+      this.putResponse = JSON.stringify(result)},
+      err => console.log("Error HTTP Put Service"),
+      () => console.log("Job saved"),
+    
+    );
+    
   }
 }

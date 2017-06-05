@@ -26,15 +26,18 @@ getOneJob(jobID:string){
 
 setAppliedJob(wUserID:string, jobID:string){
   
-  this.options = new Headers({ 'Content-Type': 'application/json' });
-     return this.http.put(this.host + '/api/jobs/' + jobID + "/" + wUserID, "")
+    return this.http.put(this.host + '/api/jobs/' + jobID + "/" + wUserID, "")
       .map(res=>res.json());
 }
 
 setAppliedUser(wUserID:string, jobID:string){
 
-  this.options = new Headers({ 'Content-Type': 'application/json' });
-     return this.http.put(this.host + '/api/users/' + wUserID + "/" + jobID, "")
+    return this.http.put(this.host + '/api/users/' + wUserID + "/" + jobID, "")
+      .map(res=>res.json());
+}
+
+addSaveJob(wUserID:string, jobID:string){
+    return this.http.put(this.host + '/api/save/' + wUserID + "/" + jobID, "")
       .map(res=>res.json());
 }
 
