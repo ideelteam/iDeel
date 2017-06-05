@@ -48,7 +48,8 @@ class JobModel {
     updateJob(req, res, id) {
         //this.model.findById(req.params.id, (err,job)=> {)
         console.log("inside express update");
-        this.model.findById({ "_id": id }, (err, job) => {
+        var query = this.model.findOne({ "jobID": id });
+        query.exec((err, job) => {
             console.log(req);
             job.title = req.body.title || job.title;
             job.description = req.body.description || job.description;
