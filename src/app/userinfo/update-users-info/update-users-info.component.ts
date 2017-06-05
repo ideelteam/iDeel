@@ -12,7 +12,8 @@ import { Input } from '@angular/core';
 export class UpdateUsersInfoComponent implements OnInit {
   
   profile: any;
-  @Input() selection: any;
+  isBusiness: boolean;
+  @Input() isExisted: boolean;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -28,12 +29,14 @@ export class UpdateUsersInfoComponent implements OnInit {
         this.profile = profile;
       });
     }
-    console.log(this.selection);
   }
-  submitUserInfoForm(form: any){
-    let userID = this.profile.sub;
-    let straightDash = userID.indexOf("|");
-    userID = userID.slice(straightDash);    
+
+  changeStateBusiness(){
+    this.isBusiness = true;
   }
-  
+
+  changeStateWorker(){
+    this.isBusiness = false;
+  }
+
 }

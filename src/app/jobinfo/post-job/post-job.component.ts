@@ -19,7 +19,6 @@ businessID:number;
       result => {
        this.jobID = result.length + 1;
        this.businessID = result.length + 1000;
-       console.log(result);
       },
       () => {},
       () => {}
@@ -36,8 +35,7 @@ businessID:number;
     .subscribe(result => {
       this.postResponse = JSON.stringify(result),
       err => console.log("Error HTTP Post Service"),
-      () => console.log("Data has been posted"),
-      console.log(this.postResponse);
+      () => console.log("Data has been posted")
     });
 
     this.router.navigate(['dashboard']);

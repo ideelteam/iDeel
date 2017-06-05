@@ -1,11 +1,12 @@
-<div class="jumbotron">
-    <h2 style="margin-bottom:20px">Update User Info</h2>
-    <form #radioForm="ngForm">
-      <div class="radio" (selection)="radioForm.value">
-        <input type="radio" value="business" name="BusinessUser" [(ngModel)]="choice">Business User
-        <input type="radio" value="worker" name="BusinessUser" [(ngModel)]="choice">Worker User
-      </div>      
-    </form>
-    <p>Form value: {{ radioForm.value | json }}</p>
-    <p>myFood value: {{ myFood }}</p>
-  </div>
+<h3>Update User Info</h3><br>
+<div class="row">
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-primary" (click)="changeStateBusiness()">Business User</button>
+    <button type="button" class="btn btn-primary" (click)="changeStateWorker()">Worker User</button>
+  </div> 
+</div>
+<br><br>
+<app-b-user-form-update *ngIf="isBusiness && !isExisted"></app-b-user-form-update>
+<app-w-user-form-update *ngIf="!isBusiness && !isExisted"></app-w-user-form-update>
+
+
