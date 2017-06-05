@@ -28,7 +28,7 @@ export class JobDetailComponent implements OnInit {
   ngOnInit() {
   }
 
-    public applyJob(wUsersID:string, jobID:string){
+    applyJob(wUsersID:string, jobID:string){
     this.app$.setAppliedJob(wUsersID, jobID)
     .subscribe(result => {
       this.postResponse = JSON.stringify(result),
@@ -46,6 +46,8 @@ export class JobDetailComponent implements OnInit {
 
     this.router.navigate(['dashboard']);
   }
+
+
 
   saveJob(){
     //Need to write this
