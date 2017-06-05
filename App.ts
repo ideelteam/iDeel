@@ -23,7 +23,8 @@ class App {
     public UserWorker: UserWorkerModel;
     public UserBusiness: UserBusinessModel;
     public mail: sendMail;
-    
+    private id: number;
+
     //Run configuration methods on the Express instance.
     constructor() {
         this.express = express();
@@ -74,7 +75,9 @@ class App {
         });
 
         router.post('/api/jobs', (req, res) => {
+            this.id++;
             var newJob = req.body;
+            newJob.jobID = this.id;
             this.Job.model.create([newJob],(err)=>{
                 if(err){
                     console.log('object creation failed');
