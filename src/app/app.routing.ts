@@ -12,7 +12,8 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PostJobComponent } from './jobinfo/post-job/post-job.component';
 import { JobDetailComponent } from './jobinfo/jobs-table/job-detail/job-detail.component';
-import {CallbackComponent} from './callback/callback.component';
+import { CallbackComponent } from './callback/callback.component';
+import { UpdatejobComponent } from './jobinfo/updatejob/updatejob.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'welcome', pathMatch: 'full' },
@@ -22,8 +23,8 @@ const appRoutes: Routes = [
         {path: '', component: JobinfoComponent},
         {path: 'postjob', component: PostJobComponent},
         {path: ':id', component: JobDetailComponent}        
-    ]}
-    
+    ]},
+    {path: 'updatejob', component: UpdatejobComponent},
     
     // { path: "dashboard/jobs/:id", component: JobDetailComponent}
 

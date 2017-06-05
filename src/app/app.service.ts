@@ -4,7 +4,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AppService {
-  host:string = 'http://localhost:3000';
+ // host:string = 'http://localhost:3000';
+  host:string = 'http://teamideel.azurewebsites.net';
   userId:string = "";
   body:any;
   options:any;
@@ -25,7 +26,8 @@ export class AppService {
   }
 
   postJob(_jobID:number,_businessID:number,_title:string,_description:string,_companyName:string,
-          _city:string,_phoneNo:string,_salary:string,_startDate:string,_endDate:string,_availability:boolean)
+          _city:string,_zipcode:string,_address:string,_phoneNo:string,_salary:string,_startDate:string,
+          _endDate:string,_availability:boolean)
     {
     
     this.body = {
@@ -35,6 +37,8 @@ export class AppService {
       "description":_description,
       "companyName":_companyName,
       "city":_city,
+      "zipcode":_zipcode,
+      "address":_address,
       "phoneNo":_phoneNo,
       "salary":_salary,
       "startDate":_startDate,
@@ -43,9 +47,48 @@ export class AppService {
     };
 
     console.log(this.body);
-     this.options = new Headers({ 'Content-Type': 'application/json' });
+     this.options = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
      return this.http.post(this.host + '/api/jobs', this.body, this.options)
       .map(res=>res.json());     
     }
+
+  deleteJob(_jobID:number){
+    this.options = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Method':'DELETE' });
+    return this.http.delete(this.host + '/api/jobs/' + _jobID, this.options)
+      .subscribe((res) => {
+        if(res.status != 200){
+          console.log("Server Error");
+        }
+      });
+  }
+
+
+  updateJob(_jobID:number, _title:string, _description:string, _company:string, _city:string, 
+            _address:string, _zipcode:string, _salary:string){
+  
+      this.options = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Method':'PUT' });
+      this.options.append('Accept','application/json');
+
+      this.body = {
+        "title":_title,
+        "description":_description,
+        "companyName":_company,
+        "city":_city,
+        "address":_address,
+        "zipcode":_zipcode,
+        "salary":_salary,
+      };
+
+      console.log("inside updateJob");
+      console.log(this.body);
+      return this.http.put(this.host + '/api/jobs/' + _jobID, this.body, this.options)
+        .subscribe((res) => {
+          if(res.status != 200){
+            console.log("Server Error");
+          }
+        });
+
+    }
+
 }
 

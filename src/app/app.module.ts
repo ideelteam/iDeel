@@ -24,6 +24,7 @@ import { PostJobComponent } from './jobinfo/post-job/post-job.component';
 import { JobDetailComponent } from './jobinfo/jobs-table/job-detail/job-detail.component';
 import { CallbackComponent } from './callback/callback.component';
 import { UpdateUsersInfoComponent } from './update-users-info/update-users-info.component';
+import { UpdatejobComponent } from './jobinfo/updatejob/updatejob.component';
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -44,7 +45,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     PostJobComponent,
     JobDetailComponent,
     CallbackComponent,
-    UpdateUsersInfoComponent
+    UpdateUsersInfoComponent,
+    UpdatejobComponent
   ],
   imports: [
     BrowserModule,
