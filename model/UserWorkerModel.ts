@@ -52,9 +52,18 @@ export default class UserWorkerModel {
         });
     }
     
-    public addAppliedList(jobID: Object, wUser: Object): any {
-        this.model.findById({ "workerID": wUser }, (err, wUser) => {
+    public addAppliedList(req: any, res: any, jobID: Object, wUserID: Object): any {
+        let query = this.model.findOne({ "workerID": wUserID });
+        query.exec((err,wUser)=>{
             wUser.appliedList.push(jobID);
-        });
+            wUser.save((err,result) => {
+                    if(err){
+                        res.status(500).send(err)
+                    }
+                    res.send(result);
+                });
+        })
+           
+        
     }
 }

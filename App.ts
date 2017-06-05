@@ -93,14 +93,14 @@ class App {
         router.put("/api/jobs/:jobID/:wUser", (req, res) => {
             let wUser = req.params.wUser;
             let jobID = req.params.jobID;
-            this.Job.addAppliedList(jobID, wUser);
+            this.Job.addAppliedList(req,res,jobID, wUser);
         });
 
         //Set wUserID to appliedlist array of job
         router.put("/api/users/:wUser/:jobID", (req, res) => {
             let wUser = req.params.wUser;
             let jobID = req.params.jobID;
-            this.UserWorker.addAppliedList(jobID, wUser);
+            this.UserWorker.addAppliedList(req, res, jobID, wUser);
         });
 
         //Delete one job given jobID as argument

@@ -39,9 +39,16 @@ class UserWorkerModel {
             response.json(workerArray);
         });
     }
-    addAppliedList(jobID, wUser) {
-        this.model.findById({ "workerID": wUser }, (err, wUser) => {
+    addAppliedList(req, res, jobID, wUserID) {
+        let query = this.model.findOne({ "workerID": wUserID });
+        query.exec((err, wUser) => {
             wUser.appliedList.push(jobID);
+            wUser.save((err, result) => {
+                if (err) {
+                    res.status(500).send(err);
+                }
+                res.send(result);
+            });
         });
     }
 }

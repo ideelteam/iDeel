@@ -88,10 +88,19 @@ export default class JobModel {
         });
     }
 
-    public addAppliedList(jobID: string, wUser: string): any {
-        this.model.findById({ "jobID": jobID }, (err, job) => {
-            job.appliedList.push('wUser');
-        });
+    public addAppliedList(req: any, res: any, jobID: string, wUser: string): any {
+        console.log(this.model.appliedList);
+        let query = this.model.findOne({ "jobID": jobID });
+        query.exec((err,job)=>{
+            job.appliedList.push(wUser);
+            job.save((err,result) => {
+                    if(err){
+                        res.status(500).send(err)
+                    }
+                    res.send(result);
+                });
+        })
+            
     }
 
     public deleteJob(response: any, id: Object): any {
