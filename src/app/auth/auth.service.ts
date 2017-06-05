@@ -11,7 +11,8 @@ export class AuthService {
     domain: 'rileydu.auth0.com',
     responseType: 'token id_token',
     audience: 'https://rileydu.auth0.com/userinfo',
-    redirectUri: 'http://localhost:4200/callback',      
+    //redirectUri: 'http://localhost:4200/callback',
+    redirectUri: 'http://localhost:3000/callback',      
     scope: 'openid profile'
   });
 
