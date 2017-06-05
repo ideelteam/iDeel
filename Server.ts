@@ -9,7 +9,7 @@ class Server {
 
   constructor() {
     debug('ts-express:server');
-    this.portValue = this.normalizePort(process.env.PORT || 80);
+    this.portValue = this.normalizePort(process.env.PORT || 3000);
     App.set('port', this.portValue);
 
     console.log("THIS IS THE PORT");
