@@ -683,8 +683,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AppService = (function () {
     function AppService(http) {
         this.http = http;
-        this.host = 'http://localhost:3000';
-        // host:string = 'http://teamideel.azurewebsites.net';
+        //host:string = 'http://localhost:3000';
+        this.host = 'http://teamideel.azurewebsites.net';
         this.userId = "";
     }
     AppService.prototype.getAllJobs = function () {
