@@ -51,5 +51,17 @@ class UserWorkerModel {
             });
         });
     }
+    addSavedList(req, res, jobID, wUserID) {
+        let query = this.model.findOne({ "workerID": wUserID });
+        query.exec((err, wUser) => {
+            wUser.savedList.push(jobID);
+            wUser.save((err, result) => {
+                if (err) {
+                    res.status(500).send(err);
+                }
+                res.send(result);
+            });
+        });
+    }
 }
 exports.default = UserWorkerModel;

@@ -6,8 +6,8 @@ var mongoose = DataAccess.mongooseInstance;
 var mongooseConnection = DataAccess.mongooseConnection;
 
 export default class UserWorkerModel {
-    public schema:Mongoose.Schema;
-    public model:any;
+    public schema: Mongoose.Schema;
+    public model: any;
 
     public constructor() {
         this.createSchema();
@@ -15,7 +15,7 @@ export default class UserWorkerModel {
     }
 
     public createSchema(): void {
-        this.schema =  mongoose.Schema(
+        this.schema = mongoose.Schema(
             {
                 workerID: Number,
                 firstName: String,
@@ -35,7 +35,7 @@ export default class UserWorkerModel {
                 appliedList: Array,
                 subscribed: Array,
                 //picturePhoto: {data:Buffer, contentType:String}
-            }, {collection: 'userWorker'}
+            }, { collection: 'userWorker' }
 
         );
     }
@@ -45,25 +45,35 @@ export default class UserWorkerModel {
     }
 
     //Do some function response here with json here
-    public retreiveAll(response:any): any{
+    public retreiveAll(response: any): any {
         var query = this.model.find({});
         query.exec((err, workerArray) => {
             response.json(workerArray);
         });
     }
-    
+
     public addAppliedList(req: any, res: any, jobID: Object, wUserID: Object): any {
         let query = this.model.findOne({ "workerID": wUserID });
-        query.exec((err,wUser)=>{
+        query.exec((err, wUser) => {
             wUser.appliedList.push(jobID);
-            wUser.save((err,result) => {
-                    if(err){
-                        res.status(500).send(err)
-                    }
-                    res.send(result);
-                });
+            wUser.save((err, result) => {
+                if (err) {
+                    res.status(500).send(err)
+                }
+                res.send(result);
+            });
         })
-           
-        
+    }
+    public addSavedList(req: any, res: any, jobID: Object, wUserID: Object): any {
+        let query = this.model.findOne({ "workerID": wUserID });
+        query.exec((err, wUser) => {
+            wUser.savedList.push(jobID);
+            wUser.save((err, result) => {
+                if (err) {
+                    res.status(500).send(err)
+                }
+                res.send(result);
+            });
+        })
     }
 }

@@ -77,6 +77,12 @@ class App {
             let jobID = req.params.jobID;
             this.UserWorker.addAppliedList(req, res, jobID, wUser);
         });
+        //Set jobID to wUser's savedList
+        router.put("/api/save/:wUser/:jobID", (req, res) => {
+            let wUser = req.params.wUser;
+            let jobID = req.params.jobID;
+            this.UserWorker.addSavedList(req, res, jobID, wUser);
+        });
         //Delete one job given jobID as argument
         router.delete("/api/jobs/:id", (req, res) => {
             var id = req.params.id;
