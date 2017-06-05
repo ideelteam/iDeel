@@ -153,10 +153,10 @@ var routes = [
     // { path: "busers", component: BUserComponent },
     { path: "dashboard", component: __WEBPACK_IMPORTED_MODULE_3__dashboard_dashboard_component__["a" /* DashboardComponent */], children: [
             { path: '', component: __WEBPACK_IMPORTED_MODULE_1__jobinfo_jobinfo_component__["a" /* JobinfoComponent */] },
-            { path: ':id', component: __WEBPACK_IMPORTED_MODULE_5__jobinfo_jobs_table_job_detail_job_detail_component__["a" /* JobDetailComponent */] }
+            { path: ':id', component: __WEBPACK_IMPORTED_MODULE_5__jobinfo_jobs_table_job_detail_job_detail_component__["a" /* JobDetailComponent */] },
         ] },
     { path: "postjob", component: __WEBPACK_IMPORTED_MODULE_4__post_job_post_job_component__["a" /* PostJobComponent */] },
-    { path: "updatejob", component: __WEBPACK_IMPORTED_MODULE_6__update_job_update_job_component__["a" /* UpdateJobComponent */] },
+    { path: 'updatejob', component: __WEBPACK_IMPORTED_MODULE_6__update_job_update_job_component__["a" /* UpdateJobComponent */] },
 ];
 var routing = __WEBPACK_IMPORTED_MODULE_0__angular_router__["a" /* RouterModule */].forRoot(routes);
 //# sourceMappingURL=app.routing.js.map
@@ -683,8 +683,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var AppService = (function () {
     function AppService(http) {
         this.http = http;
-        //host:string = 'http://localhost:80';
-        this.host = 'http://teamideel.azurewebsites.net';
+        this.host = 'http://localhost:3000';
+        // host:string = 'http://teamideel.azurewebsites.net';
         this.userId = "";
     }
     AppService.prototype.getAllJobs = function () {
@@ -921,7 +921,6 @@ var JobDetailComponent = (function () {
         //Need to write this
     };
     JobDetailComponent.prototype.updateJob = function () {
-        //console.log("INSIDE UPDATE JOB");
         //this.app$.updateJob(_jobID,_title,_description,_company,_city,_address,_zipcode,_salary);
         this.router.navigate(['updatejob']);
     };
@@ -1033,6 +1032,7 @@ var UpdateJobComponent = (function () {
     }
     UpdateJobComponent.prototype.ngOnInit = function () {
     };
+    //Need to figure out how to pass the jobID that is being updated into this function
     UpdateJobComponent.prototype.submimtUpdateForm = function (form, jobID) {
         // console.log(form);
         jobID = 1;
