@@ -91,16 +91,21 @@ export default class JobModel {
     public addAppliedList(req: any, res: any, jobID: string, wUser: string): any {
         console.log(this.model.appliedList);
         let query = this.model.findOne({ "jobID": jobID });
-        query.exec((err,job)=>{
-            job.appliedList.push(wUser);
-            job.save((err,result) => {
-                    if(err){
+        query.exec((err, job) => {
+            if (job.appliedList.indexOf(wUser) == -1) {
+                job.appliedList.push(wUser);
+                job.save((err, result) => {
+                    if (err) {
                         res.status(500).send(err)
                     }
                     res.send(result);
                 });
+            }else{
+                res.send("exist");
+            }
+
         })
-            
+
     }
 
     public deleteJob(response: any, id: Object): any {

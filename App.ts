@@ -116,12 +116,14 @@ class App {
             this.Job.deleteJob(res, id);
         });
 
-        router.get('/api/sendWorker', (req, res) => {
-            this.mail.sendEmailWorker();
+        router.post('/api/sendWorker', (req, res) => {
+            this.mail.sendEmailWorker(req.body);
+            res.end();
         });
 
-        router.get('/api/sendBusiness', (req, res) => {
-            this.mail.sendEmailBusiness();
+        router.post('/api/sendBusiness', (req, res) => {
+            this.mail.sendEmailBusiness(req.body);
+            res.end();
         });
 
         this.express.use('/', router);

@@ -55,25 +55,35 @@ export default class UserWorkerModel {
     public addAppliedList(req: any, res: any, jobID: Object, wUserID: Object): any {
         let query = this.model.findOne({ "workerID": wUserID });
         query.exec((err, wUser) => {
-            wUser.appliedList.push(jobID);
+            if(wUser.appliedList.indexOf(jobID)==-1){
+                wUser.appliedList.push(jobID);
             wUser.save((err, result) => {
                 if (err) {
                     res.status(500).send(err)
                 }
                 res.send(result);
             });
+            }else{
+                res.send("exist");
+            }
+            
         })
     }
     public addSavedList(req: any, res: any, jobID: Object, wUserID: Object): any {
         let query = this.model.findOne({ "workerID": wUserID });
         query.exec((err, wUser) => {
-            wUser.savedList.push(jobID);
-            wUser.save((err, result) => {
+            if(wUser.savedList.indexOf(jobID)==-1){
+                wUser.savedList.push(jobID);
+                wUser.save((err, result) => {
                 if (err) {
                     res.status(500).send(err)
                 }
                 res.send(result);
             });
+            }else{
+                res.send("exist");
+            }
+            
         })
     }
 }

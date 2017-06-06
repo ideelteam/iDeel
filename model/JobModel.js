@@ -72,13 +72,18 @@ class JobModel {
         console.log(this.model.appliedList);
         let query = this.model.findOne({ "jobID": jobID });
         query.exec((err, job) => {
-            job.appliedList.push(wUser);
-            job.save((err, result) => {
-                if (err) {
-                    res.status(500).send(err);
-                }
-                res.send(result);
-            });
+            if (job.appliedList.indexOf(wUser) == -1) {
+                job.appliedList.push(wUser);
+                job.save((err, result) => {
+                    if (err) {
+                        res.status(500).send(err);
+                    }
+                    res.send(result);
+                });
+            }
+            else {
+                res.send("exist");
+            }
         });
     }
     deleteJob(response, id) {
