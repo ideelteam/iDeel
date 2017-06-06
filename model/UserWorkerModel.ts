@@ -56,6 +56,7 @@ export default class UserWorkerModel {
         let query = this.model.find(filter);        
         query.exec((err, oneWorkerUser) => {
             res.json(oneWorkerUser);
-        })
+        });
+
     }
 }

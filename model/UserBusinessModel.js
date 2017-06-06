@@ -49,5 +49,12 @@ class UserBusinessModel {
             }
         });
     }
+    findOneBusiness(res, id) {
+        var query = this.model.findOne({ 'businessID': id });
+        console.log("AHH");
+        query.exec((err, data) => {
+            res.json(data);
+        });
+    }
 }
 exports.default = UserBusinessModel;
