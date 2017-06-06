@@ -51,4 +51,11 @@ export default class UserWorkerModel {
             response.json(workerArray);
         });
     }
+
+    public retreiveOne(res: any, filter: Object) {
+        let query = this.model.find(filter);        
+        query.exec((err, oneWorkerUser) => {
+            res.json(oneWorkerUser);
+        })
+    }
 }
