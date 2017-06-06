@@ -1,8 +1,10 @@
 import {Input, Component, OnInit, Output } from '@angular/core';
 import IJobModel from '../../interface/IJobModel';
 import { Router, ActivatedRoute } from "@angular/router";
+
 declare var jQuery: any;
 declare var $: any;
+
 @Component({
   selector: 'jobs-table',
   templateUrl: './jobs-table.component.html',

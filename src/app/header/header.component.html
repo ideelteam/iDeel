@@ -3,7 +3,7 @@
     <div class="container">
       <div class="site-name"><a routerLink="/dashboard">iDeel</a></div>
       <ul class="header_login">
-        <li *ngIf="auth.isAuthenticated()" (click)="auth.logout()"><a routerLink="/welcome"><i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a></li>
+        <li *ngIf="auth.isAuthenticated()" (click)="auth.logout()"><a><i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a></li>
         <li *ngIf="!auth.isAuthenticated()" (click)="auth.login()"><a><i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a></li>
 
       </ul>

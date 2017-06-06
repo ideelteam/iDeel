@@ -52,7 +52,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     UpdateUsersInfoComponent,
     UpdatejobComponent,
     BUserFormUpdateComponent,
-    WUserFormUpdateComponent
+    WUserFormUpdateComponent,
     FooterComponent
   ],
   imports: [
