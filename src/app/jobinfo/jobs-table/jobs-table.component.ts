@@ -27,9 +27,7 @@ export class JobsTableComponent implements OnInit {
       $(this).removeClass('flip');
     });
     $('.hover').click(function () {
-      let thisJobID = $(this).find('#jobID').text();
-      console.log(thisJobID);
-      
+      let thisJobID = $(this).find('#jobID').text();     
     });
   });
   }

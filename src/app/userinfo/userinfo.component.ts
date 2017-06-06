@@ -21,6 +21,7 @@ export class UserinfoComponent implements OnInit {
               private route: ActivatedRoute,
               private auth: AuthService,
               private app$: AppService) {
+    
 
   }
 
@@ -36,7 +37,7 @@ export class UserinfoComponent implements OnInit {
         this.app$.getBusinessUser(this.userID)
         .subscribe(
           businessUser => {
-          this.businessObject = JSON.parse(businessUser);
+          this.businessObject = businessUser;
           this.isBusiness = true;
           },
           () => {},
@@ -45,24 +46,19 @@ export class UserinfoComponent implements OnInit {
         this.app$.getWorkerUser(this.userID)
         .subscribe(
           workerUser => {
-            this.workerObject = JSON.parse(workerUser);
+            this.workerObject = workerUser;
             this.isBusiness = false;
           },
           () => {},
           () => {}
         );
-        if(Object.keys(this.businessObject).length == 0 && Object.keys(this.workerObject).length == 0){
-          this.isExisted = false;
-        } else if(Object.keys(this.businessObject).length != 0 && Object.keys(this.workerObject).length == 0){
-          this.isExisted = true;
-        } else if(Object.keys(this.businessObject).length == 0 && Object.keys(this.workerObject).length != 0) {
-          this.isExisted = true;
-        }
       });
     }
   }
 
   onClickToPostJob(){
+        console.log(this.businessObject);
+    console.log(this.workerObject);
     this.router.navigate(['postjob'], {relativeTo: this.route});
   }
 
