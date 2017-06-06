@@ -4,8 +4,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AppService {
-//  host:string = 'http://localhost:3000';
-  host:string = 'http://teamideel.azurewebsites.net';
+  host:string = 'http://localhost:3000';
+  //host:string = 'http://teamideel.azurewebsites.net';
   userId:string = "";
   body:any;
   options:any;
@@ -24,18 +24,18 @@ getOneJob(jobID:string){
       .map(response => response.json());
 }
 
-  getBusinessUser(_userID: string){
-    return this.http.get(this.host + '/api/users/bUser/' + _userID)
+getBusinessUser(_userID: string){
+    return this.http.get(this.host + '/api/users/bUsers/' + _userID)
       .map(response => response.json());
-  }
+}
 
-  getWorkerUser(_userID: string){
-    return this.http.get(this.host + '/api/users/wUser/' + _userID)
+getWorkerUser(_userID: string){
+    return this.http.get(this.host + '/api/users/wUsers/' + _userID)
       .map(response => response.json());
-  }
+}
 
 
-  postJob(_jobID:number,_businessID:number,_title:string,_description:string,_companyName:string,
+postJob(_jobID:number,_businessID:number,_title:string,_description:string,_companyName:string,
           _city:string,_zipcode:string,_address:string,_phoneNo:string,_salary:string,_startDate:string,
           _endDate:string,_availability:boolean)
     {
