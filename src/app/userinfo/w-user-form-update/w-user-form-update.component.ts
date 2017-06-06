@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-w-user-form-update',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WUserFormUpdateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
+  }
+
+  submitForm(form: any){
+
+    this.router.navigate(['dashboard']);
   }
 
 }

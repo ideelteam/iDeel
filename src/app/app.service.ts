@@ -25,6 +25,17 @@ export class AppService {
       .map(response => response.json());
   }
 
+  getBusinessUser(_userID: string){
+    return this.http.get(this.host + '/api/users/bUser/' + _userID)
+      .map(response => response.json());
+  }
+
+  getWorkerUser(_userID: string){
+    return this.http.get(this.host + '/api/users/wUser/' + _userID)
+      .map(response => response.json());
+  }
+
+
   postJob(_jobID:number,_businessID:number,_title:string,_description:string,_companyName:string,
           _city:string,_zipcode:string,_address:string,_phoneNo:string,_salary:string,_startDate:string,
           _endDate:string,_availability:boolean)
@@ -89,31 +100,15 @@ export class AppService {
         });
 
     }
-    addNewUser(_jobID:number, _title:string, _description:string, _company:string, _city:string, 
-            _address:string, _zipcode:string, _salary:string){
-  
-      this.options = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Method':'PUT' });
-      this.options.append('Accept','application/json');
 
-      this.body = {
-        "title":_title,
-        "description":_description,
-        "companyName":_company,
-        "city":_city,
-        "address":_address,
-        "zipcode":_zipcode,
-        "salary":_salary,
-      };
-
-      console.log("inside updateJob");
-      console.log(this.body);
-      return this.http.put(this.host + '/api/jobs/' + _jobID, this.body, this.options)
-        .subscribe((res) => {
-          if(res.status != 200){
-            console.log("Server Error");
-          }
-        });
-
+    checkUser(_userID:number){
+    this.options = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Method':'GET' });
+    return this.http.get(this.host + '/api/users/bUsers/' + _userID, this.options)
+      .subscribe((res) => {
+        if(res.status != 200){
+          console.log("Server Error");
+        }
+      });
     }
 
 }

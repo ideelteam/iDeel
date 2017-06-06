@@ -22,10 +22,10 @@
 </div>
 
 <div class="row">
-  <button type="button" class="btn btn-info" (click)="onClickToPostJob()">POST</button>
+  <button type="button" class="btn btn-info" *ngIf="!isBusiness" (click)="onClickToPostJob()">POST</button>
 </div>
 <div class="row">
-  <button type="button" class="btn btn-info" (click)="updateInfoFirstTime()">UPDATE INFO</button>
+  <button type="button" class="btn btn-info" *ngIf="!isExisted" (click)="updateInfoFirstTime()">UPDATE INFO</button>
 </div>
     
 
