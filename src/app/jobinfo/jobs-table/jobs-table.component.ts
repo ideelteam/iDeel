@@ -1,6 +1,6 @@
 import {Input, Component, OnInit, Output } from '@angular/core';
 import IJobModel from '../../interface/IJobModel';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 declare var jQuery: any;
 declare var $: any;
 @Component({
@@ -13,7 +13,8 @@ export class JobsTableComponent implements OnInit {
   @Input() jobs: IJobModel[];
 
   constructor(
-    private route: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -26,13 +27,16 @@ export class JobsTableComponent implements OnInit {
     $('.hover').click(function () {
       let thisJobID = $(this).find('#jobID').text();
       console.log(thisJobID);
-      //this.onClick(thisJobID);
+      
     });
   });
   }
 
   onClick(jobID: string){
-   this.route.navigate(["dashboard", jobID]);
+   this.router.navigate(["dashboard", jobID]);
   }
 
+  onClickToPostJob(){
+    this.router.navigate(['postjob'], {relativeTo: this.route});
+  }
 }

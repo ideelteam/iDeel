@@ -1,32 +1,33 @@
-<div class="header-container uppermenu">
-        <div class="container">
-          <div class="site-name"><a routerLink="/dashboard">iDeel</a></div>
-          <ul class="header_login">
-            <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</a></li>
-            <li><a routerLink="/welcome"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a></li>
+<header>
+  <div class="header-container uppermenu">
+    <div class="container">
+      <div class="site-name"><a routerLink="/dashboard">iDeel</a></div>
+      <ul class="header_login">
+        <li *ngIf="auth.isAuthenticated()" (click)="auth.logout()"><a routerLink="/welcome"><i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a></li>
+        <li *ngIf="!auth.isAuthenticated()" (click)="auth.login()"><a><i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a></li>
 
-          </ul>
-          <div class="clear"></div>
-        </div>
-      </div>
-      <div class="header-container main-header">
-        <div class="container">
+      </ul>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <div class="header-container main-header">
+    <div class="container">
 
-          <a class="logo" routerLink="/dashboard"></a>
-          <ul class="navbar">
-            <li>
-              <form class="search" action="/">
-                <input class="searchbar" value="" name="search" type="text" />
-                <button class="search-submit" type="submit">
+      <a class="logo" routerLink="/dashboard"></a>
+
+
+      <form class="search" #form="ngForm" (ngSubmit)="submitForm(form.value)">
+        <input class="searchbar" value="" name="search" type="text" />
+        <button class="search-submit" type="submit">
 										<i class="fa fa-search"></i>
 									</button>
-              </form>
-            </li>
-          </ul>
+      </form>
 
-          <div class="clear"></div>
-        </div>
-      </div>
+
+      <div class="clear"></div>
+    </div>
+  </div>
+</header>
 <!--<nav class="navbar navbar-toggleable-md navbar-light bg-faded">
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>

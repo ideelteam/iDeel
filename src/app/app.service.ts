@@ -41,6 +41,26 @@ addSaveJob(wUserID:string, jobID:string){
       .map(res=>res.json());
 }
 
+sendWorkerEmail(_workerEmail:string, _businessEmail:string){
+  this.body={
+    "workerEmail":_workerEmail,
+    "businessEmail":_businessEmail
+  };
+  this.options = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+  return this.http.post(this.host + '/api/sendWorker', this.body, this.options)
+    .map(res=>res.json());
+}
+
+sendBusinessEmail(_workerEmail:string, _businessEmail:string){
+  this.body={
+    "workerEmail":_workerEmail,
+    "businessEmail":_businessEmail
+  };
+  this.options = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+  return this.http.post(this.host + '/api/sendBusiness', this.body, this.options)
+    .map(res=>res.json());
+}
+
   postJob(_jobID:number,_businessID:number,_title:string,_description:string,_companyName:string,
           _city:string,_phoneNo:string,_salary:string,_startDate:string,_endDate:string,_availability:boolean)
     {

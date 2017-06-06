@@ -63,19 +63,17 @@ header {
     margin: 0 0 10px 0;
 }
 
-    header .logo {
-        /*background: url('../image/26292858.png') no-repeat;*/
-        background-size: 25%;
+.logo {
+        background: url('http://i.imgur.com/XmenBtq.png') no-repeat;
+        background-size: 100%;
         font-size: 38px;
-        font-style: bold;
-        color: black;
         text-transform: initial;
         padding-left: 60px;
         
-        width: 150px;
-        height: 50px;
+        width: 70px;
+        height: 70px;
         float: left;
-        margin: 15px 0 0 15px;
+        margin: -5px 0 0 15px;
     }
 
 
@@ -248,10 +246,10 @@ header {
 
 .search {
     float:right;
-    width: 500px;
+    width: 50%;
     border-radius: 20px;
-    margin-right: 200px;
-    margin-top: 0;
+    margin-right: 23%;
+    margin-top: 10px;
     border: solid 1px #eee;
     height: 35px;
     overflow: hidden;
@@ -262,7 +260,7 @@ header {
 .searchbar {
     border-radius: 20px;
     margin-left: 20px;
-    width: 100%;
+    width: auto;
     font-weight: 400;
     font-size: 20px;
     border: solid 0 #eee;
@@ -310,7 +308,7 @@ header {
     width: 70px;
     position: absolute;
     right: 0;
-    top: -3px;
+    top: -4px;
     cursor: pointer;
     margin-right: 0;
     margin-top: 4px;
@@ -323,6 +321,11 @@ header {
     margin-left: 5px;
     
 
+}
+
+.detail{
+    margin-top: 70px;
+    margin-left: 20px;
 }
 
 .uppermenu .site-name {
@@ -398,7 +401,7 @@ margin-bottom: 35px;
 /* page content */
 
 .page-content {
-    margin: 50px 0 0 0;
+    margin: 0 0 0 0;
 }
 
 .home .page-content {
@@ -840,7 +843,7 @@ footer .address {
 }
 
 footer .social {
-    margin-right: 60px;
+    margin-right: 0;
     float: right;
    
 }
@@ -1383,7 +1386,27 @@ p.solid {border-style: solid;}
 }
 
 .jobs{
-    margin-top: -100px;
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+#posticon{
+    display: none;
+}
+
+@media (max-width:1000px){
+    .sidemenu{
+        display: none;
+    }
+
+    .page-content .content{
+        width:100%;
+        margin-right: 20px;
+    }
+
+    #posticon{
+        display: block;
+    }
 }
 
 /* responsive */

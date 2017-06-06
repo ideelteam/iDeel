@@ -22,11 +22,10 @@
   <div>
       <p>Salary: {{jobInfo?.salary}}</p><br>
   </div>
-
-
-  <div class="buttonContainers">
-      <button type="button" class="applyButton" (click)="applyJob(1,1)">Apply</button>
-
-      <button type="button" class="saveButton" (click)="saveJob(1,1)">Save</button>
-  </div>
+    <div class="btnholder">
+      <button type="button" class="btn" style="width:90px;" (click)="applyJob()">Apply</button>
+      <button type="button" class="btn" style="width:90px;" (click)="saveJob(1,1)">Save</button>
+      <button type="button" class="btn" style="width:90px;" routerLink="/dashboard">Back</button>
+      
+    </div>
 </div>

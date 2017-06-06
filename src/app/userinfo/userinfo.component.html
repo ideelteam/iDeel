@@ -1,26 +1,18 @@
+<h3>Profile</h3>
+<div>
+  <img src="{{profile?.picture}}" class="avatar" alt="avatar">
+  <div>
+    <br />
+    <h3 class="nickname">{{ profile?.nickname }}</h3>
+    <button class="btn" (click)="onClickToPostJob()">Post new job</button>
+  </div>
+  <pre class="full-profile">{{ profile | json }}</pre>
 
 
-          <h3>Profile</h3>
-          <div>
-    <img src="{{profile?.picture}}" class="avatar" alt="avatar">
-    <div>
-      <br />
-      <h3 class="nickname">{{ profile?.nickname }}</h3>
-      <button
-        class="btn btn-primary btn-margin"
-        *ngIf="auth.isAuthenticated()"
-        (click)="auth.logout()">
-          Log Out
-      </button>
-      <button class="btn" (click)="onClickToPostJob()">Post new job</button>
-    </div>
-    <pre class="full-profile">{{ profile | json }}</pre>
-          
-          
-<!--<div class="row">
+  <!--<div class="row">
         <button type="button" class="btn btn-info" (click)="onClickToPostJob()">POST</button>
 </div>-->
-<!--<div class="panel panel-default profile-area">
+  <!--<div class="panel panel-default profile-area">
   <div class="panel-heading">
     <h3>Profile</h3>
   </div>
