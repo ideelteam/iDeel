@@ -39,7 +39,7 @@ class UserBusinessModel {
         });
     }
     retreiveOne(res, filter) {
-        let query = this.model.find(filter);
+        let query = this.model.findOne(filter);
         query.exec((err, oneBusinessUser) => {
             if (oneBusinessUser.businessID == null) {
                 res.send(err);
@@ -47,13 +47,6 @@ class UserBusinessModel {
             else {
                 res.json(oneBusinessUser);
             }
-        });
-    }
-    findOneBusiness(res, id) {
-        var query = this.model.findOne({ 'businessID': id });
-        console.log("AHH");
-        query.exec((err, data) => {
-            res.json(data);
         });
     }
 }
