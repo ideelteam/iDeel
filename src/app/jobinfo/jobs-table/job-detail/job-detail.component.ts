@@ -39,7 +39,7 @@ export class JobDetailComponent implements OnInit {
 
   updateJob(){
     //this.app$.updateJob(_jobID,_title,_description,_company,_city,_address,_zipcode,_salary);
-    this.router.navigate(['updatejob']);
+    this.router.navigate(['dashboard/updatejob']);
   }
 
   deleteJob(_jobID:number){
