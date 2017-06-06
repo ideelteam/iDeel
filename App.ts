@@ -65,6 +65,16 @@ class App {
             this.UserWorker.retreiveAll(res);
         });
 
+        router.get('/api/users/bUsers/:id', (req,res) => {
+            var id = req.params.id;
+            this.UserBusiness.findOneBusiness(res,id);
+        })
+
+        router.get('/api/users/wUsers/:id', (req,res) => {
+            var id = req.params.id;
+            this.UserWorker.findOneWorker(res,id);
+        })
+
         router.get('/api/jobs', (req, res) => {
            this.Job.retreiveAll(res);
         });

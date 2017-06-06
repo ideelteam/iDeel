@@ -51,4 +51,12 @@ export default class UserWorkerModel {
             response.json(workerArray);
         });
     }
+
+
+    public findOneWorker(res:any, id:number):void{
+        var query = this.model.findOne({'workerID':id});
+        query.exec((err,data) => {
+            res.json(data);
+        });
+    }
 }

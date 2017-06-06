@@ -51,5 +51,14 @@ export default class UserBusinessModel {
 
     }
 
+    public findOneBusiness(res:any, id:number):void{
+        var query = this.model.findOne({'businessID':id});
+        console.log("AHH");
+        query.exec((err,data) => {
+            res.json(data);
+        });
+    }
+
+
     //Do some function response here with json here
 }
