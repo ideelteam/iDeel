@@ -34,6 +34,7 @@ class App {
         this.UserWorker = new UserWorkerModel();
         this.UserBusiness = new UserBusinessModel();
         this.mail = new sendMail();
+
     }
     // Configure Express middleware.
     private middleware(): void {
@@ -62,6 +63,34 @@ class App {
 
         router.get('/api/users/wUsers', (req, res) => {
             this.UserWorker.retreiveAll(res);
+        });
+
+        router.get('/api/users/bUsers/:id', (req, res) => {
+            let id = req.params.id;
+            this.UserBusiness.retreiveOne(res, {businessID: id});
+        })
+
+        router.get('/api/users/wUsers/:id', (req, res) => {
+            let id = req.params.id;
+            this.UserWorker.retreiveOne(res, {workerID: id});
+        });
+
+        router.post('/api/users/register', (req, res) => {
+            let userInfo = req.body;
+            if("businessID" in userInfo){
+                this.UserBusiness.model.create([userInfo], (err) => {
+                    if(err) {
+                        console.log('business create fail');
+                    }
+                })
+            } else {
+                this.UserWorker.model.create([userInfo], (err)=> {
+                    if(err){
+                        console.log('worker create fail');
+                    }
+                })
+            }
+            res.end();
         });
 
         router.get('/api/jobs', (req, res) => {
@@ -112,7 +141,7 @@ class App {
         //Delete one job given jobID as argument
         router.delete("/api/jobs/:id", (req, res) => {
             var id = req.params.id;
-            console.log(id);
+
             this.Job.deleteJob(res, id);
         });
 
@@ -128,6 +157,7 @@ class App {
 
         this.express.use('/', router);
         this.express.use('/', express.static(__dirname + '/dist'));
+
     }
 }
 export default new App().express;

@@ -38,7 +38,7 @@ export default class JobModel {
 
             }, { collection: 'jobs' }
         );
-    }
+    } 
 
     public createModel(): void {
         this.model = mongooseConnection.model<IJobModelModel>("jobs", this.schema);
@@ -62,7 +62,7 @@ export default class JobModel {
 
     public updateJob(req: any, res: any, id: Object): any {
         //this.model.findById(req.params.id, (err,job)=> {)
-        console.log("inside express update");
+        
 
         this.model.findById({ "_id": id }, (err, job) => {
             console.log(req);
@@ -96,6 +96,7 @@ export default class JobModel {
                 job.appliedList.push(wUser);
                 job.save((err, result) => {
                     if (err) {
+
                         res.status(500).send(err)
                     }
                     res.send(result);

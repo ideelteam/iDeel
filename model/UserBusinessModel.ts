@@ -48,7 +48,17 @@ export default class UserBusinessModel {
         query.exec((err, businessArray) => {
             response.json(businessArray);
         });
+    }
 
+    public retreiveOne(res: any, filter: Object) {
+        let query = this.model.findOne(filter);
+        query.exec((err, oneBusinessUser) => {
+            if(oneBusinessUser.businessID==null){
+                res.send(err);
+            }else{
+                res.json(oneBusinessUser);                
+            }
+        })
     }
 
     //Do some function response here with json here

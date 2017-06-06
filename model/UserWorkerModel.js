@@ -71,6 +71,10 @@ class UserWorkerModel {
             else {
                 res.send("exist");
             }
+    retreiveOne(res, filter) {
+        let query = this.model.findOne(filter);
+        query.exec((err, oneWorkerUser) => {
+            res.json(oneWorkerUser);
         });
     }
 }
