@@ -91,16 +91,36 @@ class App {
             var id = req.params.id;
             this.Job.updateJob(req, res, id);
         });
+        //Set jobID to appliedlist array of wUser 
+        router.put("/api/jobs/:jobID/:wUser", (req, res) => {
+            let wUser = req.params.wUser;
+            let jobID = req.params.jobID;
+            this.Job.addAppliedList(req, res, jobID, wUser);
+        });
+        //Set wUserID to appliedlist array of job
+        router.put("/api/users/:wUser/:jobID", (req, res) => {
+            let wUser = req.params.wUser;
+            let jobID = req.params.jobID;
+            this.UserWorker.addAppliedList(req, res, jobID, wUser);
+        });
+        //Set jobID to wUser's savedList
+        router.put("/api/save/:wUser/:jobID", (req, res) => {
+            let wUser = req.params.wUser;
+            let jobID = req.params.jobID;
+            this.UserWorker.addSavedList(req, res, jobID, wUser);
+        });
         //Delete one job given jobID as argument
         router.delete("/api/jobs/:id", (req, res) => {
             var id = req.params.id;
             this.Job.deleteJob(res, id);
         });
-        router.get('/api/sendWorker', (req, res) => {
-            this.mail.sendEmailWorker();
+        router.post('/api/sendWorker', (req, res) => {
+            this.mail.sendEmailWorker(req.body);
+            res.end();
         });
-        router.get('/api/sendBusiness', (req, res) => {
-            this.mail.sendEmailBusiness();
+        router.post('/api/sendBusiness', (req, res) => {
+            this.mail.sendEmailBusiness(req.body);
+            res.end();
         });
         this.express.use('/', router);
         //this.express.use('/', express.static(__dirname+'/dist'));

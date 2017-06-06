@@ -39,6 +39,38 @@ class UserWorkerModel {
             response.json(workerArray);
         });
     }
+    addAppliedList(req, res, jobID, wUserID) {
+        let query = this.model.findOne({ "workerID": wUserID });
+        query.exec((err, wUser) => {
+            if (wUser.appliedList.indexOf(jobID) == -1) {
+                wUser.appliedList.push(jobID);
+                wUser.save((err, result) => {
+                    if (err) {
+                        res.status(500).send(err);
+                    }
+                    res.send(result);
+                });
+            }
+            else {
+                res.send("exist");
+            }
+        });
+    }
+    addSavedList(req, res, jobID, wUserID) {
+        let query = this.model.findOne({ "workerID": wUserID });
+        query.exec((err, wUser) => {
+            if (wUser.savedList.indexOf(jobID) == -1) {
+                wUser.savedList.push(jobID);
+                wUser.save((err, result) => {
+                    if (err) {
+                        res.status(500).send(err);
+                    }
+                    res.send(result);
+                });
+            }
+            else {
+                res.send("exist");
+            }
     retreiveOne(res, filter) {
         let query = this.model.findOne(filter);
         query.exec((err, oneWorkerUser) => {

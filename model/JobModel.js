@@ -69,6 +69,24 @@ class JobModel {
             });
         });
     }
+    addAppliedList(req, res, jobID, wUser) {
+        console.log(this.model.appliedList);
+        let query = this.model.findOne({ "jobID": jobID });
+        query.exec((err, job) => {
+            if (job.appliedList.indexOf(wUser) == -1) {
+                job.appliedList.push(wUser);
+                job.save((err, result) => {
+                    if (err) {
+                        res.status(500).send(err);
+                    }
+                    res.send(result);
+                });
+            }
+            else {
+                res.send("exist");
+            }
+        });
+    }
     deleteJob(response, id) {
         var query = this.model.deleteOne({ "jobID": id });
         query.exec((err, data) => {

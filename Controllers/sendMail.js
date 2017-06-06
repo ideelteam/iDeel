@@ -5,16 +5,17 @@ class sendMail {
     constructor() {
         this.smtpTransport = nodemailer.createTransport({
             service: "gmail",
-            host: "",
+            host: "ideel.bot@gmail.com",
             auth: {
-                user: "",
-                pass: ""
+                user: "ideel.bot@gmail.com",
+                pass: "yolonahnahjk"
             }
         });
     }
-    sendEmailWorker() {
+    sendEmailWorker(workerObj) {
+        console.log(workerObj.email);
         var mailOptions = {
-            to: '',
+            to: workerObj.workerEmail,
             subject: 'Job Application Confirmation',
             text: 'Thank you for applying! You will hear back from the business soon!',
         };
@@ -28,11 +29,11 @@ class sendMail {
             }
         });
     }
-    sendEmailBusiness() {
+    sendEmailBusiness(businessObj) {
         var mailOptions = {
-            to: '',
+            to: businessObj.businessEmail,
             subject: 'Job Applicant Confirmation',
-            text: 'You have a job seeker that is looking to apply for this job',
+            text: 'You have a job seeker that is looking to apply for this job. \n Email: ' + businessObj.workerEmail,
         };
         this.smtpTransport.sendMail(mailOptions, function (error, response) {
             if (error) {

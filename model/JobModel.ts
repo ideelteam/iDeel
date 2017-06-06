@@ -52,46 +52,66 @@ export default class JobModel {
             response.json(listOfJobs);
         });
     }
-    
-    public retreiveJob(response: any, filter:Object): any {
+
+    public retreiveJob(response: any, filter: Object): any {
         var query = this.model.findOne(filter);
-         query.exec((err, data) => {
+        query.exec((err, data) => {
             response.json(data);
         });
     }
 
-    public updateJob(req: any, res: any, id:Object): any {
+    public updateJob(req: any, res: any, id: Object): any {
         //this.model.findById(req.params.id, (err,job)=> {)
-            console.log("inside express update");
+        
 
-       var query =  this.model.findOne({"jobID":id});
-       query.exec((err,job) => {
-                console.log(req);
-                job.title = req.body.title || job.title;
-                job.description = req.body.description || job.description;
-                job.companyName = req.body.description || job.companyName;
-                job.city = req.body.city || job.city;
-                job.zipcode = req.body.zipcode || job.zipcode;
-                job.phoneNo = req.body.phoneNo || job.phoneNo;
-                job.salary = req.body.salary || job.salary;
-                job.startDate = req.body.startDate || job.startDate;
-                job.endDate = req.body.endDate || job.endDate;
-                job.address = req.body.address || job.address;
+        this.model.findById({ "_id": id }, (err, job) => {
+            console.log(req);
+            job.title = req.body.title || job.title;
+            job.description = req.body.description || job.description;
+            job.companyName = req.body.description || job.companyName;
+            job.city = req.body.city || job.city;
+            job.zipcode = req.body.zipcode || job.zipcode;
+            job.phoneNo = req.body.phoneNo || job.phoneNo;
+            job.salary = req.body.salary || job.salary;
+            job.startDate = req.body.startDate || job.startDate;
+            job.endDate = req.body.endDate || job.endDate;
+            job.address = req.body.address || job.address;
 
-               
-                job.save((err,result) => {
-                    if(err){
+
+            job.save((err, result) => {
+                if (err) {
+                    res.status(500).send(err)
+                }
+                res.send(result);
+            });
+
+        });
+    }
+
+    public addAppliedList(req: any, res: any, jobID: string, wUser: string): any {
+        console.log(this.model.appliedList);
+        let query = this.model.findOne({ "jobID": jobID });
+        query.exec((err, job) => {
+            if (job.appliedList.indexOf(wUser) == -1) {
+                job.appliedList.push(wUser);
+                job.save((err, result) => {
+                    if (err) {
+
                         res.status(500).send(err)
                     }
                     res.send(result);
                 });
+            }else{
+                res.send("exist");
+            }
 
-        });  
+        })
+
     }
 
-    public deleteJob(response: any, id:Object): any {
-        var query = this.model.deleteOne({"jobID":id});
-        query.exec((err,data) => {
+    public deleteJob(response: any, id: Object): any {
+        var query = this.model.deleteOne({ "jobID": id });
+        query.exec((err, data) => {
             response.json(data);
         });
     }
