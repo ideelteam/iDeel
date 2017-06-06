@@ -53,11 +53,7 @@ export default class UserBusinessModel {
     public retreiveOne(res: any, filter: Object) {
         let query = this.model.findOne(filter);
         query.exec((err, oneBusinessUser) => {
-            if(oneBusinessUser.businessID==null){
-                res.send(err);
-            }else{
-                res.json(oneBusinessUser);                
-            }
+             res.json(oneBusinessUser); 
         })
     }
 
