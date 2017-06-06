@@ -60,11 +60,8 @@ export default class JobModel {
         });
     }
 
-    public updateJob(req: any, res: any, id: Object): any {
-        //this.model.findById(req.params.id, (err,job)=> {)
-        
-
-        this.model.findById({ "_id": id }, (err, job) => {
+    public updateJob(req: any, res: any, id: number): any {
+        this.model.findOne({ jobID: id }, (err, job) => {
             console.log(req);
             job.title = req.body.title || job.title;
             job.description = req.body.description || job.description;

@@ -123,7 +123,7 @@ class App {
             res.end();
         });
         this.express.use('/', router);
-        //this.express.use('/', express.static(__dirname+'/dist'));
+        this.express.use('/', express.static(__dirname + '/dist'));
     }
 }
 exports.default = new App().express;
