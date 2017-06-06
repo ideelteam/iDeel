@@ -13,6 +13,9 @@ export class UpdateUsersInfoComponent implements OnInit {
   
   profile: any;
   isBusiness: boolean;
+  userID: any;
+  businessObject: any;
+  workerObject: any;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -26,16 +29,27 @@ export class UpdateUsersInfoComponent implements OnInit {
     } else {
       this.auth.getProfile((err, profile) => {
         this.profile = profile;
-      });
-    }
+        this.userID = this.profile.sub;
+        let straightDash = this.userID.indexOf('|') + 1;
+        this.userID = this.userID.slice(straightDash);
+        this.retrieveInfo();   
+      }
+      )
+    }        
   }
 
-  changeStateBusiness(){
-    this.isBusiness = true;
-  }
-
-  changeStateWorker(){
-    this.isBusiness = false;
+  retrieveInfo(){
+    this.app$.getBusinessUser(this.userID)
+        .subscribe(
+          businessUser => {
+          this.businessObject = businessUser;
+          if(this.businessObject != null){
+            this.isBusiness = true;
+          }
+          },
+          () => {},
+          () => {}
+        ); 
   }
 
 }

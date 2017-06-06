@@ -4,8 +4,8 @@
   <div>
     <br />
     <h3 class="nickname">{{ profile?.nickname }}</h3>
-    <button type="button" class="btn" *ngIf="!isExisted" (click)="updateInfoFirstTime()">UPDATE INFO</button>
-    <button type="button" class="btn" (click)="onClickToPostJob()">Post new job</button>
+    <button type="button" class="btn" (click)="updateInfoFirstTime()" on-mouseover="setIsBusiness()">UPDATE INFO</button>
+    <button type="button" class="btn" *ngIf="isBusiness" (click)="onClickToPostJob()">Post new job</button>
   </div>
   <pre class="full-profile">{{ profile | json }}</pre>
 

@@ -21,8 +21,6 @@ export class UserinfoComponent implements OnInit {
               private route: ActivatedRoute,
               private auth: AuthService,
               private app$: AppService) {
-    
-
   }
 
   ngOnInit() {
@@ -34,31 +32,48 @@ export class UserinfoComponent implements OnInit {
         this.userID = this.profile.sub;
         let straightDash = this.userID.indexOf('|') + 1;
         this.userID = this.userID.slice(straightDash);
-        this.app$.getBusinessUser(this.userID)
+        console.log(this.userID);
+        this.retrieveInfo();
+      }
+      )
+    }        
+  }
+
+  retrieveInfo(){
+    this.app$.getBusinessUser(this.userID)
         .subscribe(
           businessUser => {
           this.businessObject = businessUser;
-          this.isBusiness = true;
+          if(this.businessObject != null){
+            this.isBusiness = true;
+          }
           },
           () => {},
           () => {}
-        );
-        this.app$.getWorkerUser(this.userID)
-        .subscribe(
-          workerUser => {
-            this.workerObject = workerUser;
-            this.isBusiness = false;
-          },
-          () => {},
-          () => {}
-        );
-      });
+        );    
+  }
+
+  setIsBusiness(){
+     if(this.businessObject != null){
+            this.isBusiness = true;
+          }
+  }
+
+  checkEverythingElse() {
+    console.log(this.businessObject);
+    console.log(this.workerObject);
+    if(this.businessObject != undefined){
+      console.log(this.businessObject);
+      this.isBusiness = true;
+      console.log(this.isBusiness);
+    } else if (this.workerObject != null) {
+      console.log(this.workerObject);
+      this.isBusiness = false;
+      console.log(this.isBusiness);
     }
   }
 
   onClickToPostJob(){
-        console.log(this.businessObject);
-    console.log(this.workerObject);
     this.router.navigate(['postjob'], {relativeTo: this.route});
   }
 
