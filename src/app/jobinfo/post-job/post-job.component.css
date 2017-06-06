@@ -1,0 +1,9 @@
+.submitButton:hover{
+    cursor: pointer;
+}
+
+.jumbotron{
+    margin-top:10px;
+    width:70%;
+}
+ 

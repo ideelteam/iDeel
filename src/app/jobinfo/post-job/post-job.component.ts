@@ -12,13 +12,16 @@ export class PostJobComponent implements OnInit {
 jobID:number;
 postResponse:string;
 businessID:number;
+private id: number = 0;
 
   constructor(private app$:AppService,private router: Router) {
     this.app$.getAllJobs()
     .subscribe(
-      result => {
-       this.jobID = result.length + 1;
-       this.businessID = result.length + 1000;
+      result => {       
+        result.sort(function(a,b) {return (a.jobID > b.jobID) ? 1 : ((b.jobID > a.jobID) ? -1 : 0);} ); 
+        this.id = result[result.length-1].jobID + 1;
+        this.businessID = result.length + 1000;
+        console.log(result);
       },
       () => {},
       () => {}
@@ -31,6 +34,7 @@ businessID:number;
   }
 
   submitForm(form: any): void{
+    this.jobID = this.id;
     this.app$.postJob(this.jobID, this.businessID,form.title,form.description,form.companyName,form.city,form.zipcode,form.address,form.phoneNo,form.salary,form.startDate,form.endDate,true)
     .subscribe(result => {
       this.postResponse = JSON.stringify(result),
@@ -39,7 +43,9 @@ businessID:number;
     });
 
     this.router.navigate(['dashboard']);
-    }
+  }
+  
+
   }
 
 

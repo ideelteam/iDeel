@@ -17,8 +17,9 @@ export class UpdatejobComponent implements OnInit {
     //Need to figure out how to pass the jobID that is being updated into this function
   submimtUpdateForm(form:any, jobID:number){
    // console.log(form);
-    jobID = 1;
-    this.app$.updateJob(jobID,form.title,form.description,form.companyName,form.city,form.address,form.zipcode,form.salary)
+    jobID = 0;
+    this.app$.updateJob(jobID, form.title, form.description, form.companyName, form.city, form.address, 
+                        form.zipcode, form.phoneNo, form.salary, form.startDate, form.endDate);
     this.router.navigate(['dashboard']);
   }
 }
