@@ -16,15 +16,26 @@
   </div>
 
   <div>
-      <p>Location: {{jobInfo?.city}}</p><br>
+      <p>City: {{jobInfo?.city}}</p><br>
+  </div>
+
+  <div>
+      <p>Address: {{jobInfo?.address}}</p><br>
+  </div>
+
+  <div>
+      <p>Zipcode: {{jobInfo?.zipcode}}</p><br>
   </div>
 
   <div>
       <p>Salary: {{jobInfo?.salary}}</p><br>
   </div>
+
     <div class="btnholder">
       <button type="button" class="btn" style="width:90px;" (click)="applyJob()">Apply</button>
       <button type="button" class="btn" style="width:90px;" (click)="saveJob(1,1)">Save</button>
+      <button type="button" class="btn" style="width:90px;" (click)="updateJob()">Update Job</button>
+      <button type="button" class="btn" style="width:90px;" (click)="deleteJob(jobInfo?.jobID)">Delete</button>
       <button type="button" class="btn" style="width:90px;" routerLink="/dashboard">Back</button>
       
     </div>

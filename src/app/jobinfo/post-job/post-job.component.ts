@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService} from '../../app.service';
-import { Router, RouterModule, ActivatedRoute } from '@angular/router';
-
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-post-job',
@@ -10,17 +9,19 @@ import { Router, RouterModule, ActivatedRoute } from '@angular/router';
 })
 export class PostJobComponent implements OnInit {
 
-counter:number;
+jobID:number;
 postResponse:string;
-businessID = 1;
+businessID:number;
+private id: number = 0;
 
-  constructor(
-    private app$:AppService,
-    private router: Router) {
+  constructor(private app$:AppService,private router: Router) {
     this.app$.getAllJobs()
     .subscribe(
-      result => {
-        this.counter = result.length;
+      result => {       
+        result.sort(function(a,b) {return (a.jobID > b.jobID) ? 1 : ((b.jobID > a.jobID) ? -1 : 0);} ); 
+        this.id = result[result.length-1].jobID + 1;
+        this.businessID = result.length + 1000;
+        console.log(result);
       },
       () => {},
       () => {}
@@ -33,20 +34,18 @@ businessID = 1;
   }
 
   submitForm(form: any): void{
-    
-    console.log(form);
-    console.log("Counter: " + this.counter);
-    
-    this.app$.postJob(this.counter, this.businessID,form.title,form.description,form.companyName,form.location,form.phoneNo,form.salary,form.startDate,form.endDate,true)
+    this.jobID = this.id;
+    this.app$.postJob(this.jobID, this.businessID,form.title,form.description,form.companyName,form.city,form.zipcode,form.address,form.phoneNo,form.salary,form.startDate,form.endDate,true)
     .subscribe(result => {
       this.postResponse = JSON.stringify(result),
       err => console.log("Error HTTP Post Service"),
-      () => console.log("Data has been posted"),
-      console.log(this.postResponse);
+      () => console.log("Data has been posted")
     });
 
     this.router.navigate(['dashboard']);
-    }
+  }
+  
+
   }
 
 

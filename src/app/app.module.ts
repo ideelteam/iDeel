@@ -23,7 +23,12 @@ import { JobsTableComponent } from './jobinfo/jobs-table/jobs-table.component';
 import { PostJobComponent } from './jobinfo/post-job/post-job.component';
 import { JobDetailComponent } from './jobinfo/jobs-table/job-detail/job-detail.component';
 import { CallbackComponent } from './callback/callback.component';
+import { UpdateUsersInfoComponent } from './userinfo/update-users-info/update-users-info.component';
+import { UpdatejobComponent } from './jobinfo/updatejob/updatejob.component';
+import { BUserFormUpdateComponent } from './userinfo/b-user-form-update/b-user-form-update.component';
+import { WUserFormUpdateComponent } from './userinfo/w-user-form-update/w-user-form-update.component';
 import { FooterComponent } from './footer/footer.component';
+
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -44,6 +49,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     PostJobComponent,
     JobDetailComponent,
     CallbackComponent,
+    UpdateUsersInfoComponent,
+    UpdatejobComponent,
+    BUserFormUpdateComponent,
+    WUserFormUpdateComponent
     FooterComponent
   ],
   imports: [
@@ -52,7 +61,12 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     HttpModule,
     AppRoutingModule
   ],
-  providers: [AppService, AuthService],
+  providers: [AppService, AuthService,
+    {
+      provide: AuthHttp,
+      useFactory: authHttpServiceFactory,
+      deps: [Http, RequestOptions]
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

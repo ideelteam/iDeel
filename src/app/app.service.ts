@@ -5,10 +5,10 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class AppService {
   host:string = 'http://localhost:3000';
+  //host:string = 'http://teamideel.azurewebsites.net';
   userId:string = "";
   body:any;
   options:any;
-  counter:number;
 
   constructor(private http: Http) { 
   }
@@ -23,6 +23,17 @@ getOneJob(jobID:string){
     return this.http.get(this.host + '/api/jobs/' + jobID)
       .map(response => response.json());
 }
+
+getBusinessUser(_userID: string){
+    return this.http.get(this.host + '/api/users/bUsers/' + _userID)
+      .map(response => response.json());
+}
+
+getWorkerUser(_userID: string){
+    return this.http.get(this.host + '/api/users/wUsers/' + _userID)
+      .map(response => response.json());
+}
+
 
 setAppliedJob(wUserID:string, jobID:string){
   
@@ -61,9 +72,10 @@ sendBusinessEmail(_workerEmail:string, _businessEmail:string){
     .map(res=>res.json());
 }
 
-  postJob(_jobID:number,_businessID:number,_title:string,_description:string,_companyName:string,
-          _city:string,_phoneNo:string,_salary:string,_startDate:string,_endDate:string,_availability:boolean)
-    {
+ postJob(_jobID:number,_businessID:number,_title:string,_description:string,_companyName:string,
+          _city:string,_zipcode:string,_address:string,_phoneNo:string,_salary:string,_startDate:string,
+          _endDate:string,_availability:boolean)
+  {
     
     this.body = {
       "jobID":_jobID,
@@ -72,6 +84,8 @@ sendBusinessEmail(_workerEmail:string, _businessEmail:string){
       "description":_description,
       "companyName":_companyName,
       "city":_city,
+      "zipcode":_zipcode,
+      "address":_address,
       "phoneNo":_phoneNo,
       "salary":_salary,
       "startDate":_startDate,
@@ -86,6 +100,44 @@ sendBusinessEmail(_workerEmail:string, _businessEmail:string){
     }
 
 
+deleteJob(_jobID:number){
+  this.options = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Method':'DELETE' });
+  return this.http.delete(this.host + '/api/jobs/' + _jobID, this.options)
+    .subscribe((res) => {
+      if(res.status != 200){
+        console.log("Server Error");
+      }
+    })
+}
 
+updateJob(_jobID:number, _title:string, _description:string, _company:string, _city:string, 
+            _address:string, _zipcode:string, _phoneNo:string, _salary:string, _startDate:string, _endDate:string)
+            {
+  
+  this.options = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Method':'PUT' });
+  this.options.append('Accept','application/json');
+
+  this.body = {
+    "title":_title,
+    "description":_description,
+    "companyName":_company,
+    "city":_city,
+    "address":_address,
+    "zipcode":_zipcode,
+    "phoneNo":_phoneNo,
+    "salary":_salary,
+    "startDate":_startDate,
+    "endDate":_endDate
+  };
+
+  console.log("inside updateJob");
+  console.log(this.body);
+  return this.http.put(this.host + '/api/jobs/' + _jobID, this.body, this.options)
+    .subscribe((res) => {
+      if(res.status != 200){
+        console.log("Server Error");
+      }
+    })
+  }
 }
 
