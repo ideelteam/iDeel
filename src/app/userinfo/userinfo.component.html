@@ -4,8 +4,8 @@
   <div>
     <br />
     <h3 class="nickname">{{ profile?.nickname }}</h3>
-    <button type="button" class="btn" (click)="updateInfoFirstTime()" style="width:150px;">Update Info</button>
-    <button type="button" class="btn" (click)="onClickToPostJob()"style="margin-top:10px; width:150px;">Post new job</button>
+    <button type="button" class="btn" (click)="updateInfoFirstTime()" style="width:150px;" onClick="window.location.reload()">Update Info</button>
+    <button type="button" class="btn" *ngIf="isBusiness"  (click)="onClickToPostJob()"style="margin-top:10px; width:150px;">Post new job</button>
   </div>
   <pre class="full-profile">{{ profile | json }}</pre>
 
