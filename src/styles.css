@@ -326,6 +326,7 @@ header {
 .detail{
     margin-top: 70px;
     margin-left: 20px;
+    margin-bottom: 80px;
 }
 
 .uppermenu .site-name {
@@ -423,6 +424,7 @@ margin-bottom: 35px;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
     padding: 15px;
+    padding-right: 12%;
 }
 
 .homepage{
@@ -843,7 +845,7 @@ footer .address {
 }
 
 footer .social {
-    margin-right: 0;
+    margin-right: 100px;
     float: right;
    
 }
@@ -1400,8 +1402,10 @@ p.solid {border-style: solid;}
     }
 
     .page-content .content{
-        width:100%;
+        width: 100%;
         margin-right: 20px;
+        padding-right: 10%;
+        padding-left: 13%;
     }
 
     #posticon{

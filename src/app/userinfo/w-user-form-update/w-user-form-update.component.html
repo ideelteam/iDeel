@@ -1,5 +1,5 @@
-<div class="jumbotron">
-    <h2 style="margin-bottom:20px">Worker User Info Update</h2>
+<div class="jumbotron" style="margin-top: 70px; margin-left:20px;">
+    <h2 style="margin-bottom:20px; margin-top:-35px;">Worker User Info Update</h2>
     <form #form="ngForm" (ngSubmit)="submitForm(form.value)">
 
       <div class="form-group">
@@ -24,6 +24,8 @@
 
       <div class="form-group">
         <button type="submit" class="btn btn-default">Submit</button>
+        <button class="btn" style="width:90px;" routerLink="/dashboard">Cancel</button>
+
       </div>
 
     </form>

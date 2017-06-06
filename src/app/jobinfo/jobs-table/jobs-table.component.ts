@@ -30,7 +30,20 @@ export class JobsTableComponent implements OnInit {
       let thisJobID = $(this).find('#jobID').text();     
     });
   });
-  }
+}
+
+setJquery(){
+  $(document).ready(function () {
+    $('.hover').hover(function () {
+      $(this).addClass('flip');
+    }, function () {
+      $(this).removeClass('flip');
+    });
+    $('.hover').click(function () {
+      let thisJobID = $(this).find('#jobID').text();     
+    });
+  });
+}
 
   onClick(jobID: string){
    this.router.navigate(["dashboard", jobID]);

@@ -16,7 +16,7 @@
 </div>
 
 <div class="cards" *ngFor="let job of jobs">
-  <div class="col_third" (click)="onClick(job.jobID)">
+  <div class="col_third" (click)="onClick(job.jobID)" on-mouseover="setJquery()">
     <div class="hover panel">
       <div class="front">
         <div class="box1">
