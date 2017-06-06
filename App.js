@@ -52,9 +52,7 @@ class App {
             this.Job.retreiveJob(res, { 'jobID': id });
         });
         router.post('/api/jobs', (req, res) => {
-            this.id++;
             var newJob = req.body;
-            newJob.jobID = this.id;
             this.Job.model.create([newJob], (err) => {
                 if (err) {
                     console.log('object creation failed');
@@ -70,7 +68,6 @@ class App {
         //Delete one job given jobID as argument
         router.delete("/api/jobs/:id", (req, res) => {
             var id = req.params.id;
-            console.log(id);
             this.Job.deleteJob(res, id);
         });
         router.get('/api/sendWorker', (req, res) => {

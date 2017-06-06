@@ -38,7 +38,7 @@ export default class JobModel {
 
             }, { collection: 'jobs' }
         );
-    }
+    } 
 
     public createModel(): void {
         this.model = mongooseConnection.model<IJobModelModel>("jobs", this.schema);

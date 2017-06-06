@@ -23,7 +23,6 @@ class App {
     public UserWorker: UserWorkerModel;
     public UserBusiness: UserBusinessModel;
     public mail: sendMail;
-    private id: number;
 
     //Run configuration methods on the Express instance.
     constructor() {
@@ -35,6 +34,7 @@ class App {
         this.UserWorker = new UserWorkerModel();
         this.UserBusiness = new UserBusinessModel();
         this.mail = new sendMail();
+
     }
     // Configure Express middleware.
     private middleware(): void {
@@ -75,9 +75,7 @@ class App {
         });
 
         router.post('/api/jobs', (req, res) => {
-            this.id++;
             var newJob = req.body;
-            newJob.jobID = this.id;
             this.Job.model.create([newJob],(err)=>{
                 if(err){
                     console.log('object creation failed');
@@ -95,8 +93,7 @@ class App {
         //Delete one job given jobID as argument
         router.delete("/api/jobs/:id", (req,res) => {
             var id = req.params.id;
-            console.log(id);
-           this.Job.deleteJob(res, id);
+            this.Job.deleteJob(res, id);
         });
         
         router.get('/api/sendWorker', (req,res) => {
