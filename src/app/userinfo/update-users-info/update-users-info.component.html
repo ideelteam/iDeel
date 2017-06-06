@@ -1,0 +1,12 @@
+<h3>Update User Info</h3><br>
+<div class="row">
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn btn-primary" (click)="changeStateBusiness()">Business User</button>
+    <button type="button" class="btn btn-primary" (click)="changeStateWorker()">Worker User</button>
+  </div> 
+</div>
+<br><br>
+<app-b-user-form-update *ngIf="isBusiness && !isExisted"></app-b-user-form-update>
+<app-w-user-form-update *ngIf="!isBusiness && !isExisted"></app-w-user-form-update>
+
+

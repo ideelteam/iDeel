@@ -81,6 +81,7 @@ updateJob(_jobID:number, _title:string, _description:string, _company:string, _c
     "endDate":_endDate
   };
 
+<<<<<<< HEAD
   console.log("inside updateJob");
   console.log(this.body);
   return this.http.put(this.host + '/api/jobs/' + _jobID, this.body, this.options)
@@ -89,6 +90,35 @@ updateJob(_jobID:number, _title:string, _description:string, _company:string, _c
         console.log("Server Error");
       }
     })
+=======
+    }
+    addNewUser(_jobID:number, _title:string, _description:string, _company:string, _city:string, 
+            _address:string, _zipcode:string, _salary:string){
+  
+      this.options = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded', 'Method':'PUT' });
+      this.options.append('Accept','application/json');
+
+      this.body = {
+        "title":_title,
+        "description":_description,
+        "companyName":_company,
+        "city":_city,
+        "address":_address,
+        "zipcode":_zipcode,
+        "salary":_salary,
+      };
+
+      console.log("inside updateJob");
+      console.log(this.body);
+      return this.http.put(this.host + '/api/jobs/' + _jobID, this.body, this.options)
+        .subscribe((res) => {
+          if(res.status != 200){
+            console.log("Server Error");
+          }
+        });
+
+    }
+>>>>>>> 91b1a14001f844c64c9a2e428b560529847251ec
 
 }
 

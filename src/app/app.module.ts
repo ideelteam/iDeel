@@ -23,8 +23,11 @@ import { JobsTableComponent } from './jobinfo/jobs-table/jobs-table.component';
 import { PostJobComponent } from './jobinfo/post-job/post-job.component';
 import { JobDetailComponent } from './jobinfo/jobs-table/job-detail/job-detail.component';
 import { CallbackComponent } from './callback/callback.component';
-import { UpdateUsersInfoComponent } from './update-users-info/update-users-info.component';
+import { UpdateUsersInfoComponent } from './userinfo/update-users-info/update-users-info.component';
 import { UpdatejobComponent } from './jobinfo/updatejob/updatejob.component';
+import { BUserFormUpdateComponent } from './userinfo/b-user-form-update/b-user-form-update.component';
+import { WUserFormUpdateComponent } from './userinfo/w-user-form-update/w-user-form-update.component';
+
 
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
@@ -46,7 +49,10 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     JobDetailComponent,
     CallbackComponent,
     UpdateUsersInfoComponent,
-    UpdatejobComponent
+    UpdatejobComponent,
+    BUserFormUpdateComponent,
+    WUserFormUpdateComponent
+
   ],
   imports: [
     BrowserModule,

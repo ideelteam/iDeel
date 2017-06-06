@@ -27,5 +27,14 @@ export class UserinfoComponent implements OnInit {
   onClickToPostJob(){
     this.router.navigate(['postjob'], {relativeTo: this.route});
   }
+  updateInfoFirstTime() {
+    this.router.navigate(['updateinfo'], {relativeTo: this.route});
+  }
+
+  checkExisted(): boolean{
+
+
+    return false;
+  }
 
 }
