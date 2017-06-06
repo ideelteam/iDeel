@@ -1,6 +1,7 @@
-<div class="jumbotron">
-    <h2 style="margin-bottom:20px">Post Job</h2>
-    <form #form="ngForm" (ngSubmit)="submitForm(form.value)" class="postJobForm">
+
+<div class="jumbotron" style="margin-top: 70px; margin-left:20px;">
+    <h2 style="margin-bottom:20px; margin-top:-35px;">Post Job</h2>
+    <form #form="ngForm" (ngSubmit)="submitForm(form.value)">
       <div class="form-group">
         <label>Title:</label>
         <input type="text" class="form-control" placeholder="Storage Cleaner" name="title" ngModel required>
@@ -52,6 +53,9 @@
 
       <div class="form-group">
         <button type="submit" class="btn btn-default submitButton">Submit</button>
+        <button type="submit" class="btn" style="width:90px;">Submit</button>
+        <button class="btn" style="width:90px;" routerLink="/dashboard">Cancel</button>
+        
       </div>
     </form>
   </div>

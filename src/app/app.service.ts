@@ -35,10 +35,47 @@ getWorkerUser(_userID: string){
 }
 
 
-postJob(_jobID:number,_businessID:number,_title:string,_description:string,_companyName:string,
+setAppliedJob(wUserID:string, jobID:string){
+  
+    return this.http.put(this.host + '/api/jobs/' + jobID + "/" + wUserID, "")
+      .map(res=>res.json());
+}
+
+setAppliedUser(wUserID:string, jobID:string){
+
+    return this.http.put(this.host + '/api/users/' + wUserID + "/" + jobID, "")
+      .map(res=>res.json());
+}
+
+addSaveJob(wUserID:string, jobID:string){
+    return this.http.put(this.host + '/api/save/' + wUserID + "/" + jobID, "")
+      .map(res=>res.json());
+}
+
+sendWorkerEmail(_workerEmail:string, _businessEmail:string){
+  this.body={
+    "workerEmail":_workerEmail,
+    "businessEmail":_businessEmail
+  };
+  this.options = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+  return this.http.post(this.host + '/api/sendWorker', this.body, this.options)
+    .map(res=>res.json());
+}
+
+sendBusinessEmail(_workerEmail:string, _businessEmail:string){
+  this.body={
+    "workerEmail":_workerEmail,
+    "businessEmail":_businessEmail
+  };
+  this.options = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+  return this.http.post(this.host + '/api/sendBusiness', this.body, this.options)
+    .map(res=>res.json());
+}
+
+ postJob(_jobID:number,_businessID:number,_title:string,_description:string,_companyName:string,
           _city:string,_zipcode:string,_address:string,_phoneNo:string,_salary:string,_startDate:string,
           _endDate:string,_availability:boolean)
-    {
+  {
     
     this.body = {
       "jobID":_jobID,

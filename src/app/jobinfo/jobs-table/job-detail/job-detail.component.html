@@ -1,4 +1,4 @@
-<div class="container">
+<div class="detail">
   <div>
       <h1>Job Title: {{jobInfo?.title}}</h1><br>
   </div>
@@ -31,16 +31,12 @@
       <p>Salary: {{jobInfo?.salary}}</p><br>
   </div>
 
-
-  <div class="buttonContainers">
-      <div>
-        <button type="button" class="applyButton" (click)="applyJob()">Apply</button>
-        <button type="button" class="saveButton" (click)="saveJob()">Save</button>
-      </div>
-
-      <div>
-        <button type="button" class="updateButton" (click)="updateJob()">Update Job</button>
-        <button type="button" class="deleteButton" (click)="deleteJob(jobInfo?.jobID)">Delete</button>
-      </div>
-  </div>
+    <div class="btnholder">
+      <button type="button" class="btn" style="width:90px;" (click)="applyJob()">Apply</button>
+      <button type="button" class="btn" style="width:90px;" (click)="saveJob(1,1)">Save</button>
+      <button type="button" class="btn" style="width:90px;" (click)="updateJob()">Update Job</button>
+      <button type="button" class="btn" style="width:90px;" (click)="deleteJob(jobInfo?.jobID)">Delete</button>
+      <button type="button" class="btn" style="width:90px;" routerLink="/dashboard">Back</button>
+      
+    </div>
 </div>

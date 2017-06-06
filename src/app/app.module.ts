@@ -27,6 +27,7 @@ import { UpdateUsersInfoComponent } from './userinfo/update-users-info/update-us
 import { UpdatejobComponent } from './jobinfo/updatejob/updatejob.component';
 import { BUserFormUpdateComponent } from './userinfo/b-user-form-update/b-user-form-update.component';
 import { WUserFormUpdateComponent } from './userinfo/w-user-form-update/w-user-form-update.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -52,7 +53,7 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     UpdatejobComponent,
     BUserFormUpdateComponent,
     WUserFormUpdateComponent
-
+    FooterComponent
   ],
   imports: [
     BrowserModule,
