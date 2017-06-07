@@ -44,9 +44,6 @@ export class JobDetailComponent implements OnInit {
     let wUsersID = this.userInfo.sub;
     let straightDash = wUsersID.indexOf('|')+1;
     wUsersID = wUsersID.slice(straightDash);
-    //console.log(wUsersID);
-    //take this out!!!!!!!!!!!!!!!!
-    wUsersID = 1;
     //need to get wuser email
     let workerEmail = "lhyroger@gmail.com";
     //need to call to get one bUser to get email
